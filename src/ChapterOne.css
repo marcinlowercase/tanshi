@@ -8,20 +8,15 @@
 }
 
 #sky {
-  width: 100%;
-}
-
-#mountains {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 70%;
+  min-width: 100%;
 }
 
 #cave {
-  position: relative;
+  width: 40%;
+  height: 40%;
 
-  left: 60%;
-  width: 16rem;
-  height: 20rem;
+  overflow: hidden;
+  position: fixed;
+  top: -5%;
+  right: -15%;
 }
