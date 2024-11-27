@@ -1,4 +1,5 @@
 import sky from "./assets/sky.svg";
+// import mountains from "./assets/mountains.svg";
 import cave from "./assets/cave.svg";
 import lake from "./assets/lake.svg";
 import { useState, useEffect, useRef } from "react";
@@ -12,7 +13,8 @@ function ChapterOne() {
   const skyRef = useRef(null);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [skyTop, setSkyTop] = useState(-window.innerHeight); // Initialize skyTop
+  const [skyTop, setSkyTop] = useState(0); // Initialize skyTop
+  const [mountainsTop, setMountainsTop] = useState(0); // Initialize skyTop
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,18 +26,8 @@ function ChapterOne() {
   }, []);
 
   useEffect(() => {
-    const calculateSkyTop = () => {
-      if (skyRef.current) {
-        const skyRect = skyRef.current.getBoundingClientRect();
-        const skyHeight = skyRect.height;
-        console.log("skyHeight: " + skyHeight);
-
-        const newSkyTop = 0.15 * windowHeight - skyHeight;
-        setSkyTop(newSkyTop);
-      }
-    };
     calculateSkyTop();
-  }, [windowHeight, windowWidth, skyRef.current]);
+  }, [windowHeight, windowWidth]);
 
   const calculateSkyTop = () => {
     // Use requestAnimationFrame to ensure the element is laid out
@@ -43,8 +35,10 @@ function ChapterOne() {
       if (skyRef.current) {
         const skyRect = skyRef.current.getBoundingClientRect();
         const skyHeight = skyRect.height;
-        const newSkyTop = 0.15 * windowHeight - skyHeight;
+        const newSkyTop = 0.18 * windowHeight - skyHeight;
+
         setSkyTop(newSkyTop);
+        setMountainsTop(0.11 * windowHeight);
       }
     });
   };
@@ -61,10 +55,14 @@ function ChapterOne() {
         ref={skyRef}
         style={{
           position: "absolute",
+          zIndex: "5",
           top: `${skyTop}px`,
           width: "100%",
         }}
+        alt={"sky"}
       />
+      <Sabe windowHeight={windowHeight} windowWidth={windowWidth} />
+      {/*<img src={mountains} id="mountains" style={{zIndex: "1", position: "fixed", top: `${mountainsTop}px`}}  alt={"mountains"}/>*/}
     </div>
   );
 }
