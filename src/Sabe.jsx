@@ -2,7 +2,7 @@ import forestground from "./assets/forestground.svg";
 import backgroundtree from "./assets/backgroundtree.png";
 import sabe from "./assets/sabe.svg";
 import fronttree from "./assets/fronttree.svg";
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function Sabe() {
   const sabeRef = useRef(null);
