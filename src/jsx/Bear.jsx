@@ -72,7 +72,7 @@ function Bear() {
             style={{
                 // ref: {bearRef},
                 bottom: `${bearBottom}px`,
-                minWidth: `110px`,
+                minWidth: `100px`,
                 position: "absolute",
                 right: `${bearRight}px`,
                 width: `${bearWidth}px`,

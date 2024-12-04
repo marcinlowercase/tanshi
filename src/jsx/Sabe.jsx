@@ -9,10 +9,6 @@ import "../css/Sabe.css";
 
 function Sabe() {
     const forestGroundRef = useRef(null); // Add ref for forestGround
-    const [forestGroundTop, setForestGroundTop] = useState(
-        0.11 * window.innerHeight
-    );
-
     const [backgroundTreeBottom, setBackgroundTreeBottom] = useState(0);
     const [backgroundTreeWidth, setBackgroundTreeWidth] = useState(0);
     const [sabeWidth, setSabeWidth] = useState(0);
