@@ -2,6 +2,7 @@ import forestground from "./assets/forestground.svg";
 import backgroundtree from "./assets/backgroundtree.png";
 import sabe from "./assets/sabe.svg";
 import fronttree from "./assets/fronttree.svg";
+import dynamicSize from "./functions/dynamicSize";
 import { useState, useEffect, useRef } from "react";
 
 import "./Sabe.css";
@@ -34,10 +35,10 @@ function Sabe(props) {
             forestgroundHeight: forestgroundRect.height,
           })
         );
-        setBackgroundtreeWidth(dynamicSize(0.25));
-        setForestgroundWidth(dynamicSize(0.4));
-        setFronttreeWidth(dynamicSize(0.05));
-        setSabeWidth(dynamicSize(0.1));
+        setBackgroundtreeWidth(dynamicSize(0.25, props));
+        setForestgroundWidth(dynamicSize(0.4, props));
+        setFronttreeWidth(dynamicSize(0.05, props));
+        setSabeWidth(dynamicSize(0.1, props));
         setBackgroundtreeBottom(
           props.windowHeight - forestgroundTop - forestgroundRect.height * 0.6
         );
@@ -56,13 +57,13 @@ function Sabe(props) {
     handleSabeSize();
   }, [props.windowHeight, props.windowWidth]);
 
-  const dynamicSize = (percent) => {
-    console.log("WIDTH AND HEIGHT" + props.windowHeight);
-    return props.windowWidth / props.windowHeight > 16 / 9
-      ? (percent * props.windowWidth) /
-          ((props.windowWidth / props.windowHeight) * (9 / 16))
-      : percent * props.windowWidth;
-  };
+  // const dynamicSize = (percent) => {
+  //   console.log("WIDTH AND HEIGHT" + props.windowHeight);
+  //   return props.windowWidth / props.windowHeight > 16 / 9
+  //     ? (percent * props.windowWidth) /
+  //         ((props.windowWidth / props.windowHeight) * (9 / 16))
+  //     : percent * props.windowWidth;
+  // };
 
   return (
     <div id="sabearea">
