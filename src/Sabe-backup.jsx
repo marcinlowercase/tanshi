@@ -54,6 +54,13 @@ function Sabe(props) {
 
     handleSabeSize();
 
+  //   //set sabe size when resize the page
+  // useEffect(() => {
+  //   handleSabeSize();
+  // }, [props.windowHeight, props.windowWidth]);
+
+
+
   return (
     <div id="sabearea">
       <img
