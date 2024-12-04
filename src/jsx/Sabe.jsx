@@ -30,14 +30,15 @@ function Sabe() {
                 // Rect to get the properties of forestGround
                 const forestGroundRect =
                     forestGroundRef.current.getBoundingClientRect();
-                setForestGroundTop(0.11 * window.innerHeight);
+                // setForestGroundTop(0.11 * window.innerHeight);
 
                 setBackgroundTreeWidth(dynamicSize(0.25));
                 setForestGroundWidth(dynamicSize(0.4));
                 setFrontTreeWidth(dynamicSize(0.05));
                 setSabeWidth(dynamicSize(0.1));
                 setBackgroundTreeBottom(
-                    window.innerHeight - forestGroundTop - forestGroundRect.height * 0.6
+                    0.89*window.innerHeight - forestGroundRect.height * 0.6
+                    // 0.67*window.innerHeight
                 );
             }
         });

@@ -48,10 +48,8 @@ function ChapterOne() {
                 }}
                 alt={"sky"}
             />
-            <Sabe
-            />
-            <Bear
-            />
+            <Sabe/>
+            <Bear/>
         </div>
     );
 }
