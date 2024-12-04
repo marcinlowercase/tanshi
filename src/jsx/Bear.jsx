@@ -1,4 +1,4 @@
-import cave from "./assets/cave.svg";
+import cave from "../assets/cave.svg";
 
 function Bear(props) {
   return (

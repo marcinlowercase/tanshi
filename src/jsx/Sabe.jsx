@@ -1,11 +1,11 @@
-import forestGround from "./assets/forest_ground.svg";
-import backgroundTree from "./assets/background_tree.png";
-import sabe from "./assets/sabe.svg";
-import frontTree from "./assets/front_tree.svg";
-import dynamicSize from "./functions/dynamicSize";
+import forestGround from "../assets/forest_ground.svg";
+import backgroundTree from "../assets/background_tree.png";
+import sabe from "../assets/sabe.svg";
+import frontTree from "../assets/front_tree.svg";
+import dynamicSize from "../functions/dynamicSize.js";
 import {useState, useRef} from "react";
 
-import "./Sabe.css";
+import "../css/Sabe.css";
 
 function Sabe(props) {
     const forestGroundRef = useRef(null); // Add ref for forestGround
@@ -60,7 +60,6 @@ function Sabe(props) {
             />
             <img
                 alt="background tree"
-
                 src={backgroundTree}
                 style={{
                     zIndex: "10",
@@ -74,7 +73,6 @@ function Sabe(props) {
 
             <img
                 alt="sabe"
-
                 src={sabe}
                 style={{
                     bottom: `${backgroundTreeBottom}px`,
@@ -86,7 +84,6 @@ function Sabe(props) {
             />
             <img
                 alt="front tree"
-
                 src={frontTree}
                 style={{
                     bottom: `${backgroundTreeBottom}px`,

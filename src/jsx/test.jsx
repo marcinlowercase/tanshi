@@ -1,10 +1,10 @@
-import forestground from "./assets/forestground.svg";
-import backgroundtree from "./assets/backgroundtree.png";
-import sabe from "./assets/sabe.svg";
-import fronttree from "./assets/fronttree.svg";
+import forestground from "../assets/forest_ground.svg";
+import backgroundtree from "../assets/background_tree.png";
+import sabe from "../assets/sabe.svg";
+import fronttree from "../assets/front_tree.svg";
 import { useState, useEffect, useRef } from "react";
 
-import "./Sabe.css";
+import "../css/Sabe.css";
 
 function Sabe(props) {
   const sabeRef = useRef(null);

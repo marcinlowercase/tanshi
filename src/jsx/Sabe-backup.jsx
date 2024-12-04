@@ -1,11 +1,11 @@
-import forestground from "./assets/forest_ground.svg";
-import backgroundtree from "./assets/background_tree.png";
-import sabe from "./assets/sabe.svg";
-import fronttree from "./assets/front_tree.svg";
-import dynamicSize from "./functions/dynamicSize";
+import forestground from "../assets/forest_ground.svg";
+import backgroundtree from "../assets/background_tree.png";
+import sabe from "../assets/sabe.svg";
+import fronttree from "../assets/front_tree.svg";
+import dynamicSize from "../functions/dynamicSize.js";
 import { useState, useEffect, useRef } from "react";
 
-import "./Sabe.css";
+import "../css/Sabe.css";
 
 function Sabe(props) {
   const forestgroundRef = useRef(null); // Add ref for forestground
