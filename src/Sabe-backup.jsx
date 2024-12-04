@@ -1,7 +1,7 @@
-import forestground from "./assets/forestground.svg";
-import backgroundtree from "./assets/backgroundtree.png";
+import forestground from "./assets/forest_ground.svg";
+import backgroundtree from "./assets/background_tree.png";
 import sabe from "./assets/sabe.svg";
-import fronttree from "./assets/fronttree.svg";
+import fronttree from "./assets/front_tree.svg";
 import dynamicSize from "./functions/dynamicSize";
 import { useState, useEffect, useRef } from "react";
 

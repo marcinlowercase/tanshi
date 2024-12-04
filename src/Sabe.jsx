@@ -1,120 +1,103 @@
-import forestground from "./assets/forestground.svg";
-import backgroundtree from "./assets/backgroundtree.png";
+import forestGround from "./assets/forest_ground.svg";
+import backgroundTree from "./assets/background_tree.png";
 import sabe from "./assets/sabe.svg";
-import fronttree from "./assets/fronttree.svg";
+import frontTree from "./assets/front_tree.svg";
 import dynamicSize from "./functions/dynamicSize";
-import { useState, useEffect, useRef } from "react";
+import {useState, useRef} from "react";
 
 import "./Sabe.css";
 
 function Sabe(props) {
-  const forestgroundRef = useRef(null); // Add ref for forestground
-  const [forestgroundTop, setForestgroundTop] = useState(
-    0.11 * props.windowHeight
-  ); // State to store forestground top position
+    const forestGroundRef = useRef(null); // Add ref for forestGround
+    const [forestGroundTop, setForestGroundTop] = useState(
+        0.11 * window.innerHeight
+    );
 
-  const [backgroundtreeBottom, setBackgroundtreeBottom] = useState(0);
-  const [backgroundtreeWidth, setBackgroundtreeWidth] = useState(0);
-  const [sabeWidth, setSabeWidth] = useState(0);
-  const [fronttreeWidth, setFronttreeWidth] = useState(0);
-  const [forestgroundWidth, setForestgroundWidth] = useState(
-    0.4 * props.windowWidth
-  );
+    const [backgroundTreeBottom, setBackgroundTreeBottom] = useState(0);
+    const [backgroundTreeWidth, setBackgroundTreeWidth] = useState(0);
+    const [sabeWidth, setSabeWidth] = useState(0);
+    const [frontTreeWidth, setFrontTreeWidth] = useState(0);
+    const [forestGroundWidth, setForestGroundWidth] = useState(
+        0.4 * window.innerWidth
+    );
 
-  const handleSabeSize = () => {
-    requestAnimationFrame(() => {
-      // Use requestAnimationFrame // To make sure that the image load before get the height
-      if (forestgroundRef.current) {
-        const forestgroundRect =
-          forestgroundRef.current.getBoundingClientRect();
-        setForestgroundTop(0.11 * props.windowHeight);
-        console.log(
-          JSON.stringify({
-            windowHeight: props.windowHeight,
-            forestgroundTop: forestgroundTop,
-            forestgroundHeight: forestgroundRect.height,
-          })
-        );
-        setBackgroundtreeWidth(dynamicSize(0.25, props));
-        setForestgroundWidth(dynamicSize(0.4, props));
-        setFronttreeWidth(dynamicSize(0.05, props));
-        setSabeWidth(dynamicSize(0.1, props));
-        setBackgroundtreeBottom(
-          props.windowHeight - forestgroundTop - forestgroundRect.height * 0.6
-        );
-        console.log(backgroundtreeBottom + " this is background");
-      }
-    });
-  };
+    const handleSabeSize = () => {
+        requestAnimationFrame(() => {
+            // Use requestAnimationFrame // To make sure that the image load before get the height
+            if (forestGroundRef.current) {
+                const forestGroundRect =
+                    forestGroundRef.current.getBoundingClientRect();
+                setForestGroundTop(0.11 * window.innerHeight);
 
-  // // set sabe size on first load
-  // useEffect(() => {
-  //   handleSabeSize();
-  // }, []);
+                setBackgroundTreeWidth(dynamicSize(0.25, props));
+                setForestGroundWidth(dynamicSize(0.4, props));
+                setFrontTreeWidth(dynamicSize(0.05, props));
+                setSabeWidth(dynamicSize(0.1, props));
+                setBackgroundTreeBottom(
+                    window.innerHeight - forestGroundTop - forestGroundRect.height * 0.6
+                );
+                console.log(backgroundTreeBottom + " this is background");
+            }
+        });
+    };
 
     handleSabeSize();
 
-  return (
-    <div id="sabearea">
-      <img
-        src={forestground}
-        id="forestground"
-        ref={forestgroundRef} // Assign the ref
-        style={{
-          minWidth: "300px",
-          // minWidth: "900px",
-          position: "absolute",
-          // top: `${forestgroundTop}px`,
-          bottom: `${backgroundtreeBottom - props.windowHeight * 0.03}px`, // Dynamically calculate bottom position
-          // width: `${0.4 * props.windowWidth}px`,
-          width: `${forestgroundWidth}px`,
-          zIndex: "0",
-        }}
-      />
-      <img
-        src={backgroundtree}
-        style={{
-          zIndex: "10",
-          position: "absolute",
-          // minWidth: "450px",
-          minWidth: "150px",
-          width: `${backgroundtreeWidth}px`,
-          // width: `${
-          //   props.windowWidth / props.windowHeight > 16 / 9
-          //     ? (0.25 * props.windowWidth) /
-          //       ((props.windowWidth / props.windowHeight) * (9 / 16))
-          //     : 0.25 * props.windowWidth
-          // }px`,
+    return (
+        <div id="sabearea">
+            <img
+                alt="forest ground"
+                src={forestGround}
+                id="forestground"
+                ref={forestGroundRef} // Assign the ref
+                style={{
+                    minWidth: "300px",
+                    position: "absolute",
+                    bottom: `${backgroundTreeBottom - window.innerHeight * 0.03}px`, // Dynamically calculate bottom position
+                    width: `${forestGroundWidth}px`,
+                    zIndex: "0",
+                }}
+            />
+            <img
+                alt="background tree"
 
-          bottom: `${backgroundtreeBottom}px`, // Dynamically calculate bottom position
-          left: "0",
-        }}
-      />
+                src={backgroundTree}
+                style={{
+                    zIndex: "10",
+                    position: "absolute",
+                    minWidth: "150px",
+                    width: `${backgroundTreeWidth}px`,
+                    bottom: `${backgroundTreeBottom}px`, // Dynamically calculate bottom position
+                    left: "0",
+                }}
+            />
 
-      <img
-        src={sabe}
-        style={{
-          bottom: `${backgroundtreeBottom}px`,
-          minWidth: "70px",
-          position: "absolute",
-          // width: `${0.1 * props.windowWidth}px`,
-          width: `${sabeWidth}px`,
-          zIndex: "30",
-        }}
-      />
-      <img
-        src={fronttree}
-        style={{
-          bottom: `${backgroundtreeBottom}px`,
-          minWidth: "36px",
-          position: "absolute",
-          // width: `${0.05 * props.windowWidth}px`,
-          width: `${fronttreeWidth}px`,
+            <img
+                alt="sabe"
 
-          zIndex: "50",
-        }}
-      />
-    </div>
-  );
+                src={sabe}
+                style={{
+                    bottom: `${backgroundTreeBottom}px`,
+                    minWidth: "70px",
+                    position: "absolute",
+                    width: `${sabeWidth}px`,
+                    zIndex: "30",
+                }}
+            />
+            <img
+                alt="front tree"
+
+                src={frontTree}
+                style={{
+                    bottom: `${backgroundTreeBottom}px`,
+                    minWidth: "36px",
+                    position: "absolute",
+                    width: `${frontTreeWidth}px`,
+                    zIndex: "50",
+                }}
+            />
+        </div>
+    );
 }
+
 export default Sabe;
