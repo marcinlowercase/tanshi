@@ -6,6 +6,7 @@ function Bear(props) {
       src={cave}
       style={{
         position: "absolute",
+        width: `${props.windowWidth * 0.3}px`,
         zIndex: "10",
       }}
     />

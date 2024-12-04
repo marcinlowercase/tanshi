@@ -93,7 +93,11 @@ function ChapterOne() {
         skyHeight={skyHeight}
       />
 
-      {/* <Bear /> */}
+      <Bear
+        windowHeight={windowHeight}
+        windowWidth={windowWidth}
+        skyHeight={skyHeight}
+      />
     </div>
   );
 }
