@@ -4,6 +4,7 @@ import Sabe from "./Sabe.jsx";
 
 import "../css/ChapterOne.css";
 import Bear from "./Bear.jsx";
+import {useEffect} from "react";
 
 function ChapterOne() {
     // skyRef to get sky height
@@ -21,6 +22,18 @@ function ChapterOne() {
     };
 
     updateSkyPosition();
+
+    // update Sky Position when resize the window
+    useEffect(() => {
+        updateSkyPosition();
+        const resizeHandler = () => {
+            updateSkyPosition();
+        }
+        window.addEventListener("resize", resizeHandler);
+        return () => {
+            window.removeEventListener("resize", resizeHandler);
+        }
+    }, []);
 
     return (
         <div>

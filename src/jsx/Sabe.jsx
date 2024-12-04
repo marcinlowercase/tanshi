@@ -3,11 +3,11 @@ import backgroundTree from "../assets/background_tree.png";
 import sabe from "../assets/sabe.svg";
 import frontTree from "../assets/front_tree.svg";
 import dynamicSize from "../functions/dynamicSize.js";
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 
 import "../css/Sabe.css";
 
-function Sabe(props) {
+function Sabe() {
     const forestGroundRef = useRef(null); // Add ref for forestGround
     const [forestGroundTop, setForestGroundTop] = useState(
         0.11 * window.innerHeight
@@ -21,27 +21,45 @@ function Sabe(props) {
         0.4 * window.innerWidth
     );
 
+
+    // function to set the position and size for sabe component
     const handleSabeSize = () => {
         requestAnimationFrame(() => {
             // Use requestAnimationFrame // To make sure that the image load before get the height
             if (forestGroundRef.current) {
+                // Rect to get the properties of forestGround
                 const forestGroundRect =
                     forestGroundRef.current.getBoundingClientRect();
                 setForestGroundTop(0.11 * window.innerHeight);
 
-                setBackgroundTreeWidth(dynamicSize(0.25, props));
-                setForestGroundWidth(dynamicSize(0.4, props));
-                setFrontTreeWidth(dynamicSize(0.05, props));
-                setSabeWidth(dynamicSize(0.1, props));
+                setBackgroundTreeWidth(dynamicSize(0.25));
+                setForestGroundWidth(dynamicSize(0.4));
+                setFrontTreeWidth(dynamicSize(0.05));
+                setSabeWidth(dynamicSize(0.1));
                 setBackgroundTreeBottom(
                     window.innerHeight - forestGroundTop - forestGroundRect.height * 0.6
                 );
-                console.log(backgroundTreeBottom + " this is background");
             }
         });
     };
 
+    // call handleSabeSize on the first load
     handleSabeSize();
+
+    // call handleSabeSize everytime window resize
+    useEffect(() => {
+        handleSabeSize();
+        const handleResize = () => {
+            handleSabeSize();
+        }
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        }
+    })
+
 
     return (
         <div id="sabearea">
