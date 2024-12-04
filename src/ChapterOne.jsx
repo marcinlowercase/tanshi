@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import Sabe from "./Sabe";
 
 import "./ChapterOne.css";
+import Bear from "./Bear";
 
 function ChapterOne() {
   // skyRef to get sky height
@@ -13,6 +14,7 @@ function ChapterOne() {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [skyTop, setSkyTop] = useState(0); // Initialize skyTop
+  const [skyBottom, setSkyBottom] = useState(0); // Initialize skyTop
   const [skyHeight, setSkyHeight] = useState(0); // Initialize skyHeight
 
   useEffect(() => {
@@ -27,13 +29,27 @@ function ChapterOne() {
   // recalculate the sky top after resize
   useEffect(() => {
     calculateSkyTop();
+    updateSkyPosition();
   }, [windowHeight, windowWidth]);
 
   // calculate the sky top on first load
   useEffect(() => {
     calculateSkyTop();
+    updateSkyPosition();
   });
 
+  const updateSkyPosition = () => {
+    const minViewportHeight = 480; // Minimum viewport height to consider
+    const viewportHeight = Math.max(window.innerHeight, minViewportHeight);
+    const skyBottom = viewportHeight * 0.88; // 88% from bottom
+    const skyElement = document.getElementById("sky");
+    if (skyElement) {
+      requestAnimationFrame(() => {
+        // Ensure layout is updated before setting style
+        skyElement.style.bottom = `${skyBottom}px`;
+      });
+    }
+  };
   const calculateSkyTop = () => {
     // Use requestAnimationFrame to ensure the element is laid out
     requestAnimationFrame(() => {
@@ -41,10 +57,12 @@ function ChapterOne() {
         const skyRect = skyRef.current.getBoundingClientRect();
         // console.log(`Set sky height ${skyRect.height}`);
         setSkyHeight(skyRect.height);
+        console.log(skyRect.bottom + "BOTTT");
         // const skyHeight = skyRect.height;
         const newSkyTop = 0.18 * windowHeight - skyHeight;
-
         setSkyTop(newSkyTop);
+        const newSkyBottom = 0.82 * windowHeight;
+        setSkyBottom(newSkyBottom);
       }
     });
   };
@@ -62,7 +80,9 @@ function ChapterOne() {
         style={{
           position: "absolute",
           zIndex: "5",
-          top: `${skyTop}px`,
+          // top: `${skyTop}px`,
+          // bottom: `${skyBottom}px`,
+          bottom: "88vh",
           width: "100%",
         }}
         alt={"sky"}
@@ -72,6 +92,8 @@ function ChapterOne() {
         windowWidth={windowWidth}
         skyHeight={skyHeight}
       />
+
+      {/* <Bear /> */}
     </div>
   );
 }

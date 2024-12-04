@@ -39,7 +39,7 @@ function Sabe(props) {
         setFronttreeWidth(dynamicSize(0.05));
         setSabeWidth(dynamicSize(0.1));
         setBackgroundtreeBottom(
-          props.windowHeight - forestgroundTop - forestgroundRect.height * 0.79
+          props.windowHeight - forestgroundTop - forestgroundRect.height * 0.6
         );
         console.log(backgroundtreeBottom + " this is background");
       }
@@ -74,7 +74,8 @@ function Sabe(props) {
           minWidth: "300px",
           // minWidth: "900px",
           position: "absolute",
-          top: `${forestgroundTop}px`,
+          // top: `${forestgroundTop}px`,
+          bottom: `${backgroundtreeBottom - props.windowHeight * 0.03}px`, // Dynamically calculate bottom position
           // width: `${0.4 * props.windowWidth}px`,
           width: `${forestgroundWidth}px`,
           zIndex: "0",
