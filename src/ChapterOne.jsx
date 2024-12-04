@@ -1,5 +1,4 @@
 import sky from "./assets/sky.svg";
-// import mountains from "./assets/mountains.svg";
 import cave from "./assets/cave.svg";
 import lake from "./assets/lake.svg";
 import { useState, useEffect, useRef } from "react";
@@ -14,7 +13,7 @@ function ChapterOne() {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [skyTop, setSkyTop] = useState(0); // Initialize skyTop
-  const [mountainsTop, setMountainsTop] = useState(0); // Initialize skyTop
+  const [skyHeight, setSkyHeight] = useState(0); // Initialize skyHeight
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,20 +24,27 @@ function ChapterOne() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // recalculate the sky top after resize
   useEffect(() => {
     calculateSkyTop();
   }, [windowHeight, windowWidth]);
+
+  // calculate the sky top on first load
+  useEffect(() => {
+    calculateSkyTop();
+  });
 
   const calculateSkyTop = () => {
     // Use requestAnimationFrame to ensure the element is laid out
     requestAnimationFrame(() => {
       if (skyRef.current) {
         const skyRect = skyRef.current.getBoundingClientRect();
-        const skyHeight = skyRect.height;
+        // console.log(`Set sky height ${skyRect.height}`);
+        setSkyHeight(skyRect.height);
+        // const skyHeight = skyRect.height;
         const newSkyTop = 0.18 * windowHeight - skyHeight;
 
         setSkyTop(newSkyTop);
-        setMountainsTop(0.11 * windowHeight);
       }
     });
   };
@@ -61,8 +67,11 @@ function ChapterOne() {
         }}
         alt={"sky"}
       />
-      <Sabe windowHeight={windowHeight} windowWidth={windowWidth} />
-      {/*<img src={mountains} id="mountains" style={{zIndex: "1", position: "fixed", top: `${mountainsTop}px`}}  alt={"mountains"}/>*/}
+      <Sabe
+        windowHeight={windowHeight}
+        windowWidth={windowWidth}
+        skyHeight={skyHeight}
+      />
     </div>
   );
 }

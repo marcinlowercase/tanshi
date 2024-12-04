@@ -12,43 +12,57 @@ function Sabe(props) {
     0.11 * props.windowHeight
   ); // State to store forestground top position
 
-  const [backgroundtreeBottom, setBackgroundtreeBottom] = useState(
-    props.windowHeight - forestgroundTop - 0
+  const [backgroundtreeBottom, setBackgroundtreeBottom] = useState(0);
+  const [backgroundtreeWidth, setBackgroundtreeWidth] = useState(0);
+  const [sabeWidth, setSabeWidth] = useState(0);
+  const [fronttreeWidth, setFronttreeWidth] = useState(0);
+  const [forestgroundWidth, setForestgroundWidth] = useState(
+    0.4 * props.windowWidth
   );
 
-  useEffect(() => {
-    const handleImageLoad = () => {
+  const handleSabeSize = () => {
+    requestAnimationFrame(() => {
+      // Use requestAnimationFrame // To make sure that the image load before get the height
       if (forestgroundRef.current) {
-        const rect = forestgroundRef.current.getBoundingClientRect();
-        console.log("rect.height " + rect.height);
-        setBackgroundtreeBottom(
-          props.windowHeight - forestgroundTop - rect.height
+        const forestgroundRect =
+          forestgroundRef.current.getBoundingClientRect();
+        setForestgroundTop(0.11 * props.windowHeight);
+        console.log(
+          JSON.stringify({
+            windowHeight: props.windowHeight,
+            forestgroundTop: forestgroundTop,
+            forestgroundHeight: forestgroundRect.height,
+          })
         );
+        setBackgroundtreeWidth(dynamicSize(0.25));
+        setForestgroundWidth(dynamicSize(0.4));
+        setFronttreeWidth(dynamicSize(0.05));
+        setSabeWidth(dynamicSize(0.1));
+        setBackgroundtreeBottom(
+          props.windowHeight - forestgroundTop - forestgroundRect.height * 0.79
+        );
+        console.log(backgroundtreeBottom + " this is background");
       }
+    });
+  };
 
-      console.log(backgroundtreeBottom);
-    };
-
-    console.log("update teh top on first load");
-
-    handleImageLoad();
+  // set sabe size on first load
+  useEffect(() => {
+    handleSabeSize();
   }, []);
 
+  //set sabe size when resize the page
   useEffect(() => {
-    const handleImageLoad = () => {
-      if (forestgroundRef.current) {
-        const rect = forestgroundRef.current.getBoundingClientRect();
-        setForestgroundTop(0.11 * props.windowHeight);
-        console.log(rect.height);
-        let forestgroundHeight = rect.height;
-        setBackgroundtreeBottom(
-          props.windowHeight - forestgroundTop - forestgroundHeight
-        );
-      }
-    };
-
-    handleImageLoad();
+    handleSabeSize();
   }, [props.windowHeight, props.windowWidth]);
+
+  const dynamicSize = (percent) => {
+    console.log("WIDTH AND HEIGHT" + props.windowHeight);
+    return props.windowWidth / props.windowHeight > 16 / 9
+      ? (percent * props.windowWidth) /
+          ((props.windowWidth / props.windowHeight) * (9 / 16))
+      : percent * props.windowWidth;
+  };
 
   return (
     <div id="sabearea">
@@ -58,9 +72,11 @@ function Sabe(props) {
         ref={forestgroundRef} // Assign the ref
         style={{
           minWidth: "300px",
+          // minWidth: "900px",
           position: "absolute",
           top: `${forestgroundTop}px`,
-          width: `${0.4 * props.windowWidth}px`,
+          // width: `${0.4 * props.windowWidth}px`,
+          width: `${forestgroundWidth}px`,
           zIndex: "0",
         }}
       />
@@ -69,9 +85,42 @@ function Sabe(props) {
         style={{
           zIndex: "10",
           position: "absolute",
-          width: `${0.25 * props.windowWidth}px`,
+          // minWidth: "450px",
+          minWidth: "150px",
+          width: `${backgroundtreeWidth}px`,
+          // width: `${
+          //   props.windowWidth / props.windowHeight > 16 / 9
+          //     ? (0.25 * props.windowWidth) /
+          //       ((props.windowWidth / props.windowHeight) * (9 / 16))
+          //     : 0.25 * props.windowWidth
+          // }px`,
+
           bottom: `${backgroundtreeBottom}px`, // Dynamically calculate bottom position
           left: "0",
+        }}
+      />
+
+      <img
+        src={sabe}
+        style={{
+          bottom: `${backgroundtreeBottom}px`,
+          minWidth: "70px",
+          position: "absolute",
+          // width: `${0.1 * props.windowWidth}px`,
+          width: `${sabeWidth}px`,
+          zIndex: "30",
+        }}
+      />
+      <img
+        src={fronttree}
+        style={{
+          bottom: `${backgroundtreeBottom}px`,
+          minWidth: "36px",
+          position: "absolute",
+          // width: `${0.05 * props.windowWidth}px`,
+          width: `${fronttreeWidth}px`,
+
+          zIndex: "50",
         }}
       />
     </div>
