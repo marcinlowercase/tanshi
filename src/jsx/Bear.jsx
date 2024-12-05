@@ -36,7 +36,6 @@ function Bear() {
 
     // call handleBearSize on the first load
     handleBearSize();
-    console.log("bearbear")
 
     // call handleBearSize everytim window resize
     useEffect(() => {
@@ -53,9 +52,10 @@ function Bear() {
 
 
     return (
-        <div className="bear">
+        <div className="bearArea">
             <img
                 alt="cave"
+                id="cave"
                 ref={caveRef}
                 src={cave}
                 style={{
@@ -67,7 +67,9 @@ function Bear() {
                     zIndex: "10",
                 }}
             />
+
             <img alt='bear'
+                 id={'bear'}
             src={bear}
             style={{
                 // ref: {bearRef},

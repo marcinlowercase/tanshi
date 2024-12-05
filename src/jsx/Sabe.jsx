@@ -59,7 +59,7 @@ function Sabe() {
 
 
     return (
-        <div id="sabearea">
+        <div id="sabeArea">
             <img
                 alt="forest ground"
                 src={forestGround}
