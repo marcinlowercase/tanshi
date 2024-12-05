@@ -1,7 +1,13 @@
 import cave from "../assets/cave.svg";
-import bear from "../assets/bear.svg";
+// import bear from "../assets/bear.svg";
 import dynamicSize from "../functions/dynamicSize.js";
+import {handleMouseEnterAnimation, handleMouseLeaveAnimation} from "../functions/animationInternal.js"
 import {useEffect, useRef, useState} from "react";
+
+import bear1 from "../assets/svg/bear/bear_1.svg";
+import bear2 from "../assets/svg/bear/bear_2.svg";
+
+const bearAnimationArr = [bear1, bear2];
 
 function Bear() {
 
@@ -17,17 +23,17 @@ function Bear() {
     const handleBearSize = () => {
         requestAnimationFrame(() => {
 
-            if(caveRef.current) {
+            if (caveRef.current) {
                 // Rect to get properties of cave
                 const caveRect = caveRef.current.getBoundingClientRect();
                 setCaveWidth(dynamicSize(0.38));
                 setBearWidth(dynamicSize(0.12));
 
-                setCaveRight(- 0.4 *caveRect.width);
-                setCaveBottom(0.84*window.innerHeight - caveRect.height * 0.6);
+                setCaveRight(-0.4 * caveRect.width);
+                setCaveBottom(0.84 * window.innerHeight - caveRect.height * 0.6);
 
-                setBearRight(0.25*caveRect.width);
-                setBearBottom(caveBottom+ caveRect.height*0.13);
+                setBearRight(0.25 * caveRect.width);
+                setBearBottom(caveBottom + caveRect.height * 0.13);
 
             }
 
@@ -51,6 +57,22 @@ function Bear() {
     })
 
 
+    const [bearSrc, setBearSrc] = useState(bearAnimationArr[0]); // Initialize with bear1
+
+    const [intervalId, setIntervalId] = useState(null); // Store interval ID
+
+
+    const handleMouseEnter = () => {
+        handleMouseEnterAnimation(intervalId, setIntervalId, bearSrc, setBearSrc, bearAnimationArr, 400);
+    }
+
+    const handleMouseLeave = () => {
+        handleMouseLeaveAnimation(intervalId, setBearSrc, bearAnimationArr);
+    }
+
+
+
+
     return (
         <div className="bearArea">
             <img
@@ -68,18 +90,22 @@ function Bear() {
                 }}
             />
 
-            <img alt='bear'
-                 id={'bear'}
-            src={bear}
-            style={{
-                // ref: {bearRef},
-                bottom: `${bearBottom}px`,
-                minWidth: `100px`,
-                position: "absolute",
-                right: `${bearRight}px`,
-                width: `${bearWidth}px`,
-                zIndex: "30",
-            }}/>
+            <img
+                alt='bear'
+                id={'bear'}
+                src={bearSrc}
+                style={{
+                    // ref: {bearRef},
+                    bottom: `${bearBottom}px`,
+                    minWidth: `100px`,
+                    position: "absolute",
+                    right: `${bearRight}px`,
+                    width: `${bearWidth}px`,
+                    zIndex: "30",
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            />
         </div>
     );
 }
