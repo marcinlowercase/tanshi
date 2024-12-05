@@ -11,6 +11,7 @@ import dynamicSize from "../functions/dynamicSize.js";
 import "../css/ChapterOne.css";
 import {useEffect, useRef, useState} from "react";
 import Wolves from "./Wolves.jsx";
+import Beavers from "./Beavers.jsx";
 
 function ChapterOne() {
 
@@ -19,6 +20,7 @@ function ChapterOne() {
     const [lakeTop, setLakeTop] = useState(0);
     const [lakeLeft, setLakeLeft] = useState(0);
     const [lakeWidth, setLakeWidth] = useState({});
+    const [lakeHeight, setLakeHeight] = useState({});
 
     const updateSkyPosition = () => {
         const minViewportHeight = 480; // Minimum viewport height to consider
@@ -46,6 +48,7 @@ function ChapterOne() {
                 setLakeTop(lakeRect.top);
                 setLakeWidth(lakeRect.width);
                 setLakeLeft(lakeRect.left);
+                setLakeHeight(lakeRect.height);
             }
         })
     }
@@ -102,6 +105,7 @@ function ChapterOne() {
             <Turtles lakeWidth = {lakeWidth} />
             <Buffalo lakeTop={lakeTop}/>
             <Wolves/>
+            <Beavers lakeWidth = {lakeWidth} lakeTop={lakeTop} lakeLeft = {lakeLeft} lakeHeight = {lakeHeight} />
         </div>
     );
 }
