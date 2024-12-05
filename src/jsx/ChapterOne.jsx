@@ -1,5 +1,6 @@
 import sky from "../assets/sky.svg";
 import lake from "../assets/lake.svg";
+import tipi from "../assets/tipi.svg";
 
 import Sabe from "./Sabe.jsx";
 import Bear from "./Bear.jsx";
@@ -12,6 +13,7 @@ import "../css/ChapterOne.css";
 import {useEffect, useRef, useState} from "react";
 import Wolves from "./Wolves.jsx";
 import Beavers from "./Beavers.jsx";
+import Eagle from "./Eagle.jsx";
 
 function ChapterOne() {
 
@@ -22,16 +24,21 @@ function ChapterOne() {
     const [lakeWidth, setLakeWidth] = useState({});
     const [lakeHeight, setLakeHeight] = useState({});
 
+    const [skyBottom, setSkyBottom] = useState(0);
+
+
     const updateSkyPosition = () => {
         const minViewportHeight = 480; // Minimum viewport height to consider
         const viewportHeight = Math.max(window.innerHeight, minViewportHeight);
-        const skyBottom = viewportHeight * 0.88; // 88% from bottom
+        const newSkyBottom = viewportHeight * 0.88; // 88% from bottom
         const sky = document.getElementById("sky");
         const lake = document.getElementById("lake");
         if (sky && lake) {
             requestAnimationFrame(() => {
                 // Ensure layout is updated before setting style
-                sky.style.bottom = `${skyBottom}px`;
+                // sky.style.bottom = `${skyBottom}px`;
+                setSkyBottom(newSkyBottom);
+                console.log('update sky bottom ');
                 lake.style.width = `${dynamicSize(0.7)}px`;
                 // lake.style.width = `${0.7 * window.innerWidth}px`;
             });
@@ -40,7 +47,7 @@ function ChapterOne() {
 
     };
 
-    const updateLakeTop = () => {
+    const updateLakeProperties = () => {
         requestAnimationFrame(() => {
             if (lakeRef.current) {
                 const lakeRect = lakeRef.current.getBoundingClientRect();
@@ -54,18 +61,18 @@ function ChapterOne() {
     }
 
 
-    updateLakeTop();
+    updateLakeProperties();
 
     updateSkyPosition();
 
     // update Sky Position when resize the window
     useEffect(() => {
         updateSkyPosition();
-        updateLakeTop();
+        updateLakeProperties();
 
         const resizeHandler = () => {
             updateSkyPosition();
-            updateLakeTop();
+            updateLakeProperties();
         }
         window.addEventListener("resize", resizeHandler);
         return () => {
@@ -81,7 +88,7 @@ function ChapterOne() {
                 style={{
                     position: "absolute",
                     zIndex: "5",
-                    bottom: "88vh",
+                    bottom: `${skyBottom}px`,
                     width: "100%",
                 }}
                 alt={"sky"}
@@ -102,10 +109,35 @@ function ChapterOne() {
             />
             <Sabe/>
             <Bear/>
-            <Turtles lakeWidth = {lakeWidth} />
+            <Turtles lakeWidth={lakeWidth}/>
             <Buffalo lakeTop={lakeTop}/>
             <Wolves/>
-            <Beavers lakeWidth = {lakeWidth} lakeTop={lakeTop} lakeLeft = {lakeLeft} lakeHeight = {lakeHeight} />
+            <Beavers lakeWidth={lakeWidth} lakeTop={lakeTop} lakeLeft={lakeLeft} lakeHeight={lakeHeight}/>
+            <Eagle skyBottom={skyBottom}/>
+
+            <img
+                id="tipi1"
+                src={tipi}
+                style={{
+                    width: `${window.innerWidth * 0.20}px`,
+                    left: "0",
+                    position: "absolute",
+                    zIndex: "100",
+                    bottom: "0",
+                    transform: "scaleX(-1) translate(30%, 0)",
+                }}
+            /><img
+            id="tipi2"
+            src={tipi}
+            style={{
+                width: `${window.innerWidth * 0.15}px`,
+                right:"0",
+                position: "absolute",
+                zIndex: "5",
+                bottom: "0",
+                transform: "scaleX(-1) translate(-50%, -50%)",
+            }}
+        />
         </div>
     );
 }
