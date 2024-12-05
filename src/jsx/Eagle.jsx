@@ -21,7 +21,7 @@ function Eagle(props) {
                 id={"eagle"}
                 style={{
                     left: "30%",
-                    bottom: `${props.skyBottom+50}px`,
+                    bottom: `${props.skyBottom+30}px`,
                     position: "absolute",
                     minWidth: "60px",
                     width: `${eagleWidth}px`,

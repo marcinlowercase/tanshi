@@ -1,11 +1,12 @@
 import sky from "../assets/sky.svg";
 import lake from "../assets/lake.svg";
-import tipi from "../assets/tipi.svg";
 
 import Sabe from "./Sabe.jsx";
 import Bear from "./Bear.jsx";
 import Turtles from "./Turtles.jsx";
 import Buffalo from "./Buffalo.jsx";
+
+import Tipis from "./Tipis.jsx";
 
 import dynamicSize from "../functions/dynamicSize.js";
 
@@ -115,29 +116,7 @@ function ChapterOne() {
             <Beavers lakeWidth={lakeWidth} lakeTop={lakeTop} lakeLeft={lakeLeft} lakeHeight={lakeHeight}/>
             <Eagle skyBottom={skyBottom}/>
 
-            <img
-                id="tipi1"
-                src={tipi}
-                style={{
-                    width: `${window.innerWidth * 0.20}px`,
-                    left: "0",
-                    position: "absolute",
-                    zIndex: "100",
-                    bottom: "0",
-                    transform: "scaleX(-1) translate(30%, 0)",
-                }}
-            /><img
-            id="tipi2"
-            src={tipi}
-            style={{
-                width: `${window.innerWidth * 0.15}px`,
-                right:"0",
-                position: "absolute",
-                zIndex: "5",
-                bottom: "0",
-                transform: "scaleX(-1) translate(-50%, -50%)",
-            }}
-        />
+            <Tipis />
         </div>
     );
 }
