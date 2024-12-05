@@ -10,12 +10,14 @@ import dynamicSize from "../functions/dynamicSize.js";
 
 import "../css/ChapterOne.css";
 import {useEffect, useRef, useState} from "react";
+import Wolves from "./Wolves.jsx";
 
 function ChapterOne() {
 
     // Take the ref of the lake to put down to buffalow
     const lakeRef = useRef(null);
-    const [lakeTop, setLakeTop] = useState({});
+    const [lakeTop, setLakeTop] = useState(0);
+    const [lakeLeft, setLakeLeft] = useState(0);
     const [lakeWidth, setLakeWidth] = useState({});
 
     const updateSkyPosition = () => {
@@ -42,6 +44,8 @@ function ChapterOne() {
                 const lakeRect = lakeRef.current.getBoundingClientRect();
 
                 setLakeTop(lakeRect.top);
+                setLakeWidth(lakeRect.width);
+                setLakeLeft(lakeRect.left);
             }
         })
     }
@@ -91,13 +95,13 @@ function ChapterOne() {
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                     zIndex: "5",
-
-
-                }}/>
+                }}
+            />
             <Sabe/>
             <Bear/>
-            <Turtles/>
+            <Turtles lakeWidth = {lakeWidth} />
             <Buffalo lakeTop={lakeTop}/>
+            <Wolves/>
         </div>
     );
 }

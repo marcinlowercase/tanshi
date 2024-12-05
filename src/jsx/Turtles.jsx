@@ -2,12 +2,14 @@ import dynamicSize from "../functions/dynamicSize.js";
 import {useEffect, useRef, useState} from "react";
 import turtles from "../assets/turtles.svg";
 
-function Turtles() {
+function Turtles(props) {
     const [turtlesWidth, setTurtlesWidth] = useState(0);
+    const [turtlesLeft, setTurtlesLeft] = useState(0);
 
     const handleTurtlesProperties = () => {
         requestAnimationFrame(() => {
             setTurtlesWidth(dynamicSize(0.1));
+            setTurtlesLeft(window.innerWidth * 0.5 - props.lakeWidth* 0.15);
         })
     }
 
@@ -28,15 +30,17 @@ function Turtles() {
 
 
     return (
-        <img src={turtles} alt="turtles" id="turtles" style={{
-            minWidth: "100px",
-            width: `${turtlesWidth}px`,
-            top: "50%",
-            left: "35%",
-            transform: "translate(-50%, -50%)",
-            position: "absolute",
-            zIndex: "50",
-        }}/>
+        <div id={"turtlesArea"}>
+            <img src={turtles} alt="turtles" id="turtles" style={{
+                minWidth: "100px",
+                width: `${turtlesWidth}px`,
+                top: "50%",
+                left: `${turtlesLeft}px`,
+                transform: "translate(-50%, -50%)",
+                position: "absolute",
+                zIndex: "50",
+            }}/>
+        </div>
     )
 
 }
