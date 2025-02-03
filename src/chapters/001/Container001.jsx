@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 
 
 import sky from "./environment/assets/sky.svg";
-import lake from "../../assets/lake.svg";
+import lake from "./environment/assets/lake.svg";
 
 import Sabe from "./sabe/Sabe.jsx";
 import Bear from "./bear/Bear.jsx";
