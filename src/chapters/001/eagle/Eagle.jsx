@@ -1,5 +1,5 @@
-import eagle from '../assets/eagle.svg'
-import dynamicSize from "../functions/dynamicSize.js";
+import eagle from './assets/eagle.svg'
+import dynamicSize from "../../../functions/dynamicSize.js";
 import {useState} from "react";
 
 function Eagle(props) {

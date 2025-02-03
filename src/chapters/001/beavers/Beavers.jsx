@@ -1,12 +1,11 @@
-import beaver from '../assets/beaver.svg'
-import dynamicSize from "../functions/dynamicSize.js";
+import dynamicSize from "../../../functions/dynamicSize.js";
 import {useState} from "react";
 
-import beaver1 from '../assets/svg/beaver/beaver_1.svg'
-import beaver2 from '../assets/svg/beaver/beaver_2.svg'
-import beaver3 from '../assets/svg/beaver/beaver_3.svg'
-import beaver4 from '../assets/svg/beaver/beaver_4.svg'
-import {handleMouseEnterAnimation, handleMouseLeaveAnimation} from "../functions/animationInternal.js";
+import beaver1 from './assets/beaver/beaver_1.svg'
+import beaver2 from './assets/beaver/beaver_2.svg'
+import beaver3 from './assets/beaver/beaver_3.svg'
+import beaver4 from './assets/beaver/beaver_4.svg'
+import {handleMouseEnterAnimation, handleMouseLeaveAnimation} from "../../../functions/animationInternal.js";
 
 const beaverAnimationArr = [beaver1, beaver2, beaver3, beaver4];
 

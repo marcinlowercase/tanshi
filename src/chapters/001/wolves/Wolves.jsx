@@ -1,7 +1,7 @@
-import wolf from "../assets/wolf.svg"
+import wolf from "./assets/wolf.svg"
 import {useRef, useState} from "react";
 
-import dynamicSize from "../functions/dynamicSize.js";
+import dynamicSize from "../../../functions/dynamicSize.js";
 
 
 function Wolves(props) {

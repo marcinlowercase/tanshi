@@ -1,4 +1,4 @@
-import tipi from "../assets/tipi.svg";
+import tipi from "./assets/tipi.svg";
 import {useState} from "react";
 
 function Tipis() {

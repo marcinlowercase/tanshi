@@ -1,11 +1,11 @@
-import cave from "../assets/cave.svg";
+import cave from "./assets/cave.svg";
 // import bear from "../assets/bear.svg";
-import dynamicSize from "../functions/dynamicSize.js";
-import {handleMouseEnterAnimation, handleMouseLeaveAnimation} from "../functions/animationInternal.js"
+import dynamicSize from "../../../functions/dynamicSize.js";
+import {handleMouseEnterAnimation, handleMouseLeaveAnimation} from "../../../functions/animationInternal.js"
 import {useEffect, useRef, useState} from "react";
 
-import bear1 from "../assets/svg/bear/bear_1.svg";
-import bear2 from "../assets/svg/bear/bear_2.svg";
+import bear1 from "./assets/bear/bear_1.svg";
+import bear2 from "./assets/bear/bear_2.svg";
 
 const bearAnimationArr = [bear1, bear2];
 

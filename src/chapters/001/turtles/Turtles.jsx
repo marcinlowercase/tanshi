@@ -1,6 +1,6 @@
-import dynamicSize from "../functions/dynamicSize.js";
-import {useEffect, useRef, useState} from "react";
-import turtles from "../assets/turtles.svg";
+import dynamicSize from "../../../functions/dynamicSize.js";
+import {useEffect, useState} from "react";
+import turtles from "./assets/turtles.svg";
 
 function Turtles(props) {
     const [turtlesWidth, setTurtlesWidth] = useState(0);

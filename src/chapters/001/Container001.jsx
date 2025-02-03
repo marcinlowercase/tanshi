@@ -1,22 +1,24 @@
-import sky from "../assets/sky.svg";
-import lake from "../assets/lake.svg";
-
-import Sabe from "./Sabe.jsx";
-import Bear from "./Bear.jsx";
-import Turtles from "./Turtles.jsx";
-import Buffalo from "./Buffalo.jsx";
-
-import Tipis from "./Tipis.jsx";
-
-import dynamicSize from "../functions/dynamicSize.js";
-
-import "../css/ChapterOne.css";
 import {useEffect, useRef, useState} from "react";
-import Wolves from "./Wolves.jsx";
-import Beavers from "./Beavers.jsx";
-import Eagle from "./Eagle.jsx";
 
-function ChapterOne() {
+
+import sky from "./environment/assets/sky.svg";
+import lake from "../../assets/lake.svg";
+
+import Sabe from "./sabe/Sabe.jsx";
+import Bear from "./bear/Bear.jsx";
+import Turtles from "./turtles/Turtles.jsx";
+import Bison from "./bison/Bison.jsx";
+
+import Tipis from "./environment/Tipis.jsx";
+
+import dynamicSize from "../../functions/dynamicSize.js";
+
+import "./Container001.css";
+import Wolves from "./wolves/Wolves.jsx";
+import Beavers from "./beavers/Beavers.jsx";
+import Eagle from "./eagle/Eagle.jsx";
+
+function Container001() {
 
     // Take the ref of the lake to put down to buffalow
     const lakeRef = useRef(null);
@@ -111,7 +113,7 @@ function ChapterOne() {
             <Sabe/>
             <Bear/>
             <Turtles lakeWidth={lakeWidth}/>
-            <Buffalo lakeTop={lakeTop}/>
+            <Bison lakeTop={lakeTop}/>
             <Wolves/>
             <Beavers lakeWidth={lakeWidth} lakeTop={lakeTop} lakeLeft={lakeLeft} lakeHeight={lakeHeight}/>
             <Eagle skyBottom={skyBottom}/>
@@ -121,4 +123,4 @@ function ChapterOne() {
     );
 }
 
-export default ChapterOne;
+export default Container001;

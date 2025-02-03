@@ -1,10 +1,10 @@
-import dynamicSize from "../functions/dynamicSize.js";
+import dynamicSize from "../../../functions/dynamicSize.js";
 import {useEffect, useRef, useState} from "react";
-import buffalo from "../assets/buffalo.svg";
-import backgroundBush from "../assets/background_bush.svg";
-import frontBush from "../assets/front_bush.svg";
+import bison from "./assets/bison.svg";
+import backgroundBush from "./assets/background_bush.svg";
+import frontBush from "./assets/front_bush.svg";
 
-function Turtles(props) {
+function Bison(props) {
 
 
     const buffaloRef = useRef(null);
@@ -52,7 +52,7 @@ function Turtles(props) {
     return (
         <div id={"buffaloArea"}>
             <img
-                src={buffalo}
+                src={bison}
                 ref={buffaloRef}
                 alt="buffalo"
                 id="buffalo"
@@ -100,4 +100,4 @@ function Turtles(props) {
 
 }
 
-export default Turtles;
+export default Bison;
