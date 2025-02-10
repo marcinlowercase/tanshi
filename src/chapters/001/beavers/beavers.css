@@ -1,0 +1,50 @@
+:root {
+    --water-color: #99e9f2;
+}
+
+#beaversArea {
+    /*background-color: #000;*/
+    /*height: 70vh;*/
+    /*position: absolute;*/
+    /*width: 50vw;*/
+    /*z-index: 200;*/
+}
+
+#beaver-pane {
+    background-color: var(--water-color);
+    height: 70vh;
+    width: 60vw;
+    z-index: 5000;
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
+    50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
+    100% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
+}
+
+#beaver-pane {
+    transition: all 0.2s ease-out;
+}

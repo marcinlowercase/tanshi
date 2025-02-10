@@ -25,7 +25,7 @@ function Eagle(props) {
                     position: "absolute",
                     minWidth: "60px",
                     width: `${eagleWidth}px`,
-                    zIndex: "1000000",
+                    zIndex: "19",
                 }}
             />
         </div>

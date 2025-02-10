@@ -1,0 +1,148 @@
+/*#backButton {*/
+/*    background-color: white;*/
+/*    cursor: pointer;*/
+/*    font-size: 1.5rem;*/
+/*    margin: 5px;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*#meaningButtons {*/
+/*    position: absolute;*/
+/*    top: 25%;*/
+/*    left: 40%;*/
+
+/*}*/
+
+/*#meaningButtons > button {*/
+/*    margin: 5px;*/
+/*}*/
+
+
+#meaningButtons {
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    z-index: 1;
+}
+
+#meaningButtons > button {
+    margin: 5px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: 'Comic Neue', cursive;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Cree Button */
+#creeMeaning {
+    background: linear-gradient(145deg, #FFD700, #FFA500);
+    color: #8B4513;
+    border: 3px solid #8B4513;
+    transform: rotate(-3deg);
+}
+
+/* English Button */
+#englishMeaning {
+    background: linear-gradient(145deg, #87CEEB, #4682B4);
+    color: #FFFFFF;
+    border: 3px solid #FFFFFF;
+    transform: rotate(3deg);
+}
+
+/* Hover Effects */
+#meaningButtons > button:hover {
+    transform: scale(1.1) rotate(0deg);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+/* Click Animation */
+#meaningButtons > button:active {
+    transform: scale(0.95);
+}
+
+/* Add some decorative elements */
+#creeMeaning::before {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+#englishMeaning::after {
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
+/* Optional: Add a subtle animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+#meaningButtons > button {
+    animation: float 3s ease-in-out infinite;
+}
+
+
+#backButton {
+    background: linear-gradient(145deg, #FF6B6B, #FF0000);
+    color: white;
+    border: 3px solid #FFD700;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 1.8rem;
+    font-family: 'Comic Neue', cursive;
+    cursor: pointer;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    transform: rotate(-2deg);
+    animation: float 3s ease-in-out infinite;
+}
+
+#backButton:hover {
+    transform: scale(1.1) rotate(2deg);
+    background: linear-gradient(145deg, #FF0000, #FF6B6B);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    z-index: 3;
+}
+
+#backButton:active {
+    transform: scale(0.95) rotate(-2deg);
+}
+
+#backButton::before {
+    content: '← ';
+    font-size: 1.5em;
+    margin-right: 8px;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+
+
+/* Add sparkle effect */
+@keyframes sparkle {
+    0% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(0); }
+}
+
+#backButton:hover::after {
+    content: ' .';
+    animation: sparkle 0.8s ease-out;
+}
