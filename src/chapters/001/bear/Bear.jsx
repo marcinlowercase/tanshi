@@ -1,3 +1,4 @@
+// Bear.jsx
 import cave from "./assets/cave.svg";
 // import bear from "../assets/bear.svg";
 import dynamicSize from "../../../functions/dynamicSize.js";
@@ -22,23 +23,25 @@ function Bear() {
 
     const handleBearSize = () => {
         requestAnimationFrame(() => {
-
-            if (caveRef.current) {
-                // Rect to get properties of cave
-                const caveRect = caveRef.current.getBoundingClientRect();
-                setCaveWidth(dynamicSize(0.38));
-                setBearWidth(dynamicSize(0.12));
-
-                setCaveRight(-0.4 * caveRect.width);
-                setCaveBottom(0.84 * window.innerHeight - caveRect.height * 0.6);
-
-                setBearRight(0.25 * caveRect.width);
-                setBearBottom(caveBottom + caveRect.height * 0.13);
-
-            }
-
-        })
-    }
+          if (caveRef.current) {
+            const caveRect = caveRef.current.getBoundingClientRect();
+    
+            const newCaveWidth = dynamicSize(0.38);
+            const newBearWidth = dynamicSize(0.12);
+            const newCaveRight = -0.4 * caveRect.width;
+            const newCaveBottom = 0.84 * window.innerHeight - caveRect.height * 0.6;
+            const newBearRight = 0.25 * caveRect.width;
+            const newBearBottom = newCaveBottom + caveRect.height * 0.13;
+    
+            setCaveWidth(newCaveWidth);
+            setBearWidth(newBearWidth);
+            setCaveRight(newCaveRight);
+            setCaveBottom(newCaveBottom);
+            setBearRight(newBearRight);
+            setBearBottom(newBearBottom);
+          }
+        });
+      };
 
     // call handleBearSize on the first load
     handleBearSize();
@@ -80,6 +83,7 @@ function Bear() {
                 id="cave"
                 ref={caveRef}
                 src={cave}
+                onLoad={handleBearSize}
                 style={{
                     bottom: `${caveBottom}px`,
                     minWidth: `200px`,

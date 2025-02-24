@@ -65,6 +65,7 @@ function Sabe() {
                 src={forestGround}
                 id="forestground"
                 ref={forestGroundRef} // Assign the ref
+                onLoad={handleSabeSize} // Wait for the image to load before measuring
                 style={{
                     minWidth: "300px",
                     position: "absolute",

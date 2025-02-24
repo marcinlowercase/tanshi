@@ -101,6 +101,10 @@ function Container001() {
                 alt={"lake"}
                 src={lake}
                 id="lake"
+                onLoad={() => {
+                    updateLakeProperties();
+                    updateSkyPosition();
+                  }}
                 style={{
                     position: "absolute",
                     minWidth: "300px",
