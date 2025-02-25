@@ -18,7 +18,7 @@ import sand from './assets/sand.svg'
 import rock1 from './assets/beaver-rock1.svg'
 import rock2 from './assets/beaver-rock2.svg'
 import rock3 from './assets/beaver-rock3.svg'
-import driftwood from './assets/beaver-driftwood.svg'
+import log from './assets/beaver-log/beaver-log.svg'
 
 const beaverAnimationArr = [beaver1, beaver2, beaver3, beaver4];
 
@@ -223,8 +223,8 @@ function Beavers(props) {
                         }}
                     />
                     <img
-                        src={driftwood}
-                        alt={"driftwood"}
+                        src={log}
+                        alt={"log"}
                         style={{
                             width: "20%",
                             top: "-10%",
