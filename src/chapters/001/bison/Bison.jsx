@@ -7,40 +7,39 @@ import frontBush from "./assets/front_bush.svg";
 function Bison(props) {
 
 
-    const buffaloRef = useRef(null);
+    const bisonRef = useRef(null);
 
-    const [buffaloBottom, setBuffaloBottom] = useState(0);
-    const [buffaloWidth, setBuffaloWidth] = useState(0);
+    const [bisonBottom, setBisonBottom] = useState(0);
+    const [bisonWidth, setBisonWidth] = useState(0);
 
     const [backgroundBushBottom, setBackgroundBushBottom] = useState(window.innerHeight);
     const [frontBushBottom, setFrontBushBottom] = useState(window.innerHeight);
 
-    const handleBuffaloProperties = () => {
+    const handleBisonProperties = () => {
         requestAnimationFrame(() => {
-            if (buffaloRef.current) {
-                const buffaloRect = buffaloRef.current.getBoundingClientRect();
+            if (bisonRef.current && props.lakeTop != 0) {
+                const bisonRect = bisonRef.current.getBoundingClientRect();
+    
+                // set bison bottom base on the screen ratio is vertical or horizontal
+                setBisonBottom((window.innerWidth / window.innerHeight) > 1
+                    ? window.innerHeight - props.lakeTop - bisonRect.height * 0.5
+                    : window.innerHeight - props.lakeTop + bisonRect.height * 0.5);
 
-                // set buffalo bottom base on the screen ratio is vertical or horizontal
-                setBuffaloBottom((window.innerWidth / window.innerHeight) > 1
-                    ? window.innerHeight - props.lakeTop - buffaloRect.height * 0.5
-                    : window.innerHeight - props.lakeTop + buffaloRect.height * 0.5);
+                setBackgroundBushBottom(bisonBottom + bisonRect.height * 0.5);
+                setFrontBushBottom(bisonBottom );
 
-                setBackgroundBushBottom(buffaloBottom + buffaloRect.height * 0.5);
-                setFrontBushBottom(buffaloBottom );
-
-
-                setBuffaloWidth(dynamicSize(0.12));
+                setBisonWidth(dynamicSize(0.12));
             }
         })
     }
 
-    handleBuffaloProperties();
+    handleBisonProperties();
 
     useEffect(() => {
-        handleBuffaloProperties();
+        handleBisonProperties();
 
         const handleResize = () => {
-            handleBuffaloProperties();
+            handleBisonProperties();
         }
         window.addEventListener("resize", handleResize);
         return () => {
@@ -50,16 +49,17 @@ function Bison(props) {
 
 
     return (
-        <div id={"buffaloArea"}>
+        <div id={"bisonArea"}>
             <img
                 src={bison}
-                ref={buffaloRef}
-                alt="buffalo"
-                id="buffalo"
+                ref={bisonRef}
+                alt="bison"
+                id="bison"
+                onLoad={handleBisonProperties}
                 style={{
                     minWidth: "100px",
-                    width: `${buffaloWidth}px`,
-                    bottom: `${buffaloBottom}px`,
+                    width: `${bisonWidth}px`,
+                    bottom: `${bisonBottom}px`,
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                     position: "absolute",
@@ -72,7 +72,7 @@ function Bison(props) {
                 alt="backgroundBush"
                 style={{
                     minWidth: "100px",
-                    width: `${buffaloWidth}px`,
+                    width: `${bisonWidth}px`,
                     bottom: `${backgroundBushBottom}px`,
                     left: "50%",
                     transform: "translate(-50%, -50%)",
@@ -86,7 +86,7 @@ function Bison(props) {
                 alt="frontBush"
                 style={{
                     minWidth: "100px",
-                    width: `${buffaloWidth}px`,
+                    width: `${bisonWidth}px`,
                     bottom: `${frontBushBottom}px`,
                     left: "50%",
                     transform: "translate(-50%, -50%)",
