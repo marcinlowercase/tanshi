@@ -107,7 +107,7 @@ function Container001() {
                   }}
                 style={{
                     position: "absolute",
-                    minWidth: "300px",
+                    minWidth: "600px",
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
