@@ -2,7 +2,7 @@
 import cave from "./assets/cave.svg";
 // import bear from "../assets/bear.svg";
 import dynamicSize from "../../../functions/dynamicSize.js";
-import {handleMouseEnterAnimation, handleMouseLeaveAnimation} from "../../../functions/animationInternal.js"
+import {startAnimationInterval, stopAnimationInterval} from "../../../functions/animationInternal.js"
 import {useEffect, useRef, useState} from "react";
 
 import bear1 from "./assets/bear/bear_1.svg";
@@ -66,11 +66,11 @@ function Bear() {
 
 
     const handleMouseEnter = () => {
-        handleMouseEnterAnimation(intervalId, setIntervalId, bearSrc, setBearSrc, bearAnimationArr, 400);
+        startAnimationInterval(intervalId, setIntervalId, bearSrc, setBearSrc, bearAnimationArr, 400);
     }
 
     const handleMouseLeave = () => {
-        handleMouseLeaveAnimation(intervalId, setBearSrc, bearAnimationArr);
+        stopAnimationInterval(intervalId, setBearSrc, bearAnimationArr);
     }
 
 

@@ -1,4 +1,4 @@
-const handleMouseEnterAnimation = (intervalId, setIntervalId, imageSource, setImageSource, animationArr, timeout) => {
+const startAnimationInterval = (intervalId, setIntervalId, imageSource, setImageSource, animationArr, timeout) => {
     // console.log("MouseEnter");
     // console.log(animationArr.length);
     let currentIndex = 1;
@@ -10,10 +10,10 @@ const handleMouseEnterAnimation = (intervalId, setIntervalId, imageSource, setIm
     setIntervalId(newIntervalId);
 }
 
-const handleMouseLeaveAnimation = (intervalId, setImageSource, animationArr) => {
+const stopAnimationInterval = (intervalId, setImageSource, animationArr) => {
     // console.log("MouseLeave");
     clearInterval(intervalId);
     setImageSource(animationArr[0]);
 }
 
-export {handleMouseEnterAnimation, handleMouseLeaveAnimation}
+export {startAnimationInterval, stopAnimationInterval}
