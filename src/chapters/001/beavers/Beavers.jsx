@@ -1,12 +1,11 @@
 // Beavers.jsx
 import dynamicSize from "../../../functions/dynamicSize.js";
 import {startAnimationInterval, stopAnimationInterval} from "../../../functions/animationInternal.js";
-import playAudio from "../../../functions/playAudio.js";
+import {playAudio, stopAudio} from "../../../functions/audioUtilities.js";
 
 import DetailPaneButtonLayout from "../../../components/detail_pane_button_layout/DetailPaneButtonLayout.jsx";
 
 import './beavers.css'
-
 
 
 import {useEffect, useRef, useState} from "react";
@@ -26,6 +25,8 @@ import log2 from './assets/beaver-log/beaver-log2.svg'
 import log3 from './assets/beaver-log/beaver-log3.svg'
 
 const eatingBeaverSoundURL = new URL("./assets/audio/eating-beaver.mp3", import.meta.url).href;
+const lakeBackgroundSoundURL = new URL("./assets/audio/lake-background.mp3", import.meta.url).href;
+const windBackgroundSoundURL = new URL("./assets/audio/wind-background.mp3", import.meta.url).href;
 
 const beaverAnimationArr = [beaver1, beaver2, beaver3, beaver4];
 const logAnimationArr = [log1, log2, log3];
@@ -56,11 +57,18 @@ function Beavers(props) {
 
     handleBeaversProperties();
 
-    const eatingBeaverSound = useRef(new Audio((eatingBeaverSoundURL)));
 
+    // setup soundn effect
+    const eatingBeaverSound = useRef(new Audio((eatingBeaverSoundURL)));
+    const lakeBackgroundSound = useRef(new Audio(lakeBackgroundSoundURL));
+    const windBackgroundSound = useRef(new Audio(windBackgroundSoundURL));
     useEffect(() => {
         eatingBeaverSound.current = new Audio(eatingBeaverSoundURL);
         eatingBeaverSound.current.load();
+        lakeBackgroundSound.current = new Audio(lakeBackgroundSoundURL);
+        lakeBackgroundSound.current.load();
+        windBackgroundSound.current = new Audio(windBackgroundSoundURL);
+        windBackgroundSound.current.load();
     }, []);
 
 
@@ -69,30 +77,24 @@ function Beavers(props) {
     const [beaverIntervalId, setBeaverIntervalId] = useState(null);
 
 
-
-
     const handleMouseEnterOnBeaver1 = () => {
         startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
-        // playAudio(eatingBeaverSound);
-        if (eatingBeaverSound.current) {
-            console.log("playAudio", eatingBeaverSound.current);
-            eatingBeaverSound.current.currentTime = 0;
-            eatingBeaverSound.current.play().catch((err) => {
-                console.error("Playback failed: ", err);
-            });
-        }
+        if (showBeaverPane) playAudio([eatingBeaverSound]);
     }
 
     const handleMouseLeaveOnBeaver1 = () => {
         stopAnimationInterval(beaverIntervalId, setBeaver1Src, beaverAnimationArr);
+        stopAudio([eatingBeaverSound]);
     }
 
     const handleMouseEnterOnBeaver2 = () => {
         startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
+        if (showBeaverPane) playAudio([eatingBeaverSound]);
     }
 
     const handleMouseLeaveOnBeaver2 = () => {
         stopAnimationInterval(beaverIntervalId, setBeaver2Src, beaverAnimationArr);
+        stopAudio([eatingBeaverSound])
     }
 
 
@@ -120,7 +122,12 @@ function Beavers(props) {
             zIndex: '10000'
         });
         setShowBeaverPane(true);
+        playAudio([lakeBackgroundSound, windBackgroundSound]);
 
+    }
+
+    const handleBeaverClick = () => {
+        playAudio([eatingBeaverSound])
     }
 
 
@@ -135,7 +142,7 @@ function Beavers(props) {
             zIndex: "19"
         });
         setShowBeaverPane(false);
-        console.log(showBeaverPane)
+        stopAudio([lakeBackgroundSound])
     }
 
 
@@ -168,6 +175,7 @@ function Beavers(props) {
                 }}
                 onMouseEnter={handleMouseEnterOnBeaver1}
                 onMouseLeave={handleMouseLeaveOnBeaver1}
+                onClick={handleBeaverClick}
             />
             <img
                 alt={"beaver 2"}
@@ -185,6 +193,8 @@ function Beavers(props) {
                 }}
                 onMouseEnter={handleMouseEnterOnBeaver2}
                 onMouseLeave={handleMouseLeaveOnBeaver2}
+                onClick={handleBeaverClick}
+
             />
 
 
