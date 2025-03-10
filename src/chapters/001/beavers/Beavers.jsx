@@ -1,13 +1,15 @@
 // Beavers.jsx
 import dynamicSize from "../../../functions/dynamicSize.js";
 import {startAnimationInterval, stopAnimationInterval} from "../../../functions/animationInternal.js";
+import playAudio from "../../../functions/playAudio.js";
 
 import DetailPaneButtonLayout from "../../../components/detail_pane_button_layout/DetailPaneButtonLayout.jsx";
 
 import './beavers.css'
 
 
-import {useEffect, useState} from "react";
+
+import {useEffect, useRef, useState} from "react";
 
 import beaver1 from './assets/beaver/beaver_1.svg'
 import beaver2 from './assets/beaver/beaver_2.svg'
@@ -19,10 +21,11 @@ import rock1 from './assets/beaver-rock1.svg'
 import rock2 from './assets/beaver-rock2.svg'
 import rock3 from './assets/beaver-rock3.svg'
 
-import log from './assets/beaver-log/beaver-log.svg'
 import log1 from './assets/beaver-log/beaver-log1.svg'
 import log2 from './assets/beaver-log/beaver-log2.svg'
 import log3 from './assets/beaver-log/beaver-log3.svg'
+
+const eatingBeaverSoundURL = new URL("./assets/audio/eating-beaver.mp3", import.meta.url).href;
 
 const beaverAnimationArr = [beaver1, beaver2, beaver3, beaver4];
 const logAnimationArr = [log1, log2, log3];
@@ -53,13 +56,31 @@ function Beavers(props) {
 
     handleBeaversProperties();
 
+    const eatingBeaverSound = useRef(new Audio((eatingBeaverSoundURL)));
+
+    useEffect(() => {
+        eatingBeaverSound.current = new Audio(eatingBeaverSoundURL);
+        eatingBeaverSound.current.load();
+    }, []);
+
+
     const [beaver1Src, setBeaver1Src] = useState(beaverAnimationArr[0]);
     const [beaver2Src, setBeaver2Src] = useState(beaverAnimationArr[0]);
-    const [beaverIntervalId, setBeaverIntervalId] = useState(null); 
+    const [beaverIntervalId, setBeaverIntervalId] = useState(null);
+
+
 
 
     const handleMouseEnterOnBeaver1 = () => {
         startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
+        // playAudio(eatingBeaverSound);
+        if (eatingBeaverSound.current) {
+            console.log("playAudio", eatingBeaverSound.current);
+            eatingBeaverSound.current.currentTime = 0;
+            eatingBeaverSound.current.play().catch((err) => {
+                console.error("Playback failed: ", err);
+            });
+        }
     }
 
     const handleMouseLeaveOnBeaver1 = () => {
@@ -74,10 +95,6 @@ function Beavers(props) {
         stopAnimationInterval(beaverIntervalId, setBeaver2Src, beaverAnimationArr);
     }
 
-
-   
-
-    
 
     // show the beaver review when click the beaver
     const [showBeaverPane, setShowBeaverPane] = useState(false); // State to control visibility
@@ -123,7 +140,7 @@ function Beavers(props) {
 
 
     const [logSrc, setLogSrc] = useState(logAnimationArr[0]);
-    const [logIntervalId, setLogIntervalId] = useState(null); 
+    const [logIntervalId, setLogIntervalId] = useState(null);
 
     useEffect(() => {
         console.log("Show panen")
