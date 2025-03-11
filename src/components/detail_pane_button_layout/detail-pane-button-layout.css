@@ -37,7 +37,7 @@
     border-radius: 30px;
     font-size: 1.5em;
     font-weight: bold;
-    font-family: 'Comic Neue', cursive;
+    font-family: var(--primary-font), sans-serif;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
@@ -103,7 +103,7 @@
     padding: 12px 25px;
     border-radius: 30px;
     font-size: 1.8rem;
-    font-family: 'Comic Neue', cursive;
+    font-family: var(--primary-font), sans-serif;
     cursor: pointer;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
