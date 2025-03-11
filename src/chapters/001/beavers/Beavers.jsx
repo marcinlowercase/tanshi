@@ -142,7 +142,7 @@ function Beavers(props) {
             zIndex: "19"
         });
         setShowBeaverPane(false);
-        stopAudio([lakeBackgroundSound])
+        stopAudio([lakeBackgroundSound, windBackgroundSound]);
     }
 
 
