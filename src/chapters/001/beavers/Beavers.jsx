@@ -2,6 +2,7 @@
 import dynamicSize from "../../../functions/dynamicSize.js";
 import {startAnimationInterval, stopAnimationInterval} from "../../../functions/animationInternal.js";
 import {playAudio, stopAudio} from "../../../functions/audioUtilities.js";
+import zoomOut from "../../../functions/zoom.js";
 
 import DetailPaneButtonLayout from "../../../components/detail_pane_button_layout/DetailPaneButtonLayout.jsx";
 
@@ -198,6 +199,10 @@ function Beavers(props) {
         else stopAnimationInterval(logIntervalId, setLogSrc, logAnimationArr)
     }, [showBeaverPane])
 
+    const handleBeaverPaneClick = () => {
+        zoomOut("beaver-scene1")
+    }
+
 
     return (
         <div id={"beaversArea"} onClick={handleBeaverAreaClick}>
@@ -269,6 +274,8 @@ function Beavers(props) {
                     // overflow: "hidden",
                     aspectRatio: "1/1",
                     minWidth: "700px",
+                    // height: "100%",
+                    // width: "100%",
 
                     zIndex: 9999,
                     border: "3px solid #FFD700",
@@ -278,9 +285,7 @@ function Beavers(props) {
                         `,
                     transformOrigin: 'center center',
                 }}
-                     onClick={(e) => {
-                         console.log("PANE PANE")
-                     }}
+                     onClick={handleBeaverPaneClick}
                 >
 
                     <img
