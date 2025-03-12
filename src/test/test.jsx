@@ -50,35 +50,45 @@ function Beavers(props) {
     const [sandTop, setSandTop] = useState(0);
     const [sandHeight, setSandHeight] = useState(0);
 
+    const [dimensionsReady, setDimensionsReady] = useState(false);
+
     const updateSandDimensions = () => {
-        const sandElement = sandRef.current; // Get the DOM node
-
+        const sandElement = sandRef.current;
         if (sandElement) {
-            const checkDimensions = () => {
-                const rect = sandElement.getBoundingClientRect();
-                if (rect.height > 0 && rect.width > 0) {
-                    setSandTop(rect.top);
-                    setSandHeight(rect.height);
-
-                    console.log("Sand Rectangle:", rect);
-                } else {
-                    // Try again shortly if dimensions are zero
-                    setTimeout(checkDimensions, 50); // Try again after 50ms
-                }
+            const rect = sandElement.getBoundingClientRect();
+            if (rect.height > 0 && rect.width > 0) {
+                setSandTop(rect.top);
+                setSandHeight(rect.height);
+                setDimensionsReady(true);
+                console.log("Sand Rectangle (Updated):", rect);
             }
-            checkDimensions();
         }
-    }
+    };
+
+
     useEffect(() => {
         if (showBeaverPane) {
-            updateSandDimensions();
-            window.addEventListener('resize', updateSandDimensions);
-            // Clean up the event listener when the component unmounts or showBeaverPane changes to false
-            return () => {
-                window.removeEventListener('resize', updateSandDimensions);
-            };
+            const sandElement = sandRef.current;
+
+            if (sandElement) {
+                const checkDimensions = () => {
+                    const rect = sandElement.getBoundingClientRect();
+                    if (rect.height > 0 && rect.width > 0) {
+                        setSandTop(rect.top);
+                        setSandHeight(rect.height);
+                        setDimensionsReady(true); // Dimensions are now ready
+
+                        console.log("Sand Rectangle:", rect);
+                    } else {
+                        // Try again shortly if dimensions are zero
+                        setTimeout(checkDimensions, 50); // Try again after 50ms
+                    }
+                }
+                checkDimensions();
+            }
         }
     }, [showBeaverPane]);
+
 
 
     const handleBeaversProperties = () => {
@@ -191,12 +201,15 @@ function Beavers(props) {
     const [logIntervalId, setLogIntervalId] = useState(null);
 
 
+
+
     useEffect(() => {
         console.log("Show panen")
         // NEED TO CALL when showBeaverPane turn true
         if (showBeaverPane) startAnimationInterval(logIntervalId, setLogIntervalId, logSrc, setLogSrc, logAnimationArr, 200)
         else stopAnimationInterval(logIntervalId, setLogSrc, logAnimationArr)
     }, [showBeaverPane])
+
 
 
     return (
@@ -282,44 +295,49 @@ function Beavers(props) {
                          console.log("PANE PANE")
                      }}
                 >
+                    {dimensionsReady ? (
+                        <>
+                            <img
+                                alt={"beaver 1"}
+                                id={'scene1-beaver1'}
+                                src={beaver1Src}
+                                style={{
+                                    position: "absolute",
+                                    minWidth: "30px",
+                                    top: `${sandTop - sandHeight * 0.35}px`,
+                                    left: `40% `,
+                                    transform: "scaleX(-1) rotate(-1deg)",
+                                    width: `${beaverWidth}px`,
+                                    zIndex: "19",
+                                    ...beaver1Style
+                                }}
+                                onMouseEnter={handleMouseEnterOnBeaver1}
+                                onMouseLeave={handleMouseLeaveOnBeaver1}
+                                onClick={handleBeaverClick}
+                            />
+                            <img
+                                alt={"beaver 2"}
+                                id={'scene1-beaver2'}
+                                src={beaver2Src}
+                                style={{
+                                    position: "absolute",
+                                    minWidth: "30px",
+                                    top: `${sandTop - sandHeight * 0.5}px`,
+                                    left: `60%`,
+                                    transform: "rotate(1deg)",
+                                    width: `${beaverWidth}px`,
+                                    zIndex: "19",
+                                    ...beaver2Style
+                                }}
+                                onMouseEnter={handleMouseEnterOnBeaver2}
+                                onMouseLeave={handleMouseLeaveOnBeaver2}
+                                onClick={handleBeaverClick}
 
-                    <img
-                        alt={"beaver 1"}
-                        id={'scene1-beaver1'}
-                        src={beaver1Src}
-                        style={{
-                            position: "absolute",
-                            minWidth: "30px",
-                            top: `${sandTop - sandHeight * 0.35}px`,
-                            left: `40% `,
-                            transform: "scaleX(-1) rotate(-1deg)",
-                            width: `${beaverWidth}px`,
-                            zIndex: "19",
-                            ...beaver1Style
-                        }}
-                        onMouseEnter={handleMouseEnterOnBeaver1}
-                        onMouseLeave={handleMouseLeaveOnBeaver1}
-                        onClick={handleBeaverClick}
-                    />
-                    <img
-                        alt={"beaver 2"}
-                        id={'scene1-beaver2'}
-                        src={beaver2Src}
-                        style={{
-                            position: "absolute",
-                            minWidth: "30px",
-                            top: `${sandTop - sandHeight * 0.5}px`,
-                            left: `60%`,
-                            transform: "rotate(1deg)",
-                            width: `${beaverWidth}px`,
-                            zIndex: "19",
-                            ...beaver2Style
-                        }}
-                        onMouseEnter={handleMouseEnterOnBeaver2}
-                        onMouseLeave={handleMouseLeaveOnBeaver2}
-                        onClick={handleBeaverClick}
-
-                    />
+                            />
+                        </>
+                    ) : (
+                        <div>Loading...</div> // Or some other placeholder content
+                    )}
 
                     <img id="sand" ref={sandRef} src={sand} alt={"sand"} style={{
                         width: "100%",
