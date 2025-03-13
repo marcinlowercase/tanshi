@@ -20,14 +20,21 @@ function DetailPaneButtonLayout(props) {
                         This is title for the current lesson
                     </div>
                 )}
-                {/*<div id={"lesson-title-bar"}>*/}
-                {/*    This is title for the current lesson*/}
-                {/*</div>*/}
             </div>
             {!props.inProgress && (
                 <div id={"meaning-buttons"}>
                     <button id={"cree-meaning-button"}>{props.cree}</button>
                     <button id={"english-meaning-button"}>{props.english}</button>
+                </div>
+            )}
+
+            {props.inProgress && (
+                <div id={"bottom-pane-buttons-container"}>
+                    <button id={"previous-scene-button"}></button>
+                    <div id={"content-container"}>
+
+                    </div>
+                    <button id={"next-scene-button"}>Next</button>
                 </div>
             )}
         </>
