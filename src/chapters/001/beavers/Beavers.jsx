@@ -2,7 +2,7 @@
 import dynamicSize from "../../../functions/dynamicSize.js";
 import {startAnimationInterval, stopAnimationInterval} from "../../../functions/animationInternal.js";
 import {playAudio, stopAudio} from "../../../functions/audioUtilities.js";
-import zoomOut from "../../../functions/zoom.js";
+import {zoomOut, zoomIn} from "../../../functions/zoom.js";
 
 import DetailPaneButtonLayout from "../../../components/detail_pane_button_layout/DetailPaneButtonLayout.jsx";
 
@@ -31,6 +31,13 @@ const windBackgroundSoundURL = new URL("./assets/audio/wind-background.mp3", imp
 
 const beaverAnimationArr = [beaver1, beaver2, beaver3, beaver4];
 const logAnimationArr = [log1, log2, log3];
+
+const popupDimension = {
+    top: "50%",
+    left: "60%",
+    height: "70vh",
+    width: "60vw",
+};
 
 function Beavers(props) {
 
@@ -164,6 +171,10 @@ function Beavers(props) {
             // });
             setShowBeaverPane(true);
             playAudio([lakeBackgroundSound, windBackgroundSound]);
+        } else {
+            setBeaverInProgress(true);
+            console.log("BEAVER IN PROGRESS")
+            console.log(beaverInProgress)
         }
 
     }
@@ -175,16 +186,22 @@ function Beavers(props) {
 
     // Update backToNormal function
     const backToNormal = () => {
-        setBeaver1Style({
-            transform: "scaleX(-1) rotate(-1deg)",
-            zIndex: "19"
-        });
-        setBeaver2Style({
-            transform: "rotate(1deg)",
-            zIndex: "19"
-        });
-        setShowBeaverPane(false);
-        stopAudio([lakeBackgroundSound, windBackgroundSound]);
+        // setBeaver1Style({
+        //     transform: "scaleX(-1) rotate(-1deg)",
+        //     zIndex: "19"
+        // });
+        // setBeaver2Style({
+        //     transform: "rotate(1deg)",
+        //     zIndex: "19"
+        // });
+        if (!beaverInProgress) {
+            setShowBeaverPane(false);
+            stopAudio([lakeBackgroundSound, windBackgroundSound]);
+        } else {
+            setBeaverInProgress(false);
+            zoomIn("beaver-scene1", popupDimension)
+        }
+
     }
 
 
@@ -266,8 +283,11 @@ function Beavers(props) {
 
                 <div id="beaver-scene1" style={{
                     position: "absolute",
-                    top: "50%",
-                    left: "60%",
+                    top: popupDimension.top,
+                    left: popupDimension.left,
+                    height: popupDimension.height,
+                    width: popupDimension.width,
+
                     transform: "translate(-50%, -50%)",
                     borderRadius: "10px",
                     boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
@@ -330,7 +350,7 @@ function Beavers(props) {
                         width: "100%",
                         bottom: "0", position: "absolute"
                     }}/>
-                    <DetailPaneButtonLayout cree={"Amisk"} english={"Beaver"} backToNormal={backToNormal}
+                    <DetailPaneButtonLayout cree={"Amisk"} english={"Beaver"} backToNormal={backToNormal} inProgress={beaverInProgress}
                     />
                     <img src={rock1} alt={"rock1"} style={{
                         width: "15%",

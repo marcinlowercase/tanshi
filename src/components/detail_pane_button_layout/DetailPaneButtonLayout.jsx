@@ -6,18 +6,30 @@ import "./detail-pane-button-layout.css"
 function DetailPaneButtonLayout(props) {
     return (
         <>
-            <button
-                id={"backButton"}
-                onClick={(e) => {
-                    e.stopPropagation();  // Add this line
-                    props.backToNormal();
-                }}
-            >
-            </button>
-            <div id={"meaningButtons"}>
-                <button id={"creeMeaning"}>{props.cree}</button>
-                <button id={"englishMeaning"}>{props.english}</button>
+            <div id={"top-pane-button-container"}>
+                <button
+                    id={"lesson-back-button"}
+                    onClick={(e) => {
+                        e.stopPropagation();  // Add this line
+                        props.backToNormal();
+                    }}
+                >
+                </button>
+                {props.inProgress && (
+                    <div id={"lesson-title-bar"}>
+                        This is title for the current lesson
+                    </div>
+                )}
+                {/*<div id={"lesson-title-bar"}>*/}
+                {/*    This is title for the current lesson*/}
+                {/*</div>*/}
             </div>
+            {!props.inProgress && (
+                <div id={"meaning-buttons"}>
+                    <button id={"cree-meaning-button"}>{props.cree}</button>
+                    <button id={"english-meaning-button"}>{props.english}</button>
+                </div>
+            )}
         </>
 
     )

@@ -12,8 +12,7 @@
 
 #beaver-scene1 {
     background-color: var(--water-color);
-    height: 70vh;
-    width: 60vw;
+
     z-index: 5000;
 }
 
