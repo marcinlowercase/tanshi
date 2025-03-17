@@ -178,13 +178,16 @@
 
     z-index: 111111;
     font-family: var(--primary-font), sans-serif;
+
+    animation: float 3s ease-in-out infinite;
+
 }
 
 #bottom-pane-buttons-container {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     width: 100%;
     height: 20vh;
@@ -195,37 +198,40 @@
 }
 
 #content-container {
-    /*background-image: url("./assets/img/content-container.webp");*/
     /*background-size: 100% 100%;*/
-
-    /*background-repeat: no-repeat;*/
-    /*background-position: center;*/
-
-
-    background: white;
+    background-color: #FFD700;
+    border-radius: 1px;
+    border: 12px solid var(--dark-brown);
+    /*background: white url("./assets/img/content-container.webp") no-repeat center;*/
     height: 100%;
     width: 100%;
     flex:8;
 
+    animation: float 3s ease-in-out infinite;
+
+
 }
 
 #previous-scene-button, #next-scene-button {
+    animation: float 3s ease-in-out infinite;
+
     flex:1;
-}
-
-#previous-scene-button {
-    background-image: url("./assets/img/previous-scene-button.webp");
-    /*background-size: 100% 100%;*/
-
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-
-
     width: auto; /* Adjust width automatically to maintain aspect ratio */
-    height: 100%; /* Set height to fit the height of the container */
+    height: 70%; /* Set height to fit the height of the container */
     border: none; /* Optional: Remove border */
     padding: 0; /* Optional: Remove padding */
 
+
     cursor: pointer; /* Optional: Add pointer cursor */
+}
+
+#cree-script {
+    background-color: var(--light-brown);
+    border-radius: 15px;
+    color: white;
+    font-family: var(--primary-font), sans-serif;
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    font-size: 1.7em;
 }

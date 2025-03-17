@@ -1,6 +1,8 @@
 // DetailPaneButtonLayout.jsx
 
 import "./detail-pane-button-layout.css"
+import previousSceneButtonSource from "./assets/img/previous-scene-button.webp"
+import nextSceneButtonSource from "./assets/img/next-scene-button.webp"
 
 
 function DetailPaneButtonLayout(props) {
@@ -30,11 +32,13 @@ function DetailPaneButtonLayout(props) {
 
             {props.inProgress && (
                 <div id={"bottom-pane-buttons-container"}>
-                    <button id={"previous-scene-button"}></button>
+                    <img id={"previous-scene-button"} src={previousSceneButtonSource} alt={"Previous Scene Button"}
+                         style={{}}/>
+                    {/*<button id={"previous-scene-button"}></button>*/}
                     <div id={"content-container"}>
-
+                        <div id={"cree-script"}>Script should be showed here for every scene</div>
                     </div>
-                    <button id={"next-scene-button"}>Next</button>
+                    <img src={nextSceneButtonSource} alt={"Next Scene Button"} id={"next-scene-button"}/>
                 </div>
             )}
         </>
