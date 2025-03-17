@@ -225,7 +225,7 @@
     cursor: pointer; /* Optional: Add pointer cursor */
 }
 
-#cree-script {
+#cree-script, #english-script {
     background-color: var(--light-brown);
     border-radius: 15px;
     color: white;
@@ -234,4 +234,7 @@
     margin: 20px;
     padding: 10px;
     font-size: 1.7em;
+}
+#english-script {
+    background-color: var(--dark-brown);
 }

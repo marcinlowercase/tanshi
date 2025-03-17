@@ -36,7 +36,8 @@ function DetailPaneButtonLayout(props) {
                          style={{}}/>
                     {/*<button id={"previous-scene-button"}></button>*/}
                     <div id={"content-container"}>
-                        <div id={"cree-script"}>Script should be showed here for every scene</div>
+                        <div id={"cree-script"}>Cree Script should be showed here for every scene</div>
+                        <div id={"english-script"}>English Script should be showed here for every scene</div>
                     </div>
                     <img src={nextSceneButtonSource} alt={"Next Scene Button"} id={"next-scene-button"}/>
                 </div>
