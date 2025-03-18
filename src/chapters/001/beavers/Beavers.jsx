@@ -8,6 +8,12 @@ import DetailPaneButtonLayout from "../../../components/detail_pane_button_layou
 
 import './beavers.css'
 
+// Scenes
+import BeaversScene0 from "./scenes/BeaversScene0.jsx";
+import BeaversScene1 from "./scenes/BeaversScene1.jsx";
+
+const beaversScenes = [BeaversScene0, BeaversScene1];
+
 
 import {useEffect, useRef, useState} from "react";
 
@@ -15,11 +21,6 @@ import beaver1 from './assets/beaver/beaver_1.svg'
 import beaver2 from './assets/beaver/beaver_2.svg'
 import beaver3 from './assets/beaver/beaver_3.svg'
 import beaver4 from './assets/beaver/beaver_4.svg'
-
-import sand from './assets/sand.svg'
-import rock1 from './assets/beaver-rock1.svg'
-import rock2 from './assets/beaver-rock2.svg'
-import rock3 from './assets/beaver-rock3.svg'
 
 import log1 from './assets/beaver-log/beaver-log1.svg'
 import log2 from './assets/beaver-log/beaver-log2.svg'
@@ -30,7 +31,7 @@ const lakeBackgroundSoundURL = new URL("./assets/audio/lake-background.mp3", imp
 const windBackgroundSoundURL = new URL("./assets/audio/wind-background.mp3", import.meta.url).href;
 
 const beaverAnimationArr = [beaver1, beaver2, beaver3, beaver4];
-const logAnimationArr = [log1, log2, log3];
+// const logAnimationArr = [log1, log2, log3];
 
 const popupDimension = {
     top: "50%",
@@ -38,6 +39,7 @@ const popupDimension = {
     height: "70vh",
     width: "60vw",
 };
+
 
 function Beavers(props) {
 
@@ -204,21 +206,19 @@ function Beavers(props) {
 
     }
 
+    //
+    // const [logSrc, setLogSrc] = useState(logAnimationArr[0]);
+    // const [logIntervalId, setLogIntervalId] = useState(null);
+    //
+    //
+    // useEffect(() => {
+    //     console.log("Show panen")
+    //     // NEED TO CALL when showBeaverPane turn true
+    //     if (showBeaverPane) startAnimationInterval(logIntervalId, setLogIntervalId, logSrc, setLogSrc, logAnimationArr, 200)
+    //     else stopAnimationInterval(logIntervalId, setLogSrc, logAnimationArr)
+    // }, [showBeaverPane])
 
-    const [logSrc, setLogSrc] = useState(logAnimationArr[0]);
-    const [logIntervalId, setLogIntervalId] = useState(null);
 
-
-    useEffect(() => {
-        console.log("Show panen")
-        // NEED TO CALL when showBeaverPane turn true
-        if (showBeaverPane) startAnimationInterval(logIntervalId, setLogIntervalId, logSrc, setLogSrc, logAnimationArr, 200)
-        else stopAnimationInterval(logIntervalId, setLogSrc, logAnimationArr)
-    }, [showBeaverPane])
-
-    const handleBeaverPaneClick = () => {
-        zoomOut("beaver-scene1")
-    }
 
 
     return (
@@ -262,137 +262,31 @@ function Beavers(props) {
             />
 
 
-            {showBeaverPane && <>
-                {/* Blur overlay */}
-                <div style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backdropFilter: 'blur(5px)',
-                    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                    zIndex: 9998,
-                    animation: 'fadeInOverlay 0.3s ease-out',
+            {showBeaverPane
+                &&
+                <DetailPaneButtonLayout
+                    scenes={beaversScenes}
+                    backToNormal={backToNormal}
+                    inProgress={beaverInProgress}
+                    cree={"Amisk"}
+                    english={"Beaver"}
+                    popupDimension={popupDimension}
+                    beaver1Src={beaver1Src}
+                    beaver2Src={beaver2Src}
+                    beaver1Style={beaver1Style}
+                    beaver2Style={beaver2Style}
+                    handleMouseEnterOnBeaver1={handleMouseEnterOnBeaver1}
+                    handleMouseLeaveOnBeaver1={handleMouseLeaveOnBeaver1}
+                    handleMouseEnterOnBeaver2={handleMouseEnterOnBeaver2}
+                    handleMouseLeaveOnBeaver2={handleMouseLeaveOnBeaver2}
+                    handleBeaverClick={handleBeaverClick}
+                    sandTop={sandTop}
+                    sandHeight={sandHeight}
+                    sandRef={sandRef}
+                    beaverWidth={beaverWidth}
+                    showBeaverPane={showBeaverPane}
 
-                }} onClick={(e) => {
-                    e.stopPropagation();  // Add this line
-                    backToNormal();
-                }}/>
-
-
-                <div id="beaver-scene1" style={{
-                    position: "absolute",
-                    top: popupDimension.top,
-                    left: popupDimension.left,
-                    height: popupDimension.height,
-                    width: popupDimension.width,
-
-                    transform: "translate(-50%, -50%)",
-                    borderRadius: "10px",
-                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-                    // overflow: "hidden",
-                    aspectRatio: "1/1",
-                    minWidth: "700px",
-                    // height: "100%",
-                    // width: "100%",
-
-                    zIndex: 9999,
-                    border: "3px solid #FFD700",
-                    animation: `
-                            glow 2s ease-in-out infinite,
-                            fadeIn 0.3s ease-out
-                        `,
-                    transformOrigin: 'center center',
-                }}
-                     onClick={handleBeaverPaneClick}
-                >
-
-                    <img
-                        alt={"beaver 1"}
-                        id={'scene1-beaver1'}
-                        src={beaver1Src}
-                        style={{
-                            position: "absolute",
-                            minWidth: "30px",
-                            top: `${sandTop - sandHeight * 0.35}px`,
-                            left: `40% `,
-                            transform: "scaleX(-1) rotate(-1deg)",
-                            width: `${beaverWidth}px`,
-                            zIndex: "19",
-                            ...beaver1Style
-                        }}
-                        onMouseEnter={handleMouseEnterOnBeaver1}
-                        onMouseLeave={handleMouseLeaveOnBeaver1}
-                        onClick={handleBeaverClick}
-                    />
-                    <img
-                        alt={"beaver 2"}
-                        id={'scene1-beaver2'}
-                        src={beaver2Src}
-                        style={{
-                            position: "absolute",
-                            minWidth: "30px",
-                            top: `${sandTop - sandHeight * 0.5}px`,
-                            left: `60%`,
-                            transform: "rotate(1deg)",
-                            width: `${beaverWidth}px`,
-                            zIndex: "19",
-                            ...beaver2Style
-                        }}
-                        onMouseEnter={handleMouseEnterOnBeaver2}
-                        onMouseLeave={handleMouseLeaveOnBeaver2}
-                        onClick={handleBeaverClick}
-
-                    />
-
-                    <img id="sand" ref={sandRef} src={sand} alt={"sand"} style={{
-                        width: "100%",
-                        bottom: "0", position: "absolute"
-                    }}/>
-                    <DetailPaneButtonLayout cree={"Amisk"} english={"Beaver"} backToNormal={backToNormal} inProgress={beaverInProgress}
-                    />
-                    <img src={rock1} alt={"rock1"} style={{
-                        width: "15%",
-                        bottom: "5%",
-                        left: "5%",
-                        position: "absolute"
-                    }}/>
-
-                    <img
-                        src={rock2}
-                        alt={"rock2"}
-                        style={{
-                            width: "11%",
-                            bottom: "15%",
-                            right: "15%",
-                            position: "absolute",
-                        }}
-                    />
-                    <img
-                        src={rock3}
-                        alt={"rock3"}
-                        style={{
-                            width: "25%",
-                            top: "15%",
-                            left: "15%",
-                            position: "absolute",
-                        }}
-                    />
-                    <img
-                        src={logSrc}
-                        alt={"log"}
-                        style={{
-                            width: "20%",
-                            top: "-10%",
-                            right: "10%",
-                            position: "absolute",
-                        }}
-
-                    />
-
-                </div>
-            </>
+                />
             }
 
         </div>

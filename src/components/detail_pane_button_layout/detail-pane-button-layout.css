@@ -203,11 +203,13 @@
     border-radius: 1px;
     border: 12px solid var(--dark-brown);
     /*background: white url("./assets/img/content-container.webp") no-repeat center;*/
-    height: 100%;
+    /*height: 100%;*/
+    height: fit-content;
     width: 100%;
     flex:8;
 
     animation: float 3s ease-in-out infinite;
+
 
 
 }
@@ -227,13 +229,13 @@
 
 #cree-script, #english-script {
     background-color: var(--light-brown);
-    border-radius: 15px;
+    border-radius: 10px;
     color: white;
     font-family: var(--primary-font), sans-serif;
     text-align: center;
-    margin: 20px;
-    padding: 10px;
-    font-size: 1.7em;
+    margin: 1%;
+    padding: 1%;
+    font-size: 1.5em;
 }
 #english-script {
     background-color: var(--dark-brown);
