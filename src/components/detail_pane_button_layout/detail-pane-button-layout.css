@@ -83,47 +83,7 @@
 }
 
 
-#lesson-back-button {
-    background: linear-gradient(145deg, #FF6B6B, #FF0000);
-    color: white;
-    border: 3px solid #FFD700;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-size: 1.8rem;
-    font-family: var(--primary-font), sans-serif;
-    cursor: pointer;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    /*position: absolute;*/
-    /*top: 20px;*/
-    /*left: 20px;*/
-    transform: rotate(-2deg);
-    animation: float 3s ease-in-out infinite;
 
-    /*flex: 2;*/
-    aspect-ratio: 1 / 1;
-    height: 100%;
-    margin: 10px;
-}
-
-#lesson-back-button:hover {
-    transform: scale(1.1) rotate(2deg);
-    background: linear-gradient(145deg, #FF0000, #FF6B6B);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    z-index: 3;
-}
-
-#lesson-back-button:active {
-    transform: scale(0.95) rotate(-2deg);
-}
-
-#lesson-back-button::before {
-    content: '←';
-    font-size: 1.5em;
-    margin-right: 8px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-}
 
 
 /* Add sparkle effect */
@@ -142,46 +102,10 @@
     }
 }
 
-#lesson-back-button:hover::after {
-    animation: sparkle 0.8s ease-out;
-}
 
 
-#top-pane-button-container {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-
-}
-
-#lesson-title-bar {
-    background-image: url("./assets/img/lesson-title-bar.webp"), url("./assets/img/lesson-title-bar.png");
-    flex: 8;
-    /*background-size: contain;*/
-    background-size: 100% 100%;
-    /*background-*/
-    /*background-size: cover;*/
 
 
-    background-repeat: no-repeat;
-    background-position: center;
-
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    padding: 10px;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    z-index: 111111;
-    font-family: var(--primary-font), sans-serif;
-
-    animation: float 3s ease-in-out infinite;
-
-}
 
 #bottom-pane-buttons-container {
     display: flex;

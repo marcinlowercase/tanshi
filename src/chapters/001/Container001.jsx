@@ -41,7 +41,6 @@ function Container001() {
                 // Ensure layout is updated before setting style
                 // sky.style.bottom = `${skyBottom}px`;
                 setSkyBottom(newSkyBottom);
-                console.log('update sky bottom ');
                 lake.style.width = `${dynamicSize(0.7)}px`;
                 // lake.style.width = `${0.7 * window.innerWidth}px`;
             });

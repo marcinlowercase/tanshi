@@ -12,6 +12,7 @@ import log3 from "../assets/beaver-log/beaver-log3.svg";
 const logAnimationArr = [log1, log2, log3];
 
 
+import LessonTopBar from "../../../../components/lesson_top_bar/LessonTopBar.jsx";
 
 
 const BeaversScene0 = (props) => {
@@ -20,7 +21,6 @@ const BeaversScene0 = (props) => {
     const [logIntervalId, setLogIntervalId] = useState(null);
 
     useEffect(() => {
-        console.log("Show panen")
         // NEED TO CALL when showBeaverPane turn true
         if (props.showBeaverPane) startAnimationInterval(logIntervalId, setLogIntervalId, logSrc, setLogSrc, logAnimationArr, 200)
         else stopAnimationInterval(logIntervalId, setLogSrc, logAnimationArr)
@@ -50,8 +50,10 @@ const BeaversScene0 = (props) => {
             }}/>
 
 
+
             <div id="beaver-scene1" style={{
                 position: "absolute",
+                //TODO
                 top: props.popupDimension.top,
                 left: props.popupDimension.left,
                 height: props.popupDimension.height,
@@ -76,6 +78,10 @@ const BeaversScene0 = (props) => {
             }}
                  onClick={handleBeaverPaneClick}
             >
+                <LessonTopBar
+                    backToNormal={props.backToNormal}
+                    inProgress={props.inProgress}
+                />
 
                 <img
                     alt={"beaver 1"}
@@ -119,7 +125,7 @@ const BeaversScene0 = (props) => {
                     width: "100%",
                     bottom: "0", position: "absolute"
                 }}/>
-                />
+
                 <img src={rock1} alt={"rock1"} style={{
                     width: "15%",
                     bottom: "5%",

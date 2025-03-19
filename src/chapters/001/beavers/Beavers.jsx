@@ -69,8 +69,6 @@ function Beavers(props) {
                 if (rect.height > 0 && rect.width > 0) {
                     setSandTop(rect.top);
                     setSandHeight(rect.height);
-
-                    console.log("Sand Rectangle:", rect);
                 } else {
                     // Try again shortly if dimensions are zero
                     setTimeout(checkDimensions, 50); // Try again after 50ms
@@ -161,7 +159,6 @@ function Beavers(props) {
 
     const handleBeaverAreaClick = () => {
 
-        // console.log("AREA AREA")
         if (!showBeaverPane) {
             // setBeaver1Style({
             //     transform: 'scale(1.2) scaleX(-1) rotate(-1deg) translateX(10px)',
@@ -175,8 +172,7 @@ function Beavers(props) {
             playAudio([lakeBackgroundSound, windBackgroundSound]);
         } else {
             setBeaverInProgress(true);
-            console.log("BEAVER IN PROGRESS")
-            console.log(beaverInProgress)
+
         }
 
     }
@@ -196,6 +192,7 @@ function Beavers(props) {
         //     transform: "rotate(1deg)",
         //     zIndex: "19"
         // });
+        console.log("backToNormal");
         if (!beaverInProgress) {
             setShowBeaverPane(false);
             stopAudio([lakeBackgroundSound, windBackgroundSound]);
@@ -205,21 +202,6 @@ function Beavers(props) {
         }
 
     }
-
-    //
-    // const [logSrc, setLogSrc] = useState(logAnimationArr[0]);
-    // const [logIntervalId, setLogIntervalId] = useState(null);
-    //
-    //
-    // useEffect(() => {
-    //     console.log("Show panen")
-    //     // NEED TO CALL when showBeaverPane turn true
-    //     if (showBeaverPane) startAnimationInterval(logIntervalId, setLogIntervalId, logSrc, setLogSrc, logAnimationArr, 200)
-    //     else stopAnimationInterval(logIntervalId, setLogSrc, logAnimationArr)
-    // }, [showBeaverPane])
-
-
-
 
     return (
         <div id={"beaversArea"} onClick={handleBeaverAreaClick}>

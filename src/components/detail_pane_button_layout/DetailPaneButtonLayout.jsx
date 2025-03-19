@@ -4,47 +4,53 @@ import "./detail-pane-button-layout.css"
 import previousSceneButtonSource from "./assets/img/previous-scene-button.webp"
 import nextSceneButtonSource from "./assets/img/next-scene-button.webp"
 
+import LessonTopBar from "../lesson_top_bar/LessonTopBar.jsx";
+
 
 function DetailPaneButtonLayout(props) {
 
     const CurrentScene = props.scenes[0];
-    console.log(props.scenes[0]);
+    // console.log(props.scenes[0]);
     return (
         <>
-            <CurrentScene
-                backToNormal={props.backToNormal}
-                popupDimension={props.popupDimension}
-                beaver1Src={props.beaver1Src}
-                beaver2Src={props.beaver2Src}
-                beaver1Style={props.beaver1Style}
-                beaver2Style={props.beaver2Style}
-                handleMouseEnterOnBeaver1={props.handleMouseEnterOnBeaver1}
-                handleMouseLeaveOnBeaver1={props.handleMouseLeaveOnBeaver1}
-                handleMouseEnterOnBeaver2={props.handleMouseEnterOnBeaver2}
-                handleMouseLeaveOnBeaver2={props.handleMouseLeaveOnBeaver2}
-                handleBeaverClick={props.handleBeaverClick}
-                sandTop={props.sandTop}
-                sandHeight={props.sandHeight}
-                sandRef={props.sandRef}
-                beaverWidth={props.beaverWidth}
-                showBeaverPane={props.showBeaverPane}
+            <div id={"popup"} style={{
+                //TODO
+                // top: props.popupDimension.top,
+                // left: props.popupDimension.left,
+                // height: props.popupDimension.height,
+                // width: props.popupDimension.width,
+                // transform: "translate(-50%, -50%)",
+                // zIndex: 10000,
 
-            />
-            <div id={"top-pane-button-container"}>
-                <button
-                    id={"lesson-back-button"}
-                    onClick={(e) => {
-                        e.stopPropagation();  // Add this line
-                        props.backToNormal;
-                    }}
-                > Hello
-                </button>
-                {props.inProgress && (
-                    <div id={"lesson-title-bar"}>
-                        This is title for the current lesson
-                    </div>
-                )}
+            }}>
+                <CurrentScene
+                    backToNormal={props.backToNormal}
+                    popupDimension={props.popupDimension}
+                    beaver1Src={props.beaver1Src}
+                    beaver2Src={props.beaver2Src}
+                    beaver1Style={props.beaver1Style}
+                    beaver2Style={props.beaver2Style}
+                    handleMouseEnterOnBeaver1={props.handleMouseEnterOnBeaver1}
+                    handleMouseLeaveOnBeaver1={props.handleMouseLeaveOnBeaver1}
+                    handleMouseEnterOnBeaver2={props.handleMouseEnterOnBeaver2}
+                    handleMouseLeaveOnBeaver2={props.handleMouseLeaveOnBeaver2}
+                    handleBeaverClick={props.handleBeaverClick}
+                    sandTop={props.sandTop}
+                    sandHeight={props.sandHeight}
+                    sandRef={props.sandRef}
+                    beaverWidth={props.beaverWidth}
+                    showBeaverPane={props.showBeaverPane}
+                    inProgress={props.inProgress}
+
+                />
+                {/*<LessonTopBar*/}
+                {/*    backToNormal={props.backToNormal}*/}
+                {/*    inProgress={props.inProgress}*/}
+                {/*/>*/}
+
             </div>
+
+
             {!props.inProgress && (
                 <div id={"meaning-buttons"}>
                     <button id={"cree-meaning-button"}>{props.cree}</button>
