@@ -17,6 +17,7 @@ const beaversScenes = [BeaversScene0, BeaversScene1];
 
 import {useEffect, useRef, useState} from "react";
 
+
 import beaver1 from './assets/beaver/beaver_1.svg'
 import beaver2 from './assets/beaver/beaver_2.svg'
 import beaver3 from './assets/beaver/beaver_3.svg'
@@ -25,6 +26,7 @@ import beaver4 from './assets/beaver/beaver_4.svg'
 import log1 from './assets/beaver-log/beaver-log1.svg'
 import log2 from './assets/beaver-log/beaver-log2.svg'
 import log3 from './assets/beaver-log/beaver-log3.svg'
+import Scene from "../../../components/scene/Scene.jsx";
 
 const eatingBeaverSoundURL = new URL("./assets/audio/eating-beaver.mp3", import.meta.url).href;
 const lakeBackgroundSoundURL = new URL("./assets/audio/lake-background.mp3", import.meta.url).href;
@@ -198,7 +200,7 @@ function Beavers(props) {
             stopAudio([lakeBackgroundSound, windBackgroundSound]);
         } else {
             setBeaverInProgress(false);
-            zoomIn("beaver-scene1", popupDimension)
+            zoomIn("popup", popupDimension)
         }
 
     }
@@ -246,29 +248,36 @@ function Beavers(props) {
 
             {showBeaverPane
                 &&
-                <DetailPaneButtonLayout
+                <Scene
                     scenes={beaversScenes}
-                    backToNormal={backToNormal}
-                    inProgress={beaverInProgress}
-                    cree={"Amisk"}
-                    english={"Beaver"}
-                    popupDimension={popupDimension}
-                    beaver1Src={beaver1Src}
-                    beaver2Src={beaver2Src}
-                    beaver1Style={beaver1Style}
-                    beaver2Style={beaver2Style}
-                    handleMouseEnterOnBeaver1={handleMouseEnterOnBeaver1}
-                    handleMouseLeaveOnBeaver1={handleMouseLeaveOnBeaver1}
-                    handleMouseEnterOnBeaver2={handleMouseEnterOnBeaver2}
-                    handleMouseLeaveOnBeaver2={handleMouseLeaveOnBeaver2}
-                    handleBeaverClick={handleBeaverClick}
-                    sandTop={sandTop}
-                    sandHeight={sandHeight}
-                    sandRef={sandRef}
-                    beaverWidth={beaverWidth}
-                    showBeaverPane={showBeaverPane}
+                    variables={{
+                        beaver1Src: beaver1Src,
+                        beaver2Src: beaver2Src,
+                        beaverWidth: beaverWidth,
+                        beaver1Style: beaver1Style,
+                        beaver2Style: beaver2Style,
+                        cree: "Amisk",
+                        english: "Beaver",
+                        inProgress: beaverInProgress,
+                        popupDimension: popupDimension,
+                        sandHeight: sandHeight,
+                        sandRef: sandRef,
+                        sandTop: sandTop,
+                        showBeaverPane: showBeaverPane,
 
+
+                    }}
+                    functions={{
+                        backToNormal: backToNormal,
+                        handleBeaverClick: handleBeaverClick,
+                        handleMouseEnterOnBeaver1: handleMouseEnterOnBeaver1,
+                        handleMouseEnterOnBeaver2: handleMouseEnterOnBeaver2,
+                        handleMouseLeaveOnBeaver1: handleMouseLeaveOnBeaver1,
+                        handleMouseLeaveOnBeaver2: handleMouseLeaveOnBeaver2,
+
+                    }}
                 />
+
             }
 
         </div>

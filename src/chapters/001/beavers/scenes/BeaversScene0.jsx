@@ -22,54 +22,35 @@ const BeaversScene0 = (props) => {
 
     useEffect(() => {
         // NEED TO CALL when showBeaverPane turn true
-        if (props.showBeaverPane) startAnimationInterval(logIntervalId, setLogIntervalId, logSrc, setLogSrc, logAnimationArr, 200)
+        if (props.variables.showBeaverPane) startAnimationInterval(logIntervalId, setLogIntervalId, logSrc, setLogSrc, logAnimationArr, 200)
         else stopAnimationInterval(logIntervalId, setLogSrc, logAnimationArr)
-    }, [props.showBeaverPane])
+    }, [props.variables.showBeaverPane])
 
     const handleBeaverPaneClick = () => {
-        zoomOut("beaver-scene1")
+        zoomOut("popup")
     }
 
     return (
         <>
-            {/* Blur overlay */}
-            <div style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                backdropFilter: 'blur(5px)',
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                zIndex: 9998,
-                animation: 'fadeInOverlay 0.3s ease-out',
-
-            }} onClick={(e) => {
-                e.stopPropagation();  // Add this line
-                props.backToNormal();
-            }}/>
-
-
-
             <div id="beaver-scene1" style={{
-                position: "absolute",
+                // position: "absolute",
                 //TODO
-                top: props.popupDimension.top,
-                left: props.popupDimension.left,
-                height: props.popupDimension.height,
-                width: props.popupDimension.width,
+                // top: props.popupDimension.top,
+                // left: props.popupDimension.left,
+                // height: props.popupDimension.height,
+                // width: props.popupDimension.width,
 
-                transform: "translate(-50%, -50%)",
-                borderRadius: "10px",
+                height: "100%",
+                width: "100%",
+                // transform: "translate(-50%, -50%)",
+                borderRadius: "7px",
                 boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
                 // overflow: "hidden",
                 aspectRatio: "1/1",
-                minWidth: "700px",
                 // height: "100%",
                 // width: "100%",
 
                 zIndex: 9999,
-                border: "3px solid #FFD700",
                 animation: `
                             glow 2s ease-in-out infinite,
                             fadeIn 0.3s ease-out
@@ -78,50 +59,47 @@ const BeaversScene0 = (props) => {
             }}
                  onClick={handleBeaverPaneClick}
             >
-                <LessonTopBar
-                    backToNormal={props.backToNormal}
-                    inProgress={props.inProgress}
-                />
+
 
                 <img
                     alt={"beaver 1"}
                     id={'scene1-beaver1'}
-                    src={props.beaver1Src}
+                    src={props.variables.beaver1Src}
                     style={{
                         position: "absolute",
                         minWidth: "30px",
-                        top: `${props.sandTop - props.sandHeight * 0.35}px`,
+                        top: `${props.variables.sandTop - props.variables.sandHeight * 0.35}px`,
                         left: `40% `,
                         transform: "scaleX(-1) rotate(-1deg)",
-                        width: `${props.beaverWidth}px`,
+                        width: `${props.variables.beaverWidth}px`,
                         zIndex: "19",
-                        ...props.beaver1Style
+                        ...props.variables.beaver1Style
                     }}
-                    onMouseEnter={props.handleMouseEnterOnBeaver1}
-                    onMouseLeave={props.handleMouseLeaveOnBeaver1}
-                    onClick={props.handleBeaverClick}
+                    onMouseEnter={props.functions.handleMouseEnterOnBeaver1}
+                    onMouseLeave={props.functions.handleMouseLeaveOnBeaver1}
+                    onClick={props.functions.handleBeaverClick}
                 />
                 <img
                     alt={"beaver 2"}
                     id={'scene1-beaver2'}
-                    src={props.beaver2Src}
+                    src={props.variables.beaver2Src}
                     style={{
                         position: "absolute",
                         minWidth: "30px",
-                        top: `${props.sandTop - props.sandHeight * 0.5}px`,
+                        top: `${props.variables.sandTop - props.variables.sandHeight * 0.5}px`,
                         left: `60%`,
                         transform: "rotate(1deg)",
-                        width: `${props.beaverWidth}px`,
+                        width: `${props.variables.beaverWidth}px`,
                         zIndex: "19",
-                        ...props.beaver2Style
+                        ...props.variables.beaver2Style
                     }}
-                    onMouseEnter={props.handleMouseEnterOnBeaver2}
-                    onMouseLeave={props.handleMouseLeaveOnBeaver2}
-                    onClick={props.handleBeaverClick}
+                    onMouseEnter={props.functions.handleMouseEnterOnBeaver2}
+                    onMouseLeave={props.functions.handleMouseLeaveOnBeaver2}
+                    onClick={props.functions.handleBeaverClick}
 
                 />
 
-                <img id="sand" ref={props.sandRef} src={sand} alt={"sand"} style={{
+                <img id="sand" ref={props.variables.sandRef} src={sand} alt={"sand"} style={{
                     width: "100%",
                     bottom: "0", position: "absolute"
                 }}/>

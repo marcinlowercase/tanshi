@@ -8,7 +8,7 @@
     flex-direction: row;
     align-items: center;
     gap: 15px;
-    z-index: 1;
+    z-index: 11000;
 }
 
 #meaning-buttons > button {
