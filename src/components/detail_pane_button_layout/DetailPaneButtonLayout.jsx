@@ -15,7 +15,7 @@ function DetailPaneButtonLayout(props) {
 
 
 
-            {!props.inProgress && (
+            {!props.variables.inProgress && (
                 <div id={"meaning-buttons"}>
                     <button id={"cree-meaning-button"}>{props.variables.cree}</button>
                     <button id={"english-meaning-button"}>{props.variables.english}</button>
@@ -24,7 +24,7 @@ function DetailPaneButtonLayout(props) {
 
 
 
-            {props.inProgress && (
+            {props.variables.inProgress && (
                 <div id={"bottom-pane-buttons-container"}>
                     <img
                         id={"previous-scene-button"}

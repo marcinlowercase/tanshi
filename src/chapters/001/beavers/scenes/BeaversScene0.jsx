@@ -68,7 +68,7 @@ const BeaversScene0 = (props) => {
                     style={{
                         position: "absolute",
                         minWidth: "30px",
-                        top: `${props.variables.sandTop - props.variables.sandHeight * 0.35}px`,
+                        bottom: `${props.variables.sandHeight * 0.65}px`,
                         left: `40% `,
                         transform: "scaleX(-1) rotate(-1deg)",
                         width: `${props.variables.beaverWidth}px`,
@@ -86,7 +86,8 @@ const BeaversScene0 = (props) => {
                     style={{
                         position: "absolute",
                         minWidth: "30px",
-                        top: `${props.variables.sandTop - props.variables.sandHeight * 0.5}px`,
+                        // top: `${props.variables.sandTop - props.variables.sandHeight * 0.5}px`,
+                        bottom: `${props.variables.sandHeight * 0.80}px`,
                         left: `60%`,
                         transform: "rotate(1deg)",
                         width: `${props.variables.beaverWidth}px`,
