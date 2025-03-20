@@ -32,7 +32,7 @@ const BeaversScene0 = (props) => {
 
     return (
         <>
-            <div id="beaver-scene1" style={{
+            <div id="beaver-scene0" style={{
                 // position: "absolute",
                 //TODO
                 // top: props.popupDimension.top,
