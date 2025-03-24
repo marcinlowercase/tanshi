@@ -1,10 +1,8 @@
 // Beavers.jsx
 import dynamicSize from "../../../functions/dynamicSize.js";
-import {startAnimationInterval, stopAnimationInterval} from "../../../functions/animationInternal.js";
 import {playAudio, stopAudio} from "../../../functions/audioUtilities.js";
+import {startAnimationInterval, stopAnimationInterval} from "../../../functions/animationInternal.js";
 import {zoomOut, zoomIn} from "../../../functions/zoom.js";
-
-import DetailPaneButtonLayout from "../../../components/detail_pane_button_layout/DetailPaneButtonLayout.jsx";
 
 import './beavers.css'
 
@@ -12,8 +10,28 @@ import './beavers.css'
 import BeaversScene0 from "./scenes/BeaversScene0.jsx";
 import BeaversScene1 from "./scenes/BeaversScene1.jsx";
 
-const beaversScenes = [BeaversScene0, BeaversScene1];
+const NUMBER_OF_SCENES = 4;
+const beaversScenes = [BeaversScene0, BeaversScene1, BeaversScene2, BeaversScene3];
 
+const scriptOfScene = [
+    {
+        english: "Two beavers were sitting together on the beach, chewing on some wood.",
+        cree: "Nîso amiskwak êsa ê-ocipahcîpicik ê-itêhko-kîwêsîskak, mitikok ê-mah-mîwâcik."
+    },
+    {
+        english: "When they saw the logs floating, the two beavers grabbed them to add to their dam.",
+        cree: "Kâh-wâpamâcik êsa mistikwak ikota ê-pimâhôcik, nîso aniki amiskwak ocî-pîhtêwak, ê-wîkâpahcîhâtîcik ôta oskâtimikw."
+    },
+    {
+        english: "They also found big rocks, which they took for their dam as well.",
+        cree: "Âhâyak mîna miskawêwak mistahi asiniyak, ê-îkôni mîna otinîwak, oskâtimikw ê-wî-ayôtahcik."
+    },
+    {
+        english: "The beavers used the rocks and the logs to build a cozy dam where they could live.",
+        cree: "Ê-kî-aniki amiskwak wî-yâh-pahcîhâtîcik asiniyak ikwa mistikwak, kîta ê-sîhtâhcik oskâtimikw, ikota tê-wî-kîcik."
+    },
+
+]
 
 import {useEffect, useRef, useState} from "react";
 
@@ -27,6 +45,8 @@ import log1 from './assets/beaver-log/beaver-log1.svg'
 import log2 from './assets/beaver-log/beaver-log2.svg'
 import log3 from './assets/beaver-log/beaver-log3.svg'
 import Scene from "../../../components/scene/Scene.jsx";
+import BeaversScene2 from "./scenes/BeaversScene2.jsx";
+import BeaversScene3 from "./scenes/BeaversScene3.jsx";
 
 const eatingBeaverSoundURL = new URL("./assets/audio/eating-beaver.mp3", import.meta.url).href;
 const lakeBackgroundSoundURL = new URL("./assets/audio/lake-background.mp3", import.meta.url).href;
@@ -54,7 +74,7 @@ function Beavers(props) {
     const [beaver2Left, setBeaver2Left] = useState(0)
 
     // show the beaver review when click the beaver
-    const [showBeaverPane, setShowBeaverPane] = useState(false); // State to control visibility
+    const [showPopup, setshowPopup] = useState(false); // State to control visibility
 
     const [beaverInProgress, setBeaverInProgress] = useState(false);
 
@@ -80,15 +100,15 @@ function Beavers(props) {
         }
     }
     useEffect(() => {
-        if (showBeaverPane) {
+        if (showPopup) {
             updateSandDimensions();
             window.addEventListener('resize', updateSandDimensions);
-            // Clean up the event listener when the component unmounts or showBeaverPane changes to false
+            // Clean up the event listener when the component unmounts or showPopup changes to false
             return () => {
                 window.removeEventListener('resize', updateSandDimensions);
             };
         }
-    }, [showBeaverPane]);
+    }, [showPopup]);
 
 
     const handleBeaversProperties = () => {
@@ -108,7 +128,7 @@ function Beavers(props) {
     handleBeaversProperties();
 
 
-    // setup soundn effect
+    // setup sound effect
     const eatingBeaverSound = useRef(new Audio((eatingBeaverSoundURL)));
     const lakeBackgroundSound = useRef(new Audio(lakeBackgroundSoundURL));
     const windBackgroundSound = useRef(new Audio(windBackgroundSoundURL));
@@ -127,24 +147,38 @@ function Beavers(props) {
     const [beaverIntervalId, setBeaverIntervalId] = useState(null);
 
 
-    const handleMouseEnterOnBeaver1 = () => {
+    const startBeaversEatingAnimation = () => {
         startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
-        if (showBeaverPane) playAudio([eatingBeaverSound]);
+        startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
+    }
+
+    const handleMouseEnterOnBeaver1 = () => {
+        if (!beaverInProgress) {
+            startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
+            if (showPopup) playAudio([eatingBeaverSound]);
+        }
     }
 
     const handleMouseLeaveOnBeaver1 = () => {
-        stopAnimationInterval(beaverIntervalId, setBeaver1Src, beaverAnimationArr);
-        stopAudio([eatingBeaverSound]);
+        if (!beaverInProgress) {
+            stopAnimationInterval(beaverIntervalId, setBeaver1Src, beaverAnimationArr);
+            stopAudio([eatingBeaverSound]);
+        }
     }
 
     const handleMouseEnterOnBeaver2 = () => {
-        startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
-        if (showBeaverPane) playAudio([eatingBeaverSound]);
+        if (!beaverInProgress) {
+            startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
+            if (showPopup) playAudio([eatingBeaverSound]);
+        }
+
     }
 
     const handleMouseLeaveOnBeaver2 = () => {
-        stopAnimationInterval(beaverIntervalId, setBeaver2Src, beaverAnimationArr);
-        stopAudio([eatingBeaverSound])
+        if (!beaverInProgress) {
+            stopAnimationInterval(beaverIntervalId, setBeaver2Src, beaverAnimationArr);
+            stopAudio([eatingBeaverSound])
+        }
     }
 
 
@@ -161,42 +195,27 @@ function Beavers(props) {
 
     const handleBeaverAreaClick = () => {
 
-        if (!showBeaverPane) {
-            // setBeaver1Style({
-            //     transform: 'scale(1.2) scaleX(-1) rotate(-1deg) translateX(10px)',
-            //     zIndex: '10000'
-            // });
-            // setBeaver2Style({
-            //     transform: 'scale(1.2) rotate(1deg)',
-            //     zIndex: '10000'
-            // });
-            setShowBeaverPane(true);
+        if (!showPopup) {
+            setshowPopup(true);
             playAudio([lakeBackgroundSound, windBackgroundSound]);
         } else {
             setBeaverInProgress(true);
-
         }
 
     }
 
     const handleBeaverClick = () => {
-        playAudio([eatingBeaverSound])
+        if (!beaverInProgress) {
+            playAudio([eatingBeaverSound])
+        }
     }
 
 
     // Update backToNormal function
     const backToNormal = () => {
-        // setBeaver1Style({
-        //     transform: "scaleX(-1) rotate(-1deg)",
-        //     zIndex: "19"
-        // });
-        // setBeaver2Style({
-        //     transform: "rotate(1deg)",
-        //     zIndex: "19"
-        // });
         console.log("backToNormal");
         if (!beaverInProgress) {
-            setShowBeaverPane(false);
+            setshowPopup(false);
             stopAudio([lakeBackgroundSound, windBackgroundSound]);
         } else {
             setBeaverInProgress(false);
@@ -246,7 +265,7 @@ function Beavers(props) {
             />
 
 
-            {showBeaverPane
+            {showPopup
                 &&
                 <Scene
                     scenes={beaversScenes}
@@ -257,13 +276,16 @@ function Beavers(props) {
                         beaver1Style: beaver1Style,
                         beaver2Style: beaver2Style,
                         cree: "Amisk",
+                        eatingBeaverSound: eatingBeaverSound,
                         english: "Beaver",
                         inProgress: beaverInProgress,
                         popupDimension: popupDimension,
+                        numberOfScenes: NUMBER_OF_SCENES,
                         sandHeight: sandHeight,
                         sandRef: sandRef,
                         sandTop: sandTop,
-                        showBeaverPane: showBeaverPane,
+                        scriptOfScene: scriptOfScene,
+                        showPopup: showPopup,
 
 
                     }}
@@ -274,6 +296,7 @@ function Beavers(props) {
                         handleMouseEnterOnBeaver2: handleMouseEnterOnBeaver2,
                         handleMouseLeaveOnBeaver1: handleMouseLeaveOnBeaver1,
                         handleMouseLeaveOnBeaver2: handleMouseLeaveOnBeaver2,
+                        startBeaversEatingAnimation: startBeaversEatingAnimation,
 
                     }}
                 />

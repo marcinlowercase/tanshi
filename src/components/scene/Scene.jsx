@@ -1,8 +1,21 @@
 import DetailPaneButtonLayout from "../detail_pane_button_layout/DetailPaneButtonLayout.jsx";
 import LessonTopBar from "../lesson_top_bar/LessonTopBar.jsx";
 
+
+let currentSceneNumber = 0;
+
 const Scene = (props) => {
-    const CurrentScene = props.scenes[0];
+
+    const nextScene = () => {
+        if (currentSceneNumber < props.variables.numberOfScenes - 1) currentSceneNumber++;
+        console.log(currentSceneNumber)
+    }
+    const prevScene = () => {
+        if (currentSceneNumber > 0) currentSceneNumber--;
+        console.log(currentSceneNumber)
+    }
+
+    const CurrentScene = props.scenes[currentSceneNumber];
     return (
         <>
             {/* Blur overlay */}
@@ -35,7 +48,11 @@ const Scene = (props) => {
                 border: "3px solid #FFD700",
                 borderRadius: "10px",
                 minWidth: "700px",
-
+                animation: `
+                            glow 2s ease-in-out infinite,
+                            fadeIn 0.3s ease-out
+                        `,
+                transformOrigin: 'center center',
 
             }}>
 
@@ -49,7 +66,14 @@ const Scene = (props) => {
                     variables={props.variables}
                 />
                 <DetailPaneButtonLayout
-                    variables={props.variables}
+                    variables={{
+                        ...props.variables,
+                        currentSceneNumber: currentSceneNumber,
+                    }}
+                    functions ={{
+                        nextScene: nextScene,
+                        prevScene: prevScene,
+                    }}
                 />
 
             </div>

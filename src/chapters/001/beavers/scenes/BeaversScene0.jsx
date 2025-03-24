@@ -13,6 +13,12 @@ const logAnimationArr = [log1, log2, log3];
 
 
 import LessonTopBar from "../../../../components/lesson_top_bar/LessonTopBar.jsx";
+import {stopAudio} from "../../../../functions/audioUtilities.js";
+
+const ENGLISH_SCRIPT = "Two beavers were sitting together on the beach, chewing on some wood.";
+const CREE_SCRIPT = "";
+
+
 
 
 const BeaversScene0 = (props) => {
@@ -21,10 +27,19 @@ const BeaversScene0 = (props) => {
     const [logIntervalId, setLogIntervalId] = useState(null);
 
     useEffect(() => {
-        // NEED TO CALL when showBeaverPane turn true
-        if (props.variables.showBeaverPane) startAnimationInterval(logIntervalId, setLogIntervalId, logSrc, setLogSrc, logAnimationArr, 200)
+        // NEED TO CALL when showPopup turn true
+        if (props.variables.showPopup) startAnimationInterval(logIntervalId, setLogIntervalId, logSrc, setLogSrc, logAnimationArr, 200)
         else stopAnimationInterval(logIntervalId, setLogSrc, logAnimationArr)
-    }, [props.variables.showBeaverPane])
+    }, [props.variables.showPopup])
+
+    useEffect(() => {
+
+        if (props.variables.inProgress) {
+            console.log(props.variables.inProgress);
+            stopAudio([props.variables.eatingBeaverSound]);
+            props.functions.startBeaversEatingAnimation();
+        }
+    }, [props.variables.inProgress]);
 
     const handleBeaverPaneClick = () => {
         zoomOut("popup")
@@ -33,34 +48,15 @@ const BeaversScene0 = (props) => {
     return (
         <>
             <div id="beaver-scene0" style={{
-                // position: "absolute",
-                //TODO
-                // top: props.popupDimension.top,
-                // left: props.popupDimension.left,
-                // height: props.popupDimension.height,
-                // width: props.popupDimension.width,
-
                 height: "100%",
                 width: "100%",
-                // transform: "translate(-50%, -50%)",
                 borderRadius: "7px",
                 boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-                // overflow: "hidden",
-                aspectRatio: "1/1",
-                // height: "100%",
-                // width: "100%",
-
                 zIndex: 9999,
-                animation: `
-                            glow 2s ease-in-out infinite,
-                            fadeIn 0.3s ease-out
-                        `,
-                transformOrigin: 'center center',
+
             }}
                  onClick={handleBeaverPaneClick}
             >
-
-
                 <img
                     alt={"beaver 1"}
                     id={'scene1-beaver1'}
