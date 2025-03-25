@@ -12,7 +12,7 @@ function DetailPaneButtonLayout(props) {
     return (
         <>
 
-            {!props.variables.inProgress && (
+            {!props.variables.inLessonProgress && (
                 <div id={"meaning-buttons"}>
                     <button
                         id={"cree-meaning-button"}
@@ -37,7 +37,7 @@ function DetailPaneButtonLayout(props) {
 
 
 
-            {props.variables.inProgress && (
+            {props.variables.inLessonProgress && (
                 <div id={"bottom-pane-buttons-container"}>
                     <img 
 draggable={false}

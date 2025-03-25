@@ -170,31 +170,36 @@ function Beavers(props) {
 
     const [beaver1Src, setBeaver1Src] = useState(beaverAnimationArr[0]);
     const [beaver2Src, setBeaver2Src] = useState(beaverAnimationArr[0]);
-    const [beaverIntervalId, setBeaverIntervalId] = useState(null);
+    const [beaver1IntervalId, setBeaver1IntervalId] = useState(null);
+    const [beaver2IntervalId, setBeaver2IntervalId] = useState(null);
 
 
     const startBeaversEatingAnimation = () => {
-        startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
-        startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
+        startAnimationInterval(beaver1IntervalId, setBeaver1IntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
+        startAnimationInterval(beaver2IntervalId, setBeaver2IntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
+    }
+    const stopBeaversEatingAnimation = () => {
+        stopAnimationInterval(beaver1IntervalId, setBeaver1Src, beaverAnimationArr);
+        stopAnimationInterval(beaver2IntervalId, setBeaver2Src, beaverAnimationArr);
     }
 
     const handleMouseEnterOnBeaver1 = () => {
         if (!props.variables.inLessonProgress) {
-            startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
+            startAnimationInterval(beaver1IntervalId, setBeaver1IntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
             if (props.variables.showPopup) playAudio([eatingBeaverSound]);
         }
     }
 
     const handleMouseLeaveOnBeaver1 = () => {
         if (!props.variables.inLessonProgress) {
-            stopAnimationInterval(beaverIntervalId, setBeaver1Src, beaverAnimationArr);
+            stopAnimationInterval(beaver1IntervalId, setBeaver1Src, beaverAnimationArr);
             stopAudio([eatingBeaverSound]);
         }
     }
 
     const handleMouseEnterOnBeaver2 = () => {
         if (!props.variables.inLessonProgress) {
-            startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
+            startAnimationInterval(beaver2IntervalId, setBeaver2IntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
             if (props.variables.showPopup) playAudio([eatingBeaverSound]);
         }
 
@@ -202,7 +207,7 @@ function Beavers(props) {
 
     const handleMouseLeaveOnBeaver2 = () => {
         if (!props.variables.inLessonProgress) {
-            stopAnimationInterval(beaverIntervalId, setBeaver2Src, beaverAnimationArr);
+            stopAnimationInterval(beaver2IntervalId, setBeaver2Src, beaverAnimationArr);
             stopAudio([eatingBeaverSound])
         }
     }
@@ -255,9 +260,12 @@ function Beavers(props) {
     const backToNormal = () => {
         if (!props.variables.inLessonProgress) {
             props.functions.setShowPopup(false);
+            stopBeaversEatingAnimation();
             stopAudio([lakeBackgroundSound, windBackgroundSound]);
         } else {
+            console.log("Back to Popup")
             props.functions.setInLessonProgress(false);
+            stopBeaversEatingAnimation();
             zoomIn("popup", popupDimension)
         }
 
@@ -319,7 +327,7 @@ function Beavers(props) {
                         cree: "Amisk",
                         eatingBeaverSound: eatingBeaverSound,
                         english: "Beaver",
-                        inProgress: props.variables.inLessonProgress,
+                        inLessonProgress: props.variables.inLessonProgress,
                         popupDimension: popupDimension,
                         numberOfScenes: NUMBER_OF_SCENES,
                         sandHeight: sandHeight,
@@ -339,6 +347,7 @@ function Beavers(props) {
                         handleMouseLeaveOnBeaver2: handleMouseLeaveOnBeaver2,
                         // setInLessonProgress: props.functions.setInLessonProgress,
                         startBeaversEatingAnimation: startBeaversEatingAnimation,
+                        stopBeaversEatingAnimation: stopBeaversEatingAnimation,
 
                     }}
                 />

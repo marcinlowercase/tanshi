@@ -7,12 +7,12 @@ const LessonTopBar = (props) => {
                 id={"lesson-back-button"}
                 onClick={(e) => {
                     e.stopPropagation();  // Add this line
-                    props.backToNormal();
+                    props.functions.backToNormal();
                     console.log("Back button clicked");
                 }}
             >
             </button>
-            {props.inProgress && (
+            {props.variables.inLessonProgress && (
                 <div id={"lesson-title-bar"}>
                     This is title for the current lesson
                 </div>

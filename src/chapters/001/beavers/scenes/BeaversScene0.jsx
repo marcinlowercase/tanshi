@@ -24,6 +24,7 @@ const BeaversScene0 = (props) => {
     const [logSrc, setLogSrc] = useState(logAnimationArr[0]);
     const [logIntervalId, setLogIntervalId] = useState(null);
 
+
     useEffect(() => {
         // NEED TO CALL when showPopup turn true
         if (props.variables.showPopup) startAnimationInterval(logIntervalId, setLogIntervalId, logSrc, setLogSrc, logAnimationArr, 200)
@@ -32,11 +33,13 @@ const BeaversScene0 = (props) => {
 
     useEffect(() => {
 
-        if (props.variables.inProgress) {
+        if (props.variables.inLessonProgress) {
             stopAudio([props.variables.eatingBeaverSound]);
+            // stop animations first then start it again
+            props.functions.stopBeaversEatingAnimation();
             props.functions.startBeaversEatingAnimation();
         }
-    }, [props.variables.inProgress]);
+    }, [props.variables.inLessonProgress]);
 
     const handleBeaverPaneClick = () => {
         zoomOut("popup")

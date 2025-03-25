@@ -1,6 +1,4 @@
 const startAnimationInterval = (intervalId, setIntervalId, imageSource, setImageSource, animationArr, timeout) => {
-    // console.log("MouseEnter");
-    // console.log(animationArr.length);
     let currentIndex = 1;
     const newIntervalId = setInterval(() => {
         setImageSource(animationArr[currentIndex]);
@@ -8,10 +6,12 @@ const startAnimationInterval = (intervalId, setIntervalId, imageSource, setImage
         // console.log("current Index", currentIndex);
     }, timeout);
     setIntervalId(newIntervalId);
+    console.log("new animation interval", newIntervalId);
+
 }
 
 const stopAnimationInterval = (intervalId, setImageSource, animationArr) => {
-    // console.log("MouseLeave");
+    console.log("stop animation interval", intervalId);
     clearInterval(intervalId);
     setImageSource(animationArr[0]);
 }

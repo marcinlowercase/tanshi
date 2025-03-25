@@ -25,11 +25,11 @@ const Scene = (props) => {
 
     useEffect(() => {
 
-        if (props.variables.inProgress) {
+        if (props.variables.inLessonProgress) {
             console.log("play story");
             playAudio([props.variables.storyAudio[currentSceneNumber].cree]);
         }
-    }, [props.variables.inProgress, currentSceneNumber]);
+    }, [props.variables.inLessonProgress, currentSceneNumber]);
 
     return (
         <>
@@ -72,8 +72,14 @@ const Scene = (props) => {
             }}>
 
                 <LessonTopBar
-                    backToNormal={props.functions.backToNormal}
-                    inProgress={props.variables.inProgress}
+                    variables={{
+                        ...props.variables,
+                    }}
+                    functions={{
+                        ...props.functions,
+                    }}
+                    // backToNormal={props.functions.backToNormal}
+                    // inLessonProgress={props.variables.inLessonProgress}
                 />
 
                 <CurrentScene
