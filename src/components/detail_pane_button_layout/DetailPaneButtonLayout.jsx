@@ -14,8 +14,24 @@ function DetailPaneButtonLayout(props) {
 
             {!props.variables.inProgress && (
                 <div id={"meaning-buttons"}>
-                    <button id={"cree-meaning-button"}>{props.variables.cree}</button>
-                    <button id={"english-meaning-button"}>{props.variables.english}</button>
+                    <button
+                        id={"cree-meaning-button"}
+                        onClick={()=> {
+                            event.preventDefault();
+                            console.log("cree-meaning-button");
+                        }}
+                    >
+                        {props.variables.cree}
+                    </button>
+                    <button
+                        id={"english-meaning-button"}
+                        onClick={()=> {
+                            event.preventDefault();
+                            console.log("english-meaning-button");
+                        }}
+                    >
+                        {props.variables.english}
+                    </button>
                 </div>
             )}
 

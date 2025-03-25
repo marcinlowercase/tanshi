@@ -91,11 +91,6 @@ function Beavers(props) {
     const [beaver2Top, setBeaver2Top] = useState(0)
     const [beaver2Left, setBeaver2Left] = useState(0)
 
-    // show the beaver review when click the beaver
-    // const [props.variables.showPopup, props.functions.setShowPopup] = useState(false); // State to control visibility
-
-    // const [props.variables.inLessonProgress, props.setInLessonProgress] = useState(false);
-
     const sandRef = useRef(null);  // Create a ref for the sand image
     const [sandTop, setSandTop] = useState(0);
     const [sandHeight, setSandHeight] = useState(0);
@@ -244,7 +239,7 @@ function Beavers(props) {
 
             playAudio([lakeBackgroundSound, windBackgroundSound]);
         } else {
-            props.functions.setInLessonProgress(true);
+            // props.functions.setInLessonProgress(true);
         }
 
     }
@@ -335,12 +330,14 @@ function Beavers(props) {
                         storyAudio: beaversStoryAudio,
                     }}
                     functions={{
+                        ...props.functions,
                         backToNormal: backToNormal,
                         handleBeaverClick: handleBeaverClick,
                         handleMouseEnterOnBeaver1: handleMouseEnterOnBeaver1,
                         handleMouseEnterOnBeaver2: handleMouseEnterOnBeaver2,
                         handleMouseLeaveOnBeaver1: handleMouseLeaveOnBeaver1,
                         handleMouseLeaveOnBeaver2: handleMouseLeaveOnBeaver2,
+                        // setInLessonProgress: props.functions.setInLessonProgress,
                         startBeaversEatingAnimation: startBeaversEatingAnimation,
 
                     }}

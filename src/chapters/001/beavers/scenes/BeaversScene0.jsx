@@ -19,8 +19,6 @@ const ENGLISH_SCRIPT = "Two beavers were sitting together on the beach, chewing 
 const CREE_SCRIPT = "";
 
 
-
-
 const BeaversScene0 = (props) => {
 
     const [logSrc, setLogSrc] = useState(logAnimationArr[0]);
@@ -42,22 +40,24 @@ const BeaversScene0 = (props) => {
 
     const handleBeaverPaneClick = () => {
         zoomOut("popup")
+        props.functions.setInLessonProgress(true);
     }
 
     return (
         <>
-            <div id="beaver-scene0" style={{
-                height: "100%",
-                width: "100%",
-                borderRadius: "7px",
-                boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-                zIndex: 9999,
-
-            }}
-                 onClick={handleBeaverPaneClick}
+            <div
+                id="beaver-scene0"
+                style={{
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: "7px",
+                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+                    zIndex: 9999,
+                }}
+                onClick={handleBeaverPaneClick}
             >
-                <img 
-draggable={false}
+                <img
+                    draggable={false}
                     alt={"beaver 1"}
                     id={'scene1-beaver1'}
                     src={props.variables.beaver1Src}
@@ -75,8 +75,8 @@ draggable={false}
                     onMouseLeave={props.functions.handleMouseLeaveOnBeaver1}
                     onClick={props.functions.handleBeaverClick}
                 />
-                <img 
-draggable={false}
+                <img
+                    draggable={false}
                     alt={"beaver 2"}
                     id={'scene1-beaver2'}
                     src={props.variables.beaver2Src}
@@ -97,22 +97,22 @@ draggable={false}
 
                 />
 
-                <img 
-draggable={false} id="sand" ref={props.variables.sandRef} src={sand} alt={"sand"} style={{
+                <img
+                    draggable={false} id="sand" ref={props.variables.sandRef} src={sand} alt={"sand"} style={{
                     width: "100%",
                     bottom: "0", position: "absolute"
                 }}/>
 
-                <img 
-draggable={false} src={rock1} alt={"rock1"} style={{
+                <img
+                    draggable={false} src={rock1} alt={"rock1"} style={{
                     width: "15%",
                     bottom: "5%",
                     left: "5%",
                     position: "absolute"
                 }}/>
 
-                <img 
-draggable={false}
+                <img
+                    draggable={false}
                     src={rock2}
                     alt={"rock2"}
                     style={{
@@ -122,8 +122,8 @@ draggable={false}
                         position: "absolute",
                     }}
                 />
-                <img 
-draggable={false}
+                <img
+                    draggable={false}
                     src={rock3}
                     alt={"rock3"}
                     style={{
@@ -133,8 +133,8 @@ draggable={false}
                         position: "absolute",
                     }}
                 />
-                <img 
-draggable={false}
+                <img
+                    draggable={false}
                     src={logSrc}
                     alt={"log"}
                     style={{
