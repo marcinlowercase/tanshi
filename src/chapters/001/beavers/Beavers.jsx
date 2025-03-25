@@ -13,6 +13,47 @@ import BeaversScene1 from "./scenes/BeaversScene1.jsx";
 const NUMBER_OF_SCENES = 4;
 const beaversScenes = [BeaversScene0, BeaversScene1, BeaversScene2, BeaversScene3];
 
+const audioPathOfSentence = [
+    [
+        {
+            english: "./assets/audio/transcript/english/00.m4a",
+            cree: "./assets/audio/transcript/cree/00.m4a",
+        },
+        {
+            english: "./assets/audio/transcript/english/01.m4a",
+            cree: "./assets/audio/transcript/cree/01.m4a",
+        },
+    ],
+    [
+        {
+            english: "./assets/audio/transcript/english/10.m4a",
+            cree: "./assets/audio/transcript/cree/10.m4a",
+        },
+        {
+            english: "./assets/audio/transcript/english/11.m4a",
+            cree: "./assets/audio/transcript/cree/11.m4a",
+        }
+    ],
+    [
+        {
+            english: "./assets/audio/transcript/english/20.m4a",
+            cree: "./assets/audio/transcript/cree/20.m4a",
+        },
+    ],
+    [
+        {
+            english: "./assets/audio/transcript/english/30.m4a",
+            cree: "./assets/audio/transcript/cree/30.m4a",
+        },
+        {
+            english: "./assets/audio/transcript/english/31.m4a",
+            cree: "./assets/audio/transcript/cree/31.m4a",
+        }
+    ],
+
+
+]
+
 const scriptOfScene = [
     {
         english: "Two beavers were sitting together on the beach, chewing on some wood.",

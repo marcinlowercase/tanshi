@@ -15,7 +15,11 @@ const Scene = (props) => {
         console.log(currentSceneNumber)
     }
 
+
     const CurrentScene = props.scenes[currentSceneNumber];
+
+
+
     return (
         <>
             {/* Blur overlay */}
