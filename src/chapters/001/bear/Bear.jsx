@@ -23,25 +23,25 @@ function Bear() {
 
     const handleBearSize = () => {
         requestAnimationFrame(() => {
-          if (caveRef.current) {
-            const caveRect = caveRef.current.getBoundingClientRect();
-    
-            const newCaveWidth = dynamicSize(0.38);
-            const newBearWidth = dynamicSize(0.12);
-            const newCaveRight = -0.4 * caveRect.width;
-            const newCaveBottom = 0.84 * window.innerHeight - caveRect.height * 0.6;
-            const newBearRight = 0.25 * caveRect.width;
-            const newBearBottom = newCaveBottom + caveRect.height * 0.13;
-    
-            setCaveWidth(newCaveWidth);
-            setBearWidth(newBearWidth);
-            setCaveRight(newCaveRight);
-            setCaveBottom(newCaveBottom);
-            setBearRight(newBearRight);
-            setBearBottom(newBearBottom);
-          }
+            if (caveRef.current) {
+                const caveRect = caveRef.current.getBoundingClientRect();
+
+                const newCaveWidth = dynamicSize(0.38);
+                const newBearWidth = dynamicSize(0.12);
+                const newCaveRight = -0.4 * caveRect.width;
+                const newCaveBottom = 0.84 * window.innerHeight - caveRect.height * 0.6;
+                const newBearRight = 0.25 * caveRect.width;
+                const newBearBottom = newCaveBottom + caveRect.height * 0.13;
+
+                setCaveWidth(newCaveWidth);
+                setBearWidth(newBearWidth);
+                setCaveRight(newCaveRight);
+                setCaveBottom(newCaveBottom);
+                setBearRight(newBearRight);
+                setBearBottom(newBearBottom);
+            }
         });
-      };
+    };
 
     // call handleBearSize on the first load
     handleBearSize();
@@ -70,16 +70,14 @@ function Bear() {
     }
 
     const handleMouseLeave = () => {
-        stopAnimationInterval(intervalId, setBearSrc, bearAnimationArr);
+        stopAnimationInterval(intervalId, setIntervalId, setBearSrc, bearAnimationArr);
     }
-
-
 
 
     return (
         <div className="bearArea">
-            <img 
-draggable={false}
+            <img
+                draggable={false}
                 alt="cave"
                 id="cave"
                 ref={caveRef}
@@ -95,8 +93,8 @@ draggable={false}
                 }}
             />
 
-            <img 
-draggable={false}
+            <img
+                draggable={false}
                 alt='bear'
                 id={'bear'}
                 src={bearSrc}

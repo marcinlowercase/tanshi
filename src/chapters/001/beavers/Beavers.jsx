@@ -112,20 +112,13 @@ function Beavers(props) {
             checkDimensions();
         }
     }
+
+
+
     useEffect(() => {
         if (props.variables.showPopup) {
             updateSandDimensions();
             window.addEventListener('resize', updateSandDimensions);
-
-
-            // // load audio to play
-            //
-            // for (const urls of audioURLOfScene) {
-            //     beaversStoryAudio.push({
-            //         cree: useRef(new Audio((urls.cree))),
-            //         english: useRef(new Audio((urls.english)))
-            //     });
-            // }
 
             // Clean up the event listener when the component unmounts or props.variables.showPopup changes to false
             return () => {
@@ -142,17 +135,16 @@ function Beavers(props) {
 
             setBeaverWidth(dynamicSize(0.08))
 
-            setBeaver1Top(props.variables.lakeTop + props.variables.lakeHeight * 0.52)
+            setBeaver1Top(props.variables.lakeTop + props.variables.lakeHeight * 0.30)
             setBeaver1Left(props.variables.lakeLeft + props.variables.lakeWidth * 0.59)
 
-            setBeaver2Top(props.variables.lakeTop + props.variables.lakeHeight * 0.38)
+            setBeaver2Top(props.variables.lakeTop + props.variables.lakeHeight * 0.20)
             setBeaver2Left(props.variables.lakeLeft + props.variables.lakeWidth * 0.7)
         })
     }
 
 
     handleBeaversProperties();
-
 
     // setup sound effect
     const eatingBeaverSound = useRef(new Audio((eatingBeaverSoundURL)));
@@ -179,8 +171,8 @@ function Beavers(props) {
         startAnimationInterval(beaver2IntervalId, setBeaver2IntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
     }
     const stopBeaversEatingAnimation = () => {
-        stopAnimationInterval(beaver1IntervalId, setBeaver1Src, beaverAnimationArr);
-        stopAnimationInterval(beaver2IntervalId, setBeaver2Src, beaverAnimationArr);
+        stopAnimationInterval(beaver1IntervalId, setBeaver1IntervalId ,setBeaver1Src, beaverAnimationArr);
+        stopAnimationInterval(beaver2IntervalId, setBeaver2IntervalId, setBeaver2Src, beaverAnimationArr);
     }
 
     const handleMouseEnterOnBeaver1 = () => {
@@ -192,7 +184,7 @@ function Beavers(props) {
 
     const handleMouseLeaveOnBeaver1 = () => {
         if (!props.variables.inLessonProgress) {
-            stopAnimationInterval(beaver1IntervalId, setBeaver1Src, beaverAnimationArr);
+            stopAnimationInterval(beaver1IntervalId,setBeaver1IntervalId, setBeaver1Src, beaverAnimationArr);
             stopAudio([eatingBeaverSound]);
         }
     }
@@ -207,7 +199,7 @@ function Beavers(props) {
 
     const handleMouseLeaveOnBeaver2 = () => {
         if (!props.variables.inLessonProgress) {
-            stopAnimationInterval(beaver2IntervalId, setBeaver2Src, beaverAnimationArr);
+            stopAnimationInterval(beaver2IntervalId,setBeaver2IntervalId, setBeaver2Src, beaverAnimationArr);
             stopAudio([eatingBeaverSound])
         }
     }
@@ -260,12 +252,11 @@ function Beavers(props) {
     const backToNormal = () => {
         if (!props.variables.inLessonProgress) {
             props.functions.setShowPopup(false);
-            stopBeaversEatingAnimation();
+            // stopBeaversEatingAnimation();
             stopAudio([lakeBackgroundSound, windBackgroundSound]);
         } else {
-            console.log("Back to Popup")
             props.functions.setInLessonProgress(false);
-            stopBeaversEatingAnimation();
+            // stopBeaversEatingAnimation();
             zoomIn("popup", popupDimension)
         }
 

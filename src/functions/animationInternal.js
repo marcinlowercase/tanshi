@@ -2,7 +2,7 @@ const startAnimationInterval = (intervalId, setIntervalId, imageSource, setImage
     let currentIndex = 1;
     const newIntervalId = setInterval(() => {
         setImageSource(animationArr[currentIndex]);
-        currentIndex = currentIndex < animationArr.length - 1? currentIndex + 1 : 0;
+        currentIndex = currentIndex < animationArr.length - 1 ? currentIndex + 1 : 0;
         // console.log("current Index", currentIndex);
     }, timeout);
     setIntervalId(newIntervalId);
@@ -10,10 +10,11 @@ const startAnimationInterval = (intervalId, setIntervalId, imageSource, setImage
 
 }
 
-const stopAnimationInterval = (intervalId, setImageSource, animationArr) => {
+const stopAnimationInterval = (intervalId, setIntervalId, setImageSource, animationArr) => {
     console.log("stop animation interval", intervalId);
     clearInterval(intervalId);
     setImageSource(animationArr[0]);
+    setIntervalId(null);
 }
 
 export {startAnimationInterval, stopAnimationInterval}

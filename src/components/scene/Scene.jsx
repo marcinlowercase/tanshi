@@ -8,9 +8,10 @@ import {playAudio} from "../../functions/audioUtilities.js";
 
 const Scene = (props) => {
 
+    const [isScene0AnimationRunning, setIsScene0AnimationRunning] = useState(false);
+
     const [currentSceneNumber, setCurrentSceneNumber] = useState(0);
 
-    console.log(currentSceneNumber);
     const nextScene = () => {
         if (currentSceneNumber < props.variables.numberOfScenes - 1) {
             setCurrentSceneNumber(currentSceneNumber + 1);
@@ -37,7 +38,6 @@ const Scene = (props) => {
     useEffect(() => {
 
         if (props.variables.inLessonProgress) {
-            console.log("play story");
             playAudio([props.variables.storyAudio[currentSceneNumber].cree]);
         }
     }, [props.variables.inLessonProgress, currentSceneNumber]);
@@ -58,7 +58,7 @@ const Scene = (props) => {
 
             }} onClick={(e) => {
                 e.stopPropagation();  // Add this line
-                props.backToNormal();
+                props.functions.backToNormal();
             }}/>
 
 
