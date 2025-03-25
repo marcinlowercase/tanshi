@@ -31,7 +31,8 @@ function Turtles(props) {
 
     return (
         <div id={"turtlesArea"}>
-            <img src={turtles} alt="turtles" id="turtles" style={{
+            <img 
+draggable={false} src={turtles} alt="turtles" id="turtles" style={{
                 minWidth: "100px",
                 width: `${turtlesWidth}px`,
                 top: "50%",

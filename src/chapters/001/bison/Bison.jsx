@@ -50,7 +50,8 @@ function Bison(props) {
 
     return (
         <div id={"bisonArea"}>
-            <img
+            <img 
+draggable={false}
                 src={bison}
                 ref={bisonRef}
                 alt="bison"
@@ -67,7 +68,8 @@ function Bison(props) {
                 }}
 
             />
-            <img
+            <img 
+draggable={false}
                 src={backgroundBush}
                 alt="backgroundBush"
                 style={{
@@ -81,7 +83,8 @@ function Bison(props) {
                 }}
 
             />
-            <img
+            <img 
+draggable={false}
                 src={frontBush}
                 alt="frontBush"
                 style={{

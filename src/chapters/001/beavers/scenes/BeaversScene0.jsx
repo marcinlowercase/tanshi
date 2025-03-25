@@ -35,7 +35,6 @@ const BeaversScene0 = (props) => {
     useEffect(() => {
 
         if (props.variables.inProgress) {
-            console.log(props.variables.inProgress);
             stopAudio([props.variables.eatingBeaverSound]);
             props.functions.startBeaversEatingAnimation();
         }
@@ -57,7 +56,8 @@ const BeaversScene0 = (props) => {
             }}
                  onClick={handleBeaverPaneClick}
             >
-                <img
+                <img 
+draggable={false}
                     alt={"beaver 1"}
                     id={'scene1-beaver1'}
                     src={props.variables.beaver1Src}
@@ -75,7 +75,8 @@ const BeaversScene0 = (props) => {
                     onMouseLeave={props.functions.handleMouseLeaveOnBeaver1}
                     onClick={props.functions.handleBeaverClick}
                 />
-                <img
+                <img 
+draggable={false}
                     alt={"beaver 2"}
                     id={'scene1-beaver2'}
                     src={props.variables.beaver2Src}
@@ -96,19 +97,22 @@ const BeaversScene0 = (props) => {
 
                 />
 
-                <img id="sand" ref={props.variables.sandRef} src={sand} alt={"sand"} style={{
+                <img 
+draggable={false} id="sand" ref={props.variables.sandRef} src={sand} alt={"sand"} style={{
                     width: "100%",
                     bottom: "0", position: "absolute"
                 }}/>
 
-                <img src={rock1} alt={"rock1"} style={{
+                <img 
+draggable={false} src={rock1} alt={"rock1"} style={{
                     width: "15%",
                     bottom: "5%",
                     left: "5%",
                     position: "absolute"
                 }}/>
 
-                <img
+                <img 
+draggable={false}
                     src={rock2}
                     alt={"rock2"}
                     style={{
@@ -118,7 +122,8 @@ const BeaversScene0 = (props) => {
                         position: "absolute",
                     }}
                 />
-                <img
+                <img 
+draggable={false}
                     src={rock3}
                     alt={"rock3"}
                     style={{
@@ -128,7 +133,8 @@ const BeaversScene0 = (props) => {
                         position: "absolute",
                     }}
                 />
-                <img
+                <img 
+draggable={false}
                     src={logSrc}
                     alt={"log"}
                     style={{

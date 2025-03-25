@@ -60,7 +60,8 @@ function Sabe() {
 
     return (
         <div id="sabeArea">
-            <img
+            <img 
+draggable={false}
                 alt="forest ground"
                 src={forestGround}
                 id="forestground"
@@ -74,7 +75,8 @@ function Sabe() {
                     zIndex: "0",
                 }}
             />
-            <img
+            <img 
+draggable={false}
                 alt="background tree"
                 src={backgroundTree}
                 style={{
@@ -87,7 +89,8 @@ function Sabe() {
                 }}
             />
 
-            <img
+            <img 
+draggable={false}
                 alt="sabe"
                 src={sabe}
                 style={{
@@ -98,7 +101,8 @@ function Sabe() {
                     zIndex: "30",
                 }}
             />
-            <img
+            <img 
+draggable={false}
                 alt="front tree"
                 src={frontTree}
                 style={{

@@ -78,7 +78,8 @@ function Bear() {
 
     return (
         <div className="bearArea">
-            <img
+            <img 
+draggable={false}
                 alt="cave"
                 id="cave"
                 ref={caveRef}
@@ -94,7 +95,8 @@ function Bear() {
                 }}
             />
 
-            <img
+            <img 
+draggable={false}
                 alt='bear'
                 id={'bear'}
                 src={bearSrc}

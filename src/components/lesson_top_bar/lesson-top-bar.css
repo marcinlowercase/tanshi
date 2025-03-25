@@ -79,6 +79,7 @@
     margin-right: 8px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
+
 #lesson-back-button:hover::after {
     animation: sparkle 0.8s ease-out;
 }

@@ -16,12 +16,13 @@ function Eagle(props) {
     return (
         <div id='eagleArea'>
             <img
+                draggable={false}
                 alt={"eagle"}
                 src={eagle}
                 id={"eagle"}
                 style={{
                     left: "30%",
-                    bottom: `${props.skyBottom+30}px`,
+                    bottom: `${props.skyBottom + 30}px`,
                     position: "absolute",
                     minWidth: "60px",
                     width: `${eagleWidth}px`,

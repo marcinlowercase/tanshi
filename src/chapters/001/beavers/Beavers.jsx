@@ -3,6 +3,7 @@ import dynamicSize from "../../../functions/dynamicSize.js";
 import {playAudio, stopAudio} from "../../../functions/audioUtilities.js";
 import {startAnimationInterval, stopAnimationInterval} from "../../../functions/animationInternal.js";
 import {zoomOut, zoomIn} from "../../../functions/zoom.js";
+import getAudioStringForSentence from "../../../functions/getAudioStringForSentence.js";
 
 import './beavers.css'
 
@@ -13,46 +14,22 @@ import BeaversScene1 from "./scenes/BeaversScene1.jsx";
 const NUMBER_OF_SCENES = 4;
 const beaversScenes = [BeaversScene0, BeaversScene1, BeaversScene2, BeaversScene3];
 
-const audioPathOfSentence = [
-    [
-        {
-            english: "./assets/audio/transcript/english/00.m4a",
-            cree: "./assets/audio/transcript/cree/00.m4a",
-        },
-        {
-            english: "./assets/audio/transcript/english/01.m4a",
-            cree: "./assets/audio/transcript/cree/01.m4a",
-        },
-    ],
-    [
-        {
-            english: "./assets/audio/transcript/english/10.m4a",
-            cree: "./assets/audio/transcript/cree/10.m4a",
-        },
-        {
-            english: "./assets/audio/transcript/english/11.m4a",
-            cree: "./assets/audio/transcript/cree/11.m4a",
-        }
-    ],
-    [
-        {
-            english: "./assets/audio/transcript/english/20.m4a",
-            cree: "./assets/audio/transcript/cree/20.m4a",
-        },
-    ],
-    [
-        {
-            english: "./assets/audio/transcript/english/30.m4a",
-            cree: "./assets/audio/transcript/cree/30.m4a",
-        },
-        {
-            english: "./assets/audio/transcript/english/31.m4a",
-            cree: "./assets/audio/transcript/cree/31.m4a",
-        }
-    ],
 
+// set up the audio path for sentences
+const audioURLOfScene = []
+let beaversStoryAudio = []
+for (let i = 0; i < NUMBER_OF_SCENES; i++) {
+    const audioPaths = {
+        english: getAudioStringForSentence("001", "beavers", i, "english"),
+        cree: getAudioStringForSentence("001", "beavers", i, "cree"),
+    }
+    const audioURLs = {
+        english: new URL(audioPaths.english, import.meta.url).href,
+        cree: new URL(audioPaths.cree, import.meta.url).href,
+    }
+    audioURLOfScene.push(audioURLs)
+}
 
-]
 
 const scriptOfScene = [
     {
@@ -115,9 +92,9 @@ function Beavers(props) {
     const [beaver2Left, setBeaver2Left] = useState(0)
 
     // show the beaver review when click the beaver
-    const [showPopup, setshowPopup] = useState(false); // State to control visibility
+    // const [props.variables.showPopup, props.functions.setShowPopup] = useState(false); // State to control visibility
 
-    const [beaverInProgress, setBeaverInProgress] = useState(false);
+    // const [props.variables.inLessonProgress, props.setInLessonProgress] = useState(false);
 
     const sandRef = useRef(null);  // Create a ref for the sand image
     const [sandTop, setSandTop] = useState(0);
@@ -141,15 +118,28 @@ function Beavers(props) {
         }
     }
     useEffect(() => {
-        if (showPopup) {
+        if (props.variables.showPopup) {
             updateSandDimensions();
             window.addEventListener('resize', updateSandDimensions);
-            // Clean up the event listener when the component unmounts or showPopup changes to false
+
+
+            // // load audio to play
+            //
+            // for (const urls of audioURLOfScene) {
+            //     beaversStoryAudio.push({
+            //         cree: useRef(new Audio((urls.cree))),
+            //         english: useRef(new Audio((urls.english)))
+            //     });
+            // }
+
+            // Clean up the event listener when the component unmounts or props.variables.showPopup changes to false
             return () => {
                 window.removeEventListener('resize', updateSandDimensions);
             };
+
+
         }
-    }, [showPopup]);
+    }, [props.variables.showPopup]);
 
 
     const handleBeaversProperties = () => {
@@ -157,11 +147,11 @@ function Beavers(props) {
 
             setBeaverWidth(dynamicSize(0.08))
 
-            setBeaver1Top(props.lakeTop + props.lakeHeight * 0.52)
-            setBeaver1Left(props.lakeLeft + props.lakeWidth * 0.59)
+            setBeaver1Top(props.variables.lakeTop + props.variables.lakeHeight * 0.52)
+            setBeaver1Left(props.variables.lakeLeft + props.variables.lakeWidth * 0.59)
 
-            setBeaver2Top(props.lakeTop + props.lakeHeight * 0.38)
-            setBeaver2Left(props.lakeLeft + props.lakeWidth * 0.7)
+            setBeaver2Top(props.variables.lakeTop + props.variables.lakeHeight * 0.38)
+            setBeaver2Left(props.variables.lakeLeft + props.variables.lakeWidth * 0.7)
         })
     }
 
@@ -194,29 +184,29 @@ function Beavers(props) {
     }
 
     const handleMouseEnterOnBeaver1 = () => {
-        if (!beaverInProgress) {
+        if (!props.variables.inLessonProgress) {
             startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
-            if (showPopup) playAudio([eatingBeaverSound]);
+            if (props.variables.showPopup) playAudio([eatingBeaverSound]);
         }
     }
 
     const handleMouseLeaveOnBeaver1 = () => {
-        if (!beaverInProgress) {
+        if (!props.variables.inLessonProgress) {
             stopAnimationInterval(beaverIntervalId, setBeaver1Src, beaverAnimationArr);
             stopAudio([eatingBeaverSound]);
         }
     }
 
     const handleMouseEnterOnBeaver2 = () => {
-        if (!beaverInProgress) {
+        if (!props.variables.inLessonProgress) {
             startAnimationInterval(beaverIntervalId, setBeaverIntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
-            if (showPopup) playAudio([eatingBeaverSound]);
+            if (props.variables.showPopup) playAudio([eatingBeaverSound]);
         }
 
     }
 
     const handleMouseLeaveOnBeaver2 = () => {
-        if (!beaverInProgress) {
+        if (!props.variables.inLessonProgress) {
             stopAnimationInterval(beaverIntervalId, setBeaver2Src, beaverAnimationArr);
             stopAudio([eatingBeaverSound])
         }
@@ -236,17 +226,31 @@ function Beavers(props) {
 
     const handleBeaverAreaClick = () => {
 
-        if (!showPopup) {
-            setshowPopup(true);
+        if (!props.variables.showPopup) {
+            props.functions.setShowPopup(true);
+            // load audio to play
+
+            for (const urls of audioURLOfScene) {
+                const creeAudio = new Audio(urls.cree);
+                creeAudio.current = new Audio(urls.cree)
+                const englishAudio = new Audio(urls.english);
+                englishAudio.current = new Audio(urls.english)
+
+                beaversStoryAudio.push({
+                    cree: creeAudio,
+                    english: englishAudio,
+                });
+            }
+
             playAudio([lakeBackgroundSound, windBackgroundSound]);
         } else {
-            setBeaverInProgress(true);
+            props.functions.setInLessonProgress(true);
         }
 
     }
 
     const handleBeaverClick = () => {
-        if (!beaverInProgress) {
+        if (!props.variables.inLessonProgress) {
             playAudio([eatingBeaverSound])
         }
     }
@@ -254,12 +258,11 @@ function Beavers(props) {
 
     // Update backToNormal function
     const backToNormal = () => {
-        console.log("backToNormal");
-        if (!beaverInProgress) {
-            setshowPopup(false);
+        if (!props.variables.inLessonProgress) {
+            props.functions.setShowPopup(false);
             stopAudio([lakeBackgroundSound, windBackgroundSound]);
         } else {
-            setBeaverInProgress(false);
+            props.functions.setInLessonProgress(false);
             zoomIn("popup", popupDimension)
         }
 
@@ -268,6 +271,7 @@ function Beavers(props) {
     return (
         <div id={"beaversArea"} onClick={handleBeaverAreaClick}>
             <img
+                draggable={false}
                 alt={"beaver 1"}
                 id={'beaver1'}
                 src={beaver1Src}
@@ -286,6 +290,7 @@ function Beavers(props) {
                 onClick={handleBeaverClick}
             />
             <img
+                draggable={false}
                 alt={"beaver 2"}
                 id={'beaver2'}
                 src={beaver2Src}
@@ -306,7 +311,7 @@ function Beavers(props) {
             />
 
 
-            {showPopup
+            {props.variables.showPopup
                 &&
                 <Scene
                     scenes={beaversScenes}
@@ -319,16 +324,15 @@ function Beavers(props) {
                         cree: "Amisk",
                         eatingBeaverSound: eatingBeaverSound,
                         english: "Beaver",
-                        inProgress: beaverInProgress,
+                        inProgress: props.variables.inLessonProgress,
                         popupDimension: popupDimension,
                         numberOfScenes: NUMBER_OF_SCENES,
                         sandHeight: sandHeight,
                         sandRef: sandRef,
                         sandTop: sandTop,
                         scriptOfScene: scriptOfScene,
-                        showPopup: showPopup,
-
-
+                        showPopup: props.variables.showPopup,
+                        storyAudio: beaversStoryAudio,
                     }}
                     functions={{
                         backToNormal: backToNormal,

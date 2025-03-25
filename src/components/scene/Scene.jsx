@@ -1,5 +1,7 @@
 import DetailPaneButtonLayout from "../detail_pane_button_layout/DetailPaneButtonLayout.jsx";
 import LessonTopBar from "../lesson_top_bar/LessonTopBar.jsx";
+import {useEffect} from "react";
+import {playAudio} from "../../functions/audioUtilities.js";
 
 
 let currentSceneNumber = 0;
@@ -8,17 +10,26 @@ const Scene = (props) => {
 
     const nextScene = () => {
         if (currentSceneNumber < props.variables.numberOfScenes - 1) currentSceneNumber++;
-        console.log(currentSceneNumber)
     }
     const prevScene = () => {
         if (currentSceneNumber > 0) currentSceneNumber--;
-        console.log(currentSceneNumber)
+    }
+    for (const audio of props.variables.storyAudio) {
+        audio.cree.current.load()
+        audio.english.current.load()
     }
 
 
     const CurrentScene = props.scenes[currentSceneNumber];
 
 
+    useEffect(() => {
+
+        if (props.variables.inProgress) {
+            console.log("play story");
+            playAudio([props.variables.storyAudio[currentSceneNumber].cree]);
+        }
+    }, [props.variables.inProgress, currentSceneNumber]);
 
     return (
         <>
@@ -31,7 +42,7 @@ const Scene = (props) => {
                 height: '100%',
                 backdropFilter: 'blur(5px)',
                 backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                zIndex: 9998,
+                zIndex: 9999,
                 animation: 'fadeInOverlay 0.3s ease-out',
 
             }} onClick={(e) => {

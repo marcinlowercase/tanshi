@@ -23,7 +23,8 @@ function DetailPaneButtonLayout(props) {
 
             {props.variables.inProgress && (
                 <div id={"bottom-pane-buttons-container"}>
-                    <img
+                    <img 
+draggable={false}
                         id={"previous-scene-button"}
                         src={previousSceneButtonSource}
                         alt={"Previous Scene Button"}
@@ -34,7 +35,8 @@ function DetailPaneButtonLayout(props) {
                         <div id={"cree-script"}>{props.variables.scriptOfScene[props.variables.currentSceneNumber].cree}</div>
                         <div id={"english-script"}>{props.variables.scriptOfScene[props.variables.currentSceneNumber].english}</div>
                     </div>
-                    <img
+                    <img 
+draggable={false}
                         src={nextSceneButtonSource}
                         alt={"Next Scene Button"}
                         id={"next-scene-button"}

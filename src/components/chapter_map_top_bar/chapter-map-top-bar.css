@@ -1,0 +1,19 @@
+#chapter-map-top-bar {
+    background-color: transparent;
+    z-index: 8000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 4px;
+}
+
+#chapter-map-top-bar > * {
+    color: white;
+    font-size: 2rem;
+    padding: 5px;
+    border-radius: 15px;
+    border: solid 4px black;
+    font-family: var(--primary-font), sans-serif;
+    background-color: rgb(89, 76, 58);
+    cursor: pointer;
+}

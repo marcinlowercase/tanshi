@@ -18,13 +18,13 @@ function Wolves(props) {
 
     const handleWolvesProperties = () => {
         requestAnimationFrame(() => {
-            setWolfTop(window.innerWidth/ window.innerHeight  < 4/5 ? 70: 45);
-            setWolfLeft(window.innerWidth/ window.innerHeight  < 4/5 ? 40: 15);
+            setWolfTop(window.innerWidth / window.innerHeight < 4 / 5 ? 70 : 45);
+            setWolfLeft(window.innerWidth / window.innerHeight < 4 / 5 ? 40 : 15);
             setBigWolfWidth(dynamicSize(0.08));
             setSmallWolfWidth(dynamicSize(0.06));
             if (bigWolfRef.current) {
                 const bigWolfRect = bigWolfRef.current.getBoundingClientRect();
-                setSmallWolfLeft(bigWolfRect.left- bigWolfRect.width*0.5);
+                setSmallWolfLeft(bigWolfRect.left - bigWolfRect.width * 0.5);
             }
 
 
@@ -39,6 +39,7 @@ function Wolves(props) {
     return (
         <div id={"wolvesArea"}>
             <img
+                draggable={false}
                 id="bigWolf"
                 ref={bigWolfRef}
                 src={wolf}
@@ -53,6 +54,7 @@ function Wolves(props) {
                 }}
             />
             <img
+                draggable={false}
                 id="smallWolf1"
                 className={"smallWolves"}
                 src={wolf}
@@ -67,6 +69,7 @@ function Wolves(props) {
                 }}
             />
             <img
+                draggable={false}
                 id="smallWolf2"
                 className={"smallWolves"}
                 src={wolf}
@@ -81,6 +84,7 @@ function Wolves(props) {
                 }}
             />
             <img
+                draggable={false}
                 id="smallWolf3"
                 className={"smallWolves"}
                 src={wolf}

@@ -15,7 +15,8 @@ function Tipis() {
 
     return (
         <div>
-            <img
+            <img 
+draggable={false}
                 id="tipi1"
                 src={tipi}
                 style={{
@@ -27,7 +28,8 @@ function Tipis() {
                     transform: "scaleX(-1) translate(30%, 0)",
                 }}
             />
-            <img
+            <img 
+draggable={false}
                 id="tipi2"
                 src={tipi}
                 style={{
