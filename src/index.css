@@ -18,7 +18,24 @@
 /*}*/
 
 :root {
-    --primary-font: 'Outfit', sans-serif;
+
+    --color--font-family--body-text-brown: #3D3325;
+    --color--sabe-brown: #5C4C37;
+    --color--tree-bark-brown: #9B6834;
+    --color--light-sabe-brown: #927758;
+    --color--sandy-brown: #D0BA97;
+    --color--deep-green: #174D37;
+    --color--medium-green: #2B9068;
+
+
+    --font-family--body-text: 'Poppins', sans-serif;
+    --font-family--heading: 'Baloo 2', sans-serif;
+
+    --font-weight--bold: 700;
+    --font-weight--semibold: 600;
+
+    --font-size--heading: 2rem;
+
     --light-brown: rgb(124, 80, 51);
     --dark-brown: rgb(87, 52, 29);
 }
@@ -59,7 +76,7 @@ button {
     padding: 0.6em 1.2em;
     font-size: 1em;
     font-weight: 500;
-    font-family: var(--primary-font), sans-serif;
+    font-family: var(--font-family--body-text), sans-serif;
     background-color: #1a1a1a;
     cursor: pointer;
     transition: border-color 0.25s;

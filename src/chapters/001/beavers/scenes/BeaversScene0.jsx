@@ -39,7 +39,7 @@ const BeaversScene0 = (props) => {
             props.functions.stopBeaversEatingAnimation();
             props.functions.startBeaversEatingAnimation();
         }
-    }, [props.variables.inLessonProgress]);
+    }, [props.variables.inLessonProgress], props.variables.currentSceneNumber);
 
     const handleBeaverPaneClick = () => {
         zoomOut("popup")

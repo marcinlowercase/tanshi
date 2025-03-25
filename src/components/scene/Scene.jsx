@@ -1,19 +1,30 @@
 import DetailPaneButtonLayout from "../detail_pane_button_layout/DetailPaneButtonLayout.jsx";
 import LessonTopBar from "../lesson_top_bar/LessonTopBar.jsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {playAudio} from "../../functions/audioUtilities.js";
 
 
-let currentSceneNumber = 0;
+// let currentSceneNumber = 0;
 
 const Scene = (props) => {
 
+    const [currentSceneNumber, setCurrentSceneNumber] = useState(0);
+
+    console.log(currentSceneNumber);
     const nextScene = () => {
-        if (currentSceneNumber < props.variables.numberOfScenes - 1) currentSceneNumber++;
-    }
+        if (currentSceneNumber < props.variables.numberOfScenes - 1) {
+            setCurrentSceneNumber(currentSceneNumber + 1);
+        }
+        console.log("currentSceneNumber", currentSceneNumber);
+
+    };
+
     const prevScene = () => {
-        if (currentSceneNumber > 0) currentSceneNumber--;
-    }
+        if (currentSceneNumber > 0) {
+            setCurrentSceneNumber(currentSceneNumber - 1);
+        }
+        console.log("currentSceneNumber", currentSceneNumber);
+    };
     for (const audio of props.variables.storyAudio) {
         audio.cree.current.load()
         audio.english.current.load()
@@ -84,7 +95,10 @@ const Scene = (props) => {
 
                 <CurrentScene
                     functions={props.functions}
-                    variables={props.variables}
+                    variables={{
+                        ...props.variables,
+                        currentSceneNumber: currentSceneNumber,
+                    }}
                 />
                 <DetailPaneButtonLayout
                     variables={{

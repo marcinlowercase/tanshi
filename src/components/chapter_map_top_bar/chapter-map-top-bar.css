@@ -9,11 +9,18 @@
 
 #chapter-map-top-bar > * {
     color: white;
-    font-size: 2rem;
-    padding: 5px;
-    border-radius: 15px;
+    font-size: var(--font-size--heading);
+    padding: 10px;
+    border-radius: 30px;
     border: solid 4px black;
-    font-family: var(--primary-font), sans-serif;
+    font-family: var(--font-family--heading), sans-serif;
+    font-weight: var(--font-weight--semibold);
     background-color: rgb(89, 76, 58);
     cursor: pointer;
+}
+
+#chapter-map-top-bar > *:nth-child(2) {
+    background-color: rgb(140, 91, 58);
+    padding-left: 20px;
+    font-weight: var(--font-weight--bold);
 }

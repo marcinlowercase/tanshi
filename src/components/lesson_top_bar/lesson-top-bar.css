@@ -31,7 +31,9 @@
     align-items: center;
 
     z-index: 111111;
-    font-family: var(--primary-font), sans-serif;
+    font-family: var(--font-family--heading), sans-serif;
+    font-weight: var(--font-weight--bold);
+    font-size: var(--font-size--heading);
 
     animation: float 3s ease-in-out infinite;
 
@@ -45,7 +47,7 @@
     padding: 12px 25px;
     border-radius: 30px;
     font-size: 1.8rem;
-    font-family: var(--primary-font), sans-serif;
+    font-family: var(--font-family--body-text), sans-serif;
     cursor: pointer;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
