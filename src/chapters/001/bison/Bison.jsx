@@ -19,14 +19,14 @@ function Bison(props) {
         requestAnimationFrame(() => {
             if (bisonRef.current && props.lakeTop != 0) {
                 const bisonRect = bisonRef.current.getBoundingClientRect();
-    
+
                 // set bison bottom base on the screen ratio is vertical or horizontal
                 setBisonBottom((window.innerWidth / window.innerHeight) > 1
                     ? window.innerHeight - props.lakeTop - bisonRect.height * 0.5
                     : window.innerHeight - props.lakeTop + bisonRect.height * 0.5);
 
                 setBackgroundBushBottom(bisonBottom + bisonRect.height * 0.5);
-                setFrontBushBottom(bisonBottom );
+                setFrontBushBottom(bisonBottom);
 
                 setBisonWidth(dynamicSize(0.12));
             }
@@ -50,8 +50,8 @@ function Bison(props) {
 
     return (
         <div id={"bisonArea"}>
-            <img 
-draggable={false}
+            <img
+                draggable={false}
                 src={bison}
                 ref={bisonRef}
                 alt="bison"
@@ -68,8 +68,8 @@ draggable={false}
                 }}
 
             />
-            <img 
-draggable={false}
+            <img
+                draggable={false}
                 src={backgroundBush}
                 alt="backgroundBush"
                 style={{
@@ -83,8 +83,8 @@ draggable={false}
                 }}
 
             />
-            <img 
-draggable={false}
+            <img
+                draggable={false}
                 src={frontBush}
                 alt="frontBush"
                 style={{
