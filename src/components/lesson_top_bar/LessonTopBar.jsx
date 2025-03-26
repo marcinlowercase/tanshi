@@ -12,10 +12,10 @@ const LessonTopBar = (props) => {
                         setTimeout(()=> {
                             props.functions.sceneZero();
                             props.functions.backToNormal();
-                        }, 50);
-                    } else {
+                        }, 50);                    } else {
                         props.functions.sceneZero();
                         props.functions.backToNormal();
+
                     }
                     // props.functions.sceneZero();
                     // props.functions.backToNormal();

@@ -151,7 +151,7 @@ const BeaversScene0 = (props) => {
 
         console.log(props.variables.inLessonProgress);
         if (props.variables.inLessonProgress) {
-            stopAudio([props.variables.beaverEatingSound]);
+            stopAudio([beaverEatingSound]);
             // stop animations first then start it again
             stopAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, setBeaver1EatingSrc, beaverEatingAnimationArr);
             stopAnimationInterval(beaver2EatingIntervalId, setBeaver2EatingIntervalId, setBeaver2EatingSrc, beaverEatingAnimationArr);
@@ -181,7 +181,7 @@ const BeaversScene0 = (props) => {
             props.functions.setInLessonProgress(true);
 
         }
-        showTransitionScreen(next);
+        if (!props.variables.inLessonProgress) showTransitionScreen(next);
         // zoomOut("popup")
         // props.functions.setInLessonProgress(true);
     }
