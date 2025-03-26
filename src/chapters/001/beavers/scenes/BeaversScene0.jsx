@@ -182,8 +182,6 @@ const BeaversScene0 = (props) => {
 
         }
         if (!props.variables.inLessonProgress) showTransitionScreen(next);
-        // zoomOut("popup")
-        // props.functions.setInLessonProgress(true);
     }
 
     const handleBeaverClick = () => {
@@ -205,13 +203,6 @@ const BeaversScene0 = (props) => {
         <>
             <div
                 id="beaver-scene0"
-                style={{
-                    // height: "100%",
-                    // width: "100%",
-                    // borderRadius: "7px",
-                    // boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-                    // zIndex: 9999,
-                }}
                 onClick={handleBeaverPaneClick}
             >
                 <img

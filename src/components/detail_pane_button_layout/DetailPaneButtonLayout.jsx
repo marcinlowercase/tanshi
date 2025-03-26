@@ -5,10 +5,18 @@ import previousSceneButtonSource from "./assets/img/previous-scene-button.webp"
 import nextSceneButtonSource from "./assets/img/next-scene-button.webp"
 
 import LessonTopBar from "../lesson_top_bar/LessonTopBar.jsx";
+import showTransitionScreen from "../../functions/showTransitionScreen.js";
 
 
 function DetailPaneButtonLayout(props) {
 
+
+    const nextSceneWithTransition = () => {
+        showTransitionScreen(props.functions.nextScene)
+    }
+    const previousSceneWithTransition = () => {
+        showTransitionScreen(props.functions.previousScene)
+    }
     return (
         <>
 
@@ -16,7 +24,7 @@ function DetailPaneButtonLayout(props) {
                 <div id={"meaning-buttons"}>
                     <button
                         id={"cree-meaning-button"}
-                        onClick={()=> {
+                        onClick={() => {
                             event.preventDefault();
                             console.log("cree-meaning-button");
                         }}
@@ -25,7 +33,7 @@ function DetailPaneButtonLayout(props) {
                     </button>
                     <button
                         id={"english-meaning-button"}
-                        onClick={()=> {
+                        onClick={() => {
                             event.preventDefault();
                             console.log("english-meaning-button");
                         }}
@@ -36,23 +44,28 @@ function DetailPaneButtonLayout(props) {
             )}
 
 
-
             {props.variables.inLessonProgress && (
                 <div id={"bottom-pane-buttons-container"}>
-                    <img 
-draggable={false}
+
+                    <img
+                        draggable={false}
                         id={"previous-scene-button"}
                         src={previousSceneButtonSource}
                         alt={"Previous Scene Button"}
-                        onClick={props.functions.prevScene}
+                        onClick={props.functions.previousScene}
+                        style={{
+                            opacity: `${props.variables.currentSceneNumber === 0 ? 0 : 1}`,
+                        }}
                     />
                     {/*<button id={"previous-scene-button"}></button>*/}
                     <div id={"content-container"}>
-                        <div id={"cree-script"}>{props.variables.scriptOfScene[props.variables.currentSceneNumber].cree}</div>
-                        <div id={"english-script"}>{props.variables.scriptOfScene[props.variables.currentSceneNumber].english}</div>
+                        <div
+                            id={"cree-script"}>{props.variables.scriptOfScene[props.variables.currentSceneNumber].cree}</div>
+                        <div
+                            id={"english-script"}>{props.variables.scriptOfScene[props.variables.currentSceneNumber].english}</div>
                     </div>
-                    <img 
-draggable={false}
+                    <img
+                        draggable={false}
                         src={nextSceneButtonSource}
                         alt={"Next Scene Button"}
                         id={"next-scene-button"}

@@ -11,7 +11,7 @@ const showTransitionScreen = (next) => {
 
             if (transitionScreen) transitionScreen.style.opacity = "0";
 
-        }, 500);
+        }, 600);
     }
 }
 

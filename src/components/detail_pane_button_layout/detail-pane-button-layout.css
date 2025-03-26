@@ -1,8 +1,8 @@
 
 #meaning-buttons {
     position: absolute;
-    top: 28%;
-    left: 50%;
+    top: 15%;
+    left: 55%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: row;
@@ -28,15 +28,15 @@
 
 /* Cree Button */
 #cree-meaning-button {
-    background: linear-gradient(145deg, #FFD700, #FFA500);
-    color: #8B4513;
+    background: var(--color--medium-green);
+    color: white;
     border: 3px solid #8B4513;
     transform: rotate(-3deg);
 }
 
 /* English Button */
 #english-meaning-button {
-    background: linear-gradient(145deg, #87CEEB, #4682B4);
+    background-color: var(--color--deep-green);
     color: #FFFFFF;
     border: 3px solid #FFFFFF;
     transform: rotate(3deg);
@@ -123,9 +123,10 @@
 
 #content-container {
     /*background-size: 100% 100%;*/
-    background-color: #FFD700;
-    border-radius: 1px;
-    border: 12px solid var(--dark-brown);
+    /*background-color: var(--color--beaver-brown);*/
+    background-color: var(--color--deep-green);
+    border: var(--border--thick-black);
+    border-radius: var(--border-radius--button);
     /*background: white url("./assets/img/content-container.webp") no-repeat center;*/
     /*height: 100%;*/
     height: fit-content;
@@ -152,7 +153,6 @@
 }
 
 #cree-script, #english-script {
-    background-color: var(--light-brown);
     border-radius: 10px;
     color: white;
     font-family: var(--font-family--body-text), sans-serif;
@@ -162,5 +162,10 @@
     font-size: 1.5em;
 }
 #english-script {
-    background-color: var(--dark-brown);
+    /*background-color: var(--dark-brown);*/
+    color: var(--color--medium-green);
+    background-color: var(--color--deep-green);
+}
+#cree-script {
+    background-color: var(--color--medium-green);
 }

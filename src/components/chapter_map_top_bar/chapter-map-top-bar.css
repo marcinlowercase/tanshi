@@ -11,16 +11,24 @@
     color: white;
     font-size: var(--font-size--heading);
     padding: 10px;
-    border-radius: 30px;
-    border: solid 4px black;
+    border-radius: var(--border-radius--button);
+    border: var(--border--thick-black);
     font-family: var(--font-family--heading), sans-serif;
     font-weight: var(--font-weight--semibold);
-    background-color: rgb(89, 76, 58);
+    background-color: var(--color--sabe-brown);
     cursor: pointer;
 }
 
 #chapter-map-top-bar > *:nth-child(2) {
-    background-color: rgb(140, 91, 58);
+    background-color: var(--color--tree-bark-brown);
     padding-left: 20px;
+    padding-right: 20px;
     font-weight: var(--font-weight--bold);
+}
+
+#home-button {
+    transition: background-color 300ms ease-in-out;
+}
+#home-button:hover {
+    background-color: var(--color--medium-green);
 }

@@ -1,17 +1,17 @@
 
-
 :root {
 
     --color--font-family--body-text-brown: #3D3325;
     --color--sabe-brown: #5C4C37;
     --color--tree-bark-brown: #9B6834;
     --color--light-sabe-brown: #927758;
+    --color--beaver-brown: #945833;
     --color--sandy-brown: #D0BA97;
     --color--deep-green: #174D37;
     --color--medium-green: #2B9068;
     --color--water-deep-blue: #66a9f1;
     --color--water-light-blue: #99e9f2;
-
+    --color--light-red: #CE4040;
 
 
     --font-family--body-text: 'Poppins', sans-serif;
@@ -24,14 +24,15 @@
 
     --light-brown: rgb(124, 80, 51);
     --dark-brown: rgb(87, 52, 29);
+
+    --border-radius--button: 30px;
+    --border--thick-black: solid 4px black;
+
+    --padding--large: 1rem;
+    --padding--small: 0.25rem;
 }
 
-img {
-    -webkit-user-select: none; /* Chrome, Safari */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* Internet Explorer/Edge */
-    user-select: none;         /* Standard syntax */
-}
+
 a {
     font-weight: 500;
     color: #646cff;
@@ -95,3 +96,9 @@ button:focus-visible {
 /*
 img[src$=".svg"] {
 } */
+.unselectable {
+    -webkit-user-select: none; /* Chrome, Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard syntax */
+}

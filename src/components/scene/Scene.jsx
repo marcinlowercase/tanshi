@@ -2,6 +2,7 @@ import DetailPaneButtonLayout from "../detail_pane_button_layout/DetailPaneButto
 import LessonTopBar from "../lesson_top_bar/LessonTopBar.jsx";
 import {useEffect, useState} from "react";
 import {playAudio} from "../../functions/audioUtilities.js";
+import showTransitionScreen from "../../functions/showTransitionScreen.js";
 
 
 // let currentSceneNumber = 0;
@@ -16,16 +17,27 @@ const Scene = (props) => {
         setCurrentSceneNumber(0);
     }
 
+    const setCurrentSceneNumberToNextScene = () => {
+        setCurrentSceneNumber(currentSceneNumber => currentSceneNumber + 1);
+    }
+
     const nextScene = () => {
         if (currentSceneNumber < props.variables.numberOfScenes - 1) {
-            setCurrentSceneNumber(currentSceneNumber + 1);
+            showTransitionScreen(setCurrentSceneNumberToNextScene);
+
+            // setCurrentSceneNumber(currentSceneNumber + 1);
         }
 
     };
 
-    const prevScene = () => {
+    const setCurrentSceneNumberToPreviousScene = () => {
+        setCurrentSceneNumber(currentSceneNumber => currentSceneNumber - 1);
+    }
+
+    const previousScene = () => {
         if (currentSceneNumber > 0) {
-            setCurrentSceneNumber(currentSceneNumber - 1);
+            // setCurrentSceneNumber(currentSceneNumber - 1);
+            showTransitionScreen(setCurrentSceneNumberToPreviousScene);
         }
     };
     for (const audio of props.variables.storyAudio) {
@@ -112,7 +124,7 @@ const Scene = (props) => {
                     }}
                     functions ={{
                         nextScene: nextScene,
-                        prevScene: prevScene,
+                        previousScene: previousScene,
                     }}
                 />
 
