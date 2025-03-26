@@ -112,7 +112,7 @@ const BeaversScene0 = (props) => {
 
     const handleMouseEnterOnBeaver1Eating = () => {
         if (!props.variables.inLessonProgress) {
-            startAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, beaver1EatingSrc, setBeaver1EatingSrc, beaverEatingAnimationArr, 250);
+            startAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, beaver1EatingSrc, setBeaver1EatingSrc, beaverEatingAnimationArr, 200);
             if (props.variables.showPopup) playAudio([beaverEatingSound]);
         }
     }
@@ -152,7 +152,6 @@ const BeaversScene0 = (props) => {
         if (props.variables.inLessonProgress) {
             stopAudio([props.variables.beaverEatingSound]);
             // stop animations first then start it again
-            // props.functions.stopBeaversEatingAnimation();
             stopAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, setBeaver1EatingSrc, beaverEatingAnimationArr);
             stopAnimationInterval(beaver2EatingIntervalId, setBeaver2EatingIntervalId, setBeaver2EatingSrc, beaverEatingAnimationArr);
 

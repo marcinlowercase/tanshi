@@ -7,6 +7,7 @@ const LessonTopBar = (props) => {
                 id={"lesson-back-button"}
                 onClick={(e) => {
                     e.stopPropagation();  // Add this line
+                    props.functions.sceneZero();
                     props.functions.backToNormal();
                     console.log("Back button clicked");
                 }}

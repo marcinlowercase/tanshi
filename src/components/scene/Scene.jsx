@@ -12,11 +12,14 @@ const Scene = (props) => {
 
     const [currentSceneNumber, setCurrentSceneNumber] = useState(0);
 
+    const sceneZero = () => {
+        setCurrentSceneNumber(0);
+    }
+
     const nextScene = () => {
         if (currentSceneNumber < props.variables.numberOfScenes - 1) {
             setCurrentSceneNumber(currentSceneNumber + 1);
         }
-        console.log("currentSceneNumber", currentSceneNumber);
 
     };
 
@@ -24,7 +27,6 @@ const Scene = (props) => {
         if (currentSceneNumber > 0) {
             setCurrentSceneNumber(currentSceneNumber - 1);
         }
-        console.log("currentSceneNumber", currentSceneNumber);
     };
     for (const audio of props.variables.storyAudio) {
         audio.cree.current.load()
@@ -88,6 +90,7 @@ const Scene = (props) => {
                     }}
                     functions={{
                         ...props.functions,
+                        sceneZero: sceneZero,
                     }}
                     // backToNormal={props.functions.backToNormal}
                     // inLessonProgress={props.variables.inLessonProgress}

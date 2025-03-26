@@ -166,15 +166,6 @@ function Beavers(props) {
     const [beaver2IntervalId, setBeaver2IntervalId] = useState(null);
 
 
-    const startBeaversEatingAnimation = () => {
-        startAnimationInterval(beaver1IntervalId, setBeaver1IntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
-        startAnimationInterval(beaver2IntervalId, setBeaver2IntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
-    }
-    const stopBeaversEatingAnimation = () => {
-        stopAnimationInterval(beaver1IntervalId, setBeaver1IntervalId ,setBeaver1Src, beaverAnimationArr);
-        stopAnimationInterval(beaver2IntervalId, setBeaver2IntervalId, setBeaver2Src, beaverAnimationArr);
-    }
-
     const handleMouseEnterOnBeaver1 = () => {
         if (!props.variables.inLessonProgress) {
             startAnimationInterval(beaver1IntervalId, setBeaver1IntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
@@ -252,11 +243,9 @@ function Beavers(props) {
     const backToNormal = () => {
         if (!props.variables.inLessonProgress) {
             props.functions.setShowPopup(false);
-            // stopBeaversEatingAnimation();
             stopAudio([lakeBackgroundSound, windBackgroundSound]);
         } else {
             props.functions.setInLessonProgress(false);
-            // stopBeaversEatingAnimation();
             zoomIn("popup", popupDimension)
         }
 
@@ -337,8 +326,6 @@ function Beavers(props) {
                         handleMouseLeaveOnBeaver1: handleMouseLeaveOnBeaver1,
                         handleMouseLeaveOnBeaver2: handleMouseLeaveOnBeaver2,
                         // setInLessonProgress: props.functions.setInLessonProgress,
-                        startBeaversEatingAnimation: startBeaversEatingAnimation,
-                        stopBeaversEatingAnimation: stopBeaversEatingAnimation,
 
                     }}
                 />
