@@ -29,6 +29,7 @@ const logAnimationArr = [log1, log2, log3];
 
 import {playAudio, stopAudio} from "../../../../functions/audioUtilities.js";
 import dynamicSize from "../../../../functions/dynamicSize.js";
+import showTransitionScreen from "../../../../functions/showTransitionScreen.js";
 
 
 const BeaversScene0 = (props) => {
@@ -175,8 +176,14 @@ const BeaversScene0 = (props) => {
     }, [props.variables.inLessonProgress]);
 
     const handleBeaverPaneClick = () => {
-        zoomOut("popup")
-        props.functions.setInLessonProgress(true);
+        const next = () => {
+            zoomOut("popup")
+            props.functions.setInLessonProgress(true);
+
+        }
+        showTransitionScreen(next);
+        // zoomOut("popup")
+        // props.functions.setInLessonProgress(true);
     }
 
     const handleBeaverClick = () => {

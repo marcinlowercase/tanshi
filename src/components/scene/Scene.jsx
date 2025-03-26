@@ -87,10 +87,12 @@ const Scene = (props) => {
                 <LessonTopBar
                     variables={{
                         ...props.variables,
+                        currentSceneNumber: currentSceneNumber,
                     }}
                     functions={{
                         ...props.functions,
                         sceneZero: sceneZero,
+                        setCurrentSceneNumber: setCurrentSceneNumber,
                     }}
                     // backToNormal={props.functions.backToNormal}
                     // inLessonProgress={props.variables.inLessonProgress}

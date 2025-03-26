@@ -1,0 +1,13 @@
+#transition-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 99999999;
+    opacity: 0; /* Fully visible when rendered */
+    transition: opacity 0.5s ease;
+    pointer-events: none; /* Allow interactions to pass through */
+
+}
