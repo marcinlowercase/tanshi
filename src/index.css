@@ -1,21 +1,4 @@
-/*:root {*/
-/*  line-height: 1.5;*/
-/*  font-weight: 400;*/
 
-/*  color-scheme: light dark;*/
-/*  color: rgba(255, 255, 255, 0.87);*/
-/*  background-color: white;*/
-
-/*  font-synthesis: none;*/
-/*  text-rendering: optimizeLegibility;*/
-/*  -webkit-font-smoothing: antialiased;*/
-/*  -moz-osx-font-smoothing: grayscale;*/
-
-/*  -webkit-user-select: none;*/
-/*  -moz-user-select: none;*/
-/*  -ms-user-select: none;*/
-/*  user-select: none;*/
-/*}*/
 
 :root {
 
@@ -26,6 +9,9 @@
     --color--sandy-brown: #D0BA97;
     --color--deep-green: #174D37;
     --color--medium-green: #2B9068;
+    --color--water-deep-blue: #66a9f1;
+    --color--water-light-blue: #99e9f2;
+
 
 
     --font-family--body-text: 'Poppins', sans-serif;

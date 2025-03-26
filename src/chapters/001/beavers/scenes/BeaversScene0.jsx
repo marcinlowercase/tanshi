@@ -1,18 +1,21 @@
-import sand from "../assets/sand.svg";
-import rock1 from "../assets/beaver-rock1.svg";
-import rock2 from "../assets/beaver-rock2.svg";
-import rock3 from "../assets/beaver-rock3.svg";
+import sand from "../assets/img/sand.svg";
+import rock1 from "../assets/img/beaver-rock1.svg";
+import rock2 from "../assets/img/beaver-rock2.svg";
+import rock3 from "../assets/img/beaver-rock3.svg";
 import {zoomOut} from "../../../../functions/zoom.js";
 import {useEffect, useRef, useState} from "react";
 import {startAnimationInterval, stopAnimationInterval} from "../../../../functions/animationInternal.js";
-import log1 from "../assets/beaver-log/beaver-log1.svg";
-import log2 from "../assets/beaver-log/beaver-log2.svg";
-import log3 from "../assets/beaver-log/beaver-log3.svg";
+import log1 from "../assets/img/beaver_log/beaver-log1.svg";
+import log2 from "../assets/img/beaver_log/beaver-log2.svg";
+import log3 from "../assets/img/beaver_log/beaver-log3.svg";
 
-import beaver1 from '../assets/beaver/beaver_1.svg'
-import beaver2 from '../assets/beaver/beaver_2.svg'
-import beaver3 from '../assets/beaver/beaver_3.svg'
-import beaver4 from '../assets/beaver/beaver_4.svg'
+import beaver1 from '../assets/img/beaver/beaver1.svg'
+import beaver2 from '../assets/img/beaver/beaver2.svg'
+import beaver3 from '../assets/img/beaver/beaver3.svg'
+import beaver4 from '../assets/img/beaver/beaver4.svg'
+
+
+import "./beaver-scene0.css"
 
 const beaverEatingSoundURL = new URL("../assets/audio/eating-beaver.mp3", import.meta.url).href;
 const lakeBackgroundSoundURL = new URL("../assets/audio/lake-background.mp3", import.meta.url).href;
@@ -37,7 +40,7 @@ const BeaversScene0 = (props) => {
 
 
     const sandRef = useRef(null);  // Create a ref for the sand image
-    const [sandTop, setSandTop] = useState(0);
+    const [sandBottom, setSandBottom] = useState(0);
     const [sandHeight, setSandHeight] = useState(0);
 
     const updateSandDimensions = () => {
@@ -47,7 +50,8 @@ const BeaversScene0 = (props) => {
             const checkDimensions = () => {
                 const rect = sandElement.getBoundingClientRect();
                 if (rect.height > 0 && rect.width > 0) {
-                    setSandTop(rect.top);
+                    setSandBottom(rect.bottom);
+                    console.log("SAND BOT" , sandBottom)
                     setSandHeight(rect.height);
                 } else {
                     // Try again shortly if dimensions are zero
@@ -196,11 +200,11 @@ const BeaversScene0 = (props) => {
             <div
                 id="beaver-scene0"
                 style={{
-                    height: "100%",
-                    width: "100%",
-                    borderRadius: "7px",
-                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-                    zIndex: 9999,
+                    // height: "100%",
+                    // width: "100%",
+                    // borderRadius: "7px",
+                    // boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+                    // zIndex: 9999,
                 }}
                 onClick={handleBeaverPaneClick}
             >
@@ -210,13 +214,9 @@ const BeaversScene0 = (props) => {
                     id={'scene0-beaver1'}
                     src={beaver1EatingSrc}
                     style={{
-                        position: "absolute",
-                        minWidth: "30px",
-                        bottom: `${props.variables.inLessonProgress? (sandHeight * 0.44) : (sandHeight * 0.65)}px`,
+                        bottom: `${props.variables.inLessonProgress ? (sandHeight * 0.44 ) : (sandHeight * 0.65 )}px`,
                         left: `40% `,
-                        transform: "scaleX(-1) rotate(-1deg)",
                         width: `${beaverWidth}px`,
-                        zIndex: "19",
                         ...beaver1Style
                     }}
                     onMouseEnter={handleMouseEnterOnBeaver1Eating}
@@ -229,13 +229,9 @@ const BeaversScene0 = (props) => {
                     id={'scene0-beaver2'}
                     src={beaver2EatingSrc}
                     style={{
-                        position: "absolute",
-                        minWidth: "30px",
-                        bottom: `${props.variables.inLessonProgress? (sandHeight * 0.55) : (sandHeight * 0.80)}px`,
+                        bottom: `${props.variables.inLessonProgress ? (sandHeight * 0.55) : (sandHeight * 0.80)}px`,
                         left: `60%`,
-                        transform: "rotate(1deg)",
                         width: `${beaverWidth}px`,
-                        zIndex: "19",
                         ...beaver2Style
                     }}
                     onMouseEnter={handleMouseEnterOnBeaver2Eating}
@@ -251,9 +247,7 @@ const BeaversScene0 = (props) => {
                     src={sand}
                     alt={"sand"}
                     style={{
-                        width: "100%",
                         bottom: `${props.variables.inLessonProgress ? -20 : 0}%`,
-                        position: "absolute"
                     }}/>
 
                 <img

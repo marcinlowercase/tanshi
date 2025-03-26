@@ -1,0 +1,28 @@
+#beaver-scene0 {
+    background-color: var(--color--water-light-blue);
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    transition: all 0.2s ease-out;
+    width: 100%;
+
+}
+
+#scene0-beaver1 {
+    position: absolute;
+    min-width: 30px;
+    transform: scaleX(-1) rotate(-1deg);
+    z-index: 19;
+}
+
+#scene0-beaver2{
+    position: absolute;
+    min-width: 30px;
+    transform: rotate(1deg);
+    z-index: 19;
+}
+
+#sand {
+    width: 100%;
+    position: absolute;
+}

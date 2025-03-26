@@ -1,0 +1,16 @@
+#beaver-scene1 {
+    background-color: var(--color--water-light-blue);
+    border-radius: 7px;
+    height: 100%;
+    transition: all 0.2s ease-out;
+    width: 100%;
+}
+
+#sand {
+    width: 100%;
+    position: absolute;
+}
+
+#scene1-beaver1 {
+    position: absolute;
+}

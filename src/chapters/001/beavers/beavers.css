@@ -1,6 +1,3 @@
-:root {
-    --water-color: #99e9f2;
-}
 
 #beaversArea {
     /*background-color: #000;*/
@@ -10,11 +7,6 @@
     /*z-index: 200;*/
 }
 
-#beaver-scene0 {
-    background-color: var(--water-color);
-
-    z-index: 5000;
-}
 
 
 
@@ -44,6 +36,3 @@
     100% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
 }
 
-#beaver-scene0 {
-    transition: all 0.2s ease-out;
-}

@@ -54,14 +54,14 @@ const scriptOfScene = [
 import {useEffect, useRef, useState} from "react";
 
 
-import beaver1 from './assets/beaver/beaver_1.svg'
-import beaver2 from './assets/beaver/beaver_2.svg'
-import beaver3 from './assets/beaver/beaver_3.svg'
-import beaver4 from './assets/beaver/beaver_4.svg'
+import beaver1 from './assets/img/beaver/beaver1.svg'
+import beaver2 from './assets/img/beaver/beaver2.svg'
+import beaver3 from './assets/img/beaver/beaver3.svg'
+import beaver4 from './assets/img/beaver/beaver4.svg'
 
-import log1 from './assets/beaver-log/beaver-log1.svg'
-import log2 from './assets/beaver-log/beaver-log2.svg'
-import log3 from './assets/beaver-log/beaver-log3.svg'
+import log1 from './assets/img/beaver_log/beaver-log1.svg'
+import log2 from './assets/img/beaver_log/beaver-log2.svg'
+import log3 from './assets/img/beaver_log/beaver-log3.svg'
 import Scene from "../../../components/scene/Scene.jsx";
 import BeaversScene2 from "./scenes/BeaversScene2.jsx";
 import BeaversScene3 from "./scenes/BeaversScene3.jsx";
