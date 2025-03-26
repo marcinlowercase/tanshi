@@ -9,8 +9,30 @@
 #sand {
     width: 100%;
     position: absolute;
+    bottom: -40%;
 }
 
 #scene1-beaver1 {
     position: absolute;
+    right: 50%;
+
+    transform: translate(110%);
+    z-index: 9;
+    top: 22vh;
+}
+#scene1-beaver2 {
+    position: absolute;
+    right: 50%;
+    transform: scaleX(-1) translate(50%);
+    z-index: 9;
+    top: 36vh;
+}
+
+#scene1-log {
+    position: absolute;
+    right: 50%;
+    top: 25vh;
+    transform: translate(50%, 0);
+    width: 20vh;
+    z-index: 10;
 }
