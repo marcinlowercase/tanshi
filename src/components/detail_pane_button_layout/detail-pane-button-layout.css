@@ -176,6 +176,7 @@
     background-color: var(--color--sandy-brown);
 }
 
+
 #cree-script, #english-script, #content-container-question {
     border-radius: 12px;
     color: white;
@@ -196,20 +197,31 @@
     background-color: var(--color--tree-bark-brown);
 }
 #content-container-question {
-    background-color: var(--color--water-light-blue);
+    background-color: var(--color--sandy-brown);
+    color: var(--color--font-family--body-text-brown);
 }
 
-#content-container-options {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: var(--space--large);
-}
-#content-container-options > * {
+/*#content-container-options {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: center;*/
+/*    gap: var(--space--large);*/
+/*}*/
+#content-container-options > * , #blank{
     background-color: var(--color--sabe-brown);
     border: var(--border--thick-black);
     border-radius: var(--border-radius--button);
     font-family: var(--font-family--body-text), sans-serif;
     font-size: var(--font-size--heading);
     padding: var(--space--large);
+    margin: var(--space--large);
 }
+#blank {
+    padding: 0;
+    box-sizing: border-box;
+}
+/*#content-container-options {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/

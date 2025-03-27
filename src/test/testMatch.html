@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fill in the Blank Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .sentence {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .blank {
+      display: inline-block;
+      width: 100px;
+      height: 30px;
+      border-bottom: 2px solid black;
+      vertical-align: middle;
+      text-align: center;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .options {
+      margin-top: 20px;
+    }
+
+    .option {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #3498db;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+      transition: transform 0.5s ease-in-out;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sentence">
+  The sun rises in the <span class="blank" id="blank"></span>.
+</div>
+
+<div class="options">
+  <div class="option">north</div>
+  <div class="option">west</div>
+  <div class="option">east</div>
+  <div class="option">south</div>
+</div>
+
+<script>
+  document.querySelectorAll('.option').forEach(option => {
+    // Store initial position
+    let rect = option.getBoundingClientRect();
+    option.dataset.originalX = rect.left;
+    option.dataset.originalY = rect.top;
+
+    option.addEventListener('click', function() {
+      let blank = document.getElementById('blank');
+      let blankRect = blank.getBoundingClientRect();
+      let optionRect = this.getBoundingClientRect();
+
+      if (this.dataset.selected === "true") {
+        // If already moved, return to original position
+        this.style.transform = "translate(0, 0)";
+        this.dataset.selected = "false";
+        blank.innerHTML = ''; // Clear the blank
+        document.querySelectorAll('.option').forEach(opt => opt.style.pointerEvents = 'auto');
+      } else {
+        // Move the selected option
+        let deltaX = blankRect.left - optionRect.left + blankRect.width / 2 - optionRect.width / 2;
+        let deltaY = blankRect.top - optionRect.top;
+
+        this.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        this.dataset.selected = "true";
+
+        // Place the text in the blank
+        blank.innerHTML = this.textContent;
+
+        // Disable clicks on other options
+        document.querySelectorAll('.option').forEach(opt => opt.style.pointerEvents = 'none');
+        this.style.pointerEvents = 'auto'; // Keep the clicked option clickable
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

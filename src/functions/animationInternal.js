@@ -6,12 +6,10 @@ const startAnimationInterval = (intervalId, setIntervalId, imageSource, setImage
         // console.log("current Index", currentIndex);
     }, timeout);
     setIntervalId(newIntervalId);
-    console.log("new animation interval", newIntervalId);
 
 }
 
 const stopAnimationInterval = (intervalId, setIntervalId, setImageSource, animationArr) => {
-    console.log("stop animation interval", intervalId);
     clearInterval(intervalId);
     setImageSource(animationArr[0]);
     setIntervalId(null);

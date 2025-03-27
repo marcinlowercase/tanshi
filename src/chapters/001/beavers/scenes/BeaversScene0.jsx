@@ -52,7 +52,6 @@ const BeaversScene0 = (props) => {
                 const rect = sandElement.getBoundingClientRect();
                 if (rect.height > 0 && rect.width > 0) {
                     setSandBottom(rect.bottom);
-                    console.log("SAND BOT" , sandBottom)
                     setSandHeight(rect.height);
                 } else {
                     // Try again shortly if dimensions are zero
@@ -156,20 +155,14 @@ const BeaversScene0 = (props) => {
             stopAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, setBeaver1EatingSrc, beaverEatingAnimationArr);
             stopAnimationInterval(beaver2EatingIntervalId, setBeaver2EatingIntervalId, setBeaver2EatingSrc, beaverEatingAnimationArr);
 
-            console.log("CUrRENT 1 ", beaver1EatingIntervalId)
-            console.log("CUrRENT 2 ", beaver2EatingIntervalId)
-            console.log('just stop then now start a gain');
             // props.functions.startBeaversEatingAnimation();
             startAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, beaver1EatingSrc, setBeaver1EatingSrc, beaverEatingAnimationArr, 250);
             startAnimationInterval(beaver2EatingIntervalId, setBeaver2EatingIntervalId, beaver2EatingSrc, setBeaver2EatingSrc, beaverEatingAnimationArr, 200);
 
             setTimeout(() => {
-                console.log("AFtER 1 ", beaver1EatingIntervalId)
-                console.log("AFtER 2 ", beaver2EatingIntervalId)
             }, 100)
 
         } else {
-            console.log("back to popup ")
             stopAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, setBeaver1EatingSrc, beaverEatingAnimationArr);
             stopAnimationInterval(beaver2EatingIntervalId, setBeaver2EatingIntervalId, setBeaver2EatingSrc, beaverEatingAnimationArr);
         }

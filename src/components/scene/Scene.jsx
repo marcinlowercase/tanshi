@@ -22,6 +22,7 @@ const Scene = (props) => {
     const setCurrentSceneNumberToNextScene = () => {
         setCurrentSceneNumber(currentSceneNumber => currentSceneNumber + 1);
         setOnQuestion(false);
+        console.log("NEXTTT")
     }
 
     const nextScene = () => {

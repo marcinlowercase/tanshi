@@ -1,139 +1,213 @@
-// DetailPaneButtonLayout.jsx
+import React, {useState, useRef, useEffect} from "react";
+import "./detail-pane-button-layout.css";
 
-import "./detail-pane-button-layout.css"
-import previousSceneButtonSource from "./assets/img/previous-scene-button.webp"
-import nextSceneButtonSource from "./assets/img/next-scene-button.webp"
+import variables from "../../functions/variables.js";
 
-import LessonTopBar from "../lesson_top_bar/LessonTopBar.jsx";
 import showTransitionScreen from "../../functions/showTransitionScreen.js";
 
-
 function DetailPaneButtonLayout(props) {
+    const {
+        questionOfScene,
+        scriptOfScene,
+        currentSceneNumber,
+        inLessonProgress,
+        onQuestion,
+        cree,
+        english,
+    } = props.variables;
 
+    const currentScene = questionOfScene[currentSceneNumber];
+
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedTransform, setSelectedTransform] = useState({deltaX: 0, deltaY: 0});
+    // This state will store the blank size to match the correct option.
+    const [blankSize, setBlankSize] = useState({width: 200, height: 30});
+
+    const optionsRef = useRef([]);
+    const blankRef = useRef(null);
+    const isMountedRef = useRef(true);
+
+    useEffect(() => {
+        setSelectedOption(null);
+        props.functions.setOnQuestion(false);
+    }, [currentSceneNumber])
+
+    // Set up the isMounted flag for async safety
+    useEffect(() => {
+        isMountedRef.current = true;
+        return () => {
+            isMountedRef.current = false;
+        };
+    }, []);
+
+    useEffect(() => {
+        if (currentScene && currentScene.options) {
+            optionsRef.current = optionsRef.current.slice(0, currentScene.options.length);
+        }
+    }, [currentScene]);
+
+    // When the question is shown, find the correct answer option and update blank dimensions.
+    useEffect(() => {
+        if (onQuestion && currentScene && currentScene.options) {
+            const correctIndex = currentScene.options.findIndex((opt) => opt.correct === true);
+            if (correctIndex !== -1 && optionsRef.current[correctIndex]) {
+                const rect = optionsRef.current[correctIndex].getBoundingClientRect();
+                setBlankSize({width: rect.width, height: rect.height});
+            }
+        }
+    }, [onQuestion, currentScene]);
+
+    const handleClick = (index) => {
+        if (selectedOption === index) {
+            setSelectedOption(null);
+        } else {
+            if (blankRef.current && optionsRef.current[index]) {
+                const blankRect = blankRef.current.getBoundingClientRect();
+                const optionRect = optionsRef.current[index].getBoundingClientRect();
+                const deltaX = blankRect.left - optionRect.left + (blankRect.width / 2 - optionRect.width / 2);
+                const deltaY = blankRect.top - optionRect.top;
+                setSelectedTransform({deltaX, deltaY});
+            }
+            setSelectedOption(index);
+        }
+    };
 
     const nextSceneWithTransition = () => {
-        showTransitionScreen(props.functions.nextScene)
-    }
+
+        props.functions.nextScene();
+
+
+    };
     const previousSceneWithTransition = () => {
-        showTransitionScreen(props.functions.previousScene)
-    }
+        props.functions.previousScene();
+
+
+    };
+
+    // Split the question by the "___" marker to insert the blank element.
+    const questionParts = currentScene.question.split("___");
+
     return (
         <>
-
-            {!props.variables.inLessonProgress && (
-                <div id={"meaning-buttons"}>
+            {!inLessonProgress && (
+                <div id="meaning-buttons">
                     <button
-                        id={"cree-meaning-button"}
-                        onClick={() => {
-                            event.preventDefault();
-                            console.log("cree-meaning-button");
+                        id="cree-meaning-button"
+                        onClick={(e) => {
+                            e.preventDefault();
                         }}
                     >
-                        {props.variables.cree}
+                        {cree}
                     </button>
                     <button
-                        id={"english-meaning-button"}
-                        onClick={() => {
-                            event.preventDefault();
-                            console.log("english-meaning-button");
+                        id="english-meaning-button"
+                        onClick={(e) => {
+                            e.preventDefault();
                         }}
                     >
-                        {props.variables.english}
+                        {english}
                     </button>
                 </div>
             )}
 
-
-            {props.variables.inLessonProgress && (
-                <div id={"bottom-pane-buttons-container"}>
-
+            {inLessonProgress && (
+                <div id="bottom-pane-buttons-container">
                     <div
                         draggable={false}
-                        id={"previous-scene-button"}
-                        className={"unselectable special-character"}
-                        onClick={props.functions.previousScene}
+                        id="previous-scene-button"
+                        className="unselectable special-character"
+                        onClick={previousSceneWithTransition}
                         style={{
-                            opacity: `${props.variables.currentSceneNumber === 0 ? 0 : 1}`,
+                            opacity: `${currentSceneNumber === 0 ? 0 : 1}`,
                         }}
                     >
-                        {/*←*/}⬅
+                        ⬅
                     </div>
-                    {/*<button id={"previous-scene-button"}></button>*/}
-                    <div id={"content-container"}>
-                        {
-                            !props.variables.onQuestion
-                            &&
-                            <div id={"content-container-scripts"}>
-                                <div
-                                    id={"cree-script"}
-                                >
-                                    {props.variables.scriptOfScene[props.variables.currentSceneNumber].cree}
+
+                    <div id="content-container">
+                        {!onQuestion && (
+                            <div id="content-container-scripts">
+                                <div id="cree-script">
+                                    {scriptOfScene[currentSceneNumber].cree}
                                 </div>
-                                <div
-                                    id={"english-script"}
-                                >
-                                    {props.variables.scriptOfScene[props.variables.currentSceneNumber].english}
+                                <div id="english-script">
+                                    {scriptOfScene[currentSceneNumber].english}
                                 </div>
                             </div>
-                        }
+                        )}
 
-
-                        {
-                            props.variables.onQuestion
-                            && <div
-                                id={'content-container-question-container'}
-                            >
-                                <div
-                                    id={'content-container-question'}
-                                >
-                                    {props.variables.questionOfScene[props.variables.currentSceneNumber].question}
+                        {onQuestion && (
+                            <div id="content-container-question-container">
+                                <div id="content-container-question">
+                                    {questionParts[0]}
+                                    {/* Blank span with dynamic width/height matching the correct answer */}
+                                    <span
+                                        className="blank"
+                                        id="blank"
+                                        ref={blankRef}
+                                        style={{
+                                            display: "inline-block",
+                                            width: `${blankSize.width}px`,
+                                            height: `${blankSize.height}px`,
+                                            verticalAlign: "middle",
+                                            textAlign: "center",
+                                        }}
+                                    ></span>
+                                    {questionParts[1] || ""}
                                 </div>
                                 <div
-                                    id={'content-container-options'}
+                                    id="content-container-options"
+                                    style={{marginTop: "20px", position: "relative"}}
                                 >
-                                    <div>{props.variables.questionOfScene[props.variables.currentSceneNumber].options[0].cree}</div>
-                                    <div>{props.variables.questionOfScene[props.variables.currentSceneNumber].options[1].cree}</div>
+                                    {currentScene.options.map((option, index) => (
+                                        <div
+                                            key={index}
+                                            ref={(el) => (optionsRef.current[index] = el)}
+                                            className="option"
+                                            onClick={() => handleClick(index)}
+                                            style={{
+                                                display: "inline-block",
+                                                background: selectedOption === index ? variables.colorMediumGreen : variables.colorDeepGreen,
+                                                boxShadow: "border-box",
+                                                color: "white",
+                                                cursor: "pointer",
+                                                transition: "transform 0.5s ease-in-out",
+                                                transform:
+                                                    selectedOption === index
+                                                        ? `translate(${selectedTransform.deltaX}px, ${selectedTransform.deltaY}px)`
+                                                        : "translate(0, 0)",
+                                                position: selectedOption === index ? "absolute" : "relative",
+                                                zIndex: selectedOption === index ? 1000 : "auto",
+                                            }}
+                                        >
+                                            {option.cree}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
+                        )}
 
-                        }
-
-                        <div id={"content-container-control-buttons"}>
-                            {
-                                !props.variables.onQuestion
-                                &&
-                                <div
-                                    id={'again-button'}
-                                    className={"unselectable special-character"}
-                                >
+                        <div id="content-container-control-buttons">
+                            {!onQuestion && (
+                                <div id="again-button" className="unselectable special-character">
                                     ↺
                                 </div>
-                            }
+                            )}
                             <div
-                                id={"next-scene-button"}
-                                className={"unselectable special-character"}
-                                onClick={props.functions.nextScene}
-
+                                id="next-scene-button"
+                                className="unselectable special-character"
+                                onClick={onQuestion ? nextSceneWithTransition : props.functions.nextScene}
                             >
-                                {props.variables.onQuestion ? '✔': '⮕'}
+                                {onQuestion ? "✔" : "⮕"}
                             </div>
-
                         </div>
-
-
                     </div>
-                    <div
-                        draggable={false}
-                    >
-                        {/*Check*/}
-                    </div>
-                    <div id={"placeholder"}>
-                    </div>
+                    <div draggable={false}>{/* Additional content or controls */}</div>
+                    <div id="placeholder"></div>
                 </div>
             )}
         </>
-
-    )
+    );
 }
 
 export default DetailPaneButtonLayout;

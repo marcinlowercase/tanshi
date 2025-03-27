@@ -52,7 +52,7 @@ const scriptOfScene = [
 ]
 const questionOfScene = [
     {
-        question: "Two beavers were sitting together on the beach, chewing on some ...",
+        question: "Two beavers were sitting together on the beach, chewing on some ___",
         options: [
             {
                 cree: "mitikok",
@@ -67,7 +67,7 @@ const questionOfScene = [
         ]
     },
     {
-        question: "When they saw the ... floating, the two beavers grabbed them to add to their dam.",
+        question: "When they saw the ___ floating, the two beavers grabbed them to add to their dam.",
         options: [
             {
                 cree: "ê-pimâhôcik",
@@ -82,7 +82,7 @@ const questionOfScene = [
         ]
     },
     {
-        question: "They also found big ... which they took for their dam as well.",
+        question: "They also found big ___ which they took for their dam as well.",
         options: [
             {
                 cree: "ê-pimâhôcik",
@@ -97,7 +97,7 @@ const questionOfScene = [
         ]
     },
     {
-        question: "The beavers used the rocks and the logs to build a cozy ... where they could live.",
+        question: "The beavers used the rocks and the logs to build a cozy ___ where they could live.",
         options: [
             {
                 cree: "mitikok",
@@ -122,9 +122,6 @@ import beaver2 from './assets/img/beaver/beaver2.svg'
 import beaver3 from './assets/img/beaver/beaver3.svg'
 import beaver4 from './assets/img/beaver/beaver4.svg'
 
-import log1 from './assets/img/beaver_log/beaver-log1.svg'
-import log2 from './assets/img/beaver_log/beaver-log2.svg'
-import log3 from './assets/img/beaver_log/beaver-log3.svg'
 import Scene from "../../../components/scene/Scene.jsx";
 import BeaversScene2 from "./scenes/BeaversScene2.jsx";
 import BeaversScene3 from "./scenes/BeaversScene3.jsx";
@@ -134,7 +131,6 @@ const lakeBackgroundSoundURL = new URL("./assets/audio/lake-background.mp3", imp
 const windBackgroundSoundURL = new URL("./assets/audio/wind-background.mp3", import.meta.url).href;
 
 const beaverAnimationArr = [beaver1, beaver2, beaver3, beaver4];
-// const logAnimationArr = [log1, log2, log3];
 
 const popupDimension = {
     top: "50%",
