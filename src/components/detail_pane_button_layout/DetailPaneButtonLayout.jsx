@@ -47,30 +47,88 @@ function DetailPaneButtonLayout(props) {
             {props.variables.inLessonProgress && (
                 <div id={"bottom-pane-buttons-container"}>
 
-                    <img
+                    <div
                         draggable={false}
                         id={"previous-scene-button"}
-                        src={previousSceneButtonSource}
-                        alt={"Previous Scene Button"}
+                        className={"unselectable special-character"}
                         onClick={props.functions.previousScene}
                         style={{
                             opacity: `${props.variables.currentSceneNumber === 0 ? 0 : 1}`,
                         }}
-                    />
+                    >
+                        {/*←*/}⬅
+                    </div>
                     {/*<button id={"previous-scene-button"}></button>*/}
                     <div id={"content-container"}>
-                        <div
-                            id={"cree-script"}>{props.variables.scriptOfScene[props.variables.currentSceneNumber].cree}</div>
-                        <div
-                            id={"english-script"}>{props.variables.scriptOfScene[props.variables.currentSceneNumber].english}</div>
+                        {
+                            !props.variables.onQuestion
+                            &&
+                            <div id={"content-container-scripts"}>
+                                <div
+                                    id={"cree-script"}
+                                >
+                                    {props.variables.scriptOfScene[props.variables.currentSceneNumber].cree}
+                                </div>
+                                <div
+                                    id={"english-script"}
+                                >
+                                    {props.variables.scriptOfScene[props.variables.currentSceneNumber].english}
+                                </div>
+                            </div>
+                        }
+
+
+                        {
+                            props.variables.onQuestion
+                            && <div
+                                id={'content-container-question-container'}
+                            >
+                                <div
+                                    id={'content-container-question'}
+                                >
+                                    {props.variables.questionOfScene[props.variables.currentSceneNumber].question}
+                                </div>
+                                <div
+                                    id={'content-container-options'}
+                                >
+                                    <div>{props.variables.questionOfScene[props.variables.currentSceneNumber].options[0].cree}</div>
+                                    <div>{props.variables.questionOfScene[props.variables.currentSceneNumber].options[1].cree}</div>
+                                </div>
+                            </div>
+
+                        }
+
+                        <div id={"content-container-control-buttons"}>
+                            {
+                                !props.variables.onQuestion
+                                &&
+                                <div
+                                    id={'again-button'}
+                                    className={"unselectable special-character"}
+                                >
+                                    ↺
+                                </div>
+                            }
+                            <div
+                                id={"next-scene-button"}
+                                className={"unselectable special-character"}
+                                onClick={props.functions.nextScene}
+
+                            >
+                                {props.variables.onQuestion ? '✔': '⮕'}
+                            </div>
+
+                        </div>
+
+
                     </div>
-                    <img
+                    <div
                         draggable={false}
-                        src={nextSceneButtonSource}
-                        alt={"Next Scene Button"}
-                        id={"next-scene-button"}
-                        onClick={props.functions.nextScene}
-                    />
+                    >
+                        {/*Check*/}
+                    </div>
+                    <div id={"placeholder"}>
+                    </div>
                 </div>
             )}
         </>

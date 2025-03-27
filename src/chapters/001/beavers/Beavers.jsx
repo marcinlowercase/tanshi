@@ -50,6 +50,69 @@ const scriptOfScene = [
     },
 
 ]
+const questionOfScene = [
+    {
+        question: "Two beavers were sitting together on the beach, chewing on some ...",
+        options: [
+            {
+                cree: "mitikok",
+                english: "wood",
+                correct: true,
+            },
+            {
+                cree: "miskawêwak",
+                english: "rock",
+                correct: false,
+            }
+        ]
+    },
+    {
+        question: "When they saw the ... floating, the two beavers grabbed them to add to their dam.",
+        options: [
+            {
+                cree: "ê-pimâhôcik",
+                english: "log",
+                correct: true,
+            },
+            {
+                cree: "oskâtimikw",
+                english: "dam",
+                correct: false,
+            }
+        ]
+    },
+    {
+        question: "They also found big ... which they took for their dam as well.",
+        options: [
+            {
+                cree: "ê-pimâhôcik",
+                english: "log",
+                correct: false,
+            },
+            {
+                cree: "miskawêwak",
+                english: "rock",
+                correct: true,
+            }
+        ]
+    },
+    {
+        question: "The beavers used the rocks and the logs to build a cozy ... where they could live.",
+        options: [
+            {
+                cree: "mitikok",
+                english: "wood",
+                correct: false,
+            },
+            {
+                cree: "oskâtimikw",
+                english: "dam",
+                correct: true,
+            }
+        ]
+    }
+
+]
 
 import {useEffect, useRef, useState} from "react";
 
@@ -310,6 +373,7 @@ function Beavers(props) {
                         inLessonProgress: props.variables.inLessonProgress,
                         popupDimension: popupDimension,
                         numberOfScenes: NUMBER_OF_SCENES,
+                        questionOfScene: questionOfScene,
                         sandHeight: sandHeight,
                         sandRef: sandRef,
                         sandTop: sandTop,

@@ -11,6 +11,8 @@ const Scene = (props) => {
 
     const [isScene0AnimationRunning, setIsScene0AnimationRunning] = useState(false);
 
+    const [onQuestion, setOnQuestion] = useState(false);
+
     const [currentSceneNumber, setCurrentSceneNumber] = useState(0);
 
     const sceneZero = () => {
@@ -19,14 +21,22 @@ const Scene = (props) => {
 
     const setCurrentSceneNumberToNextScene = () => {
         setCurrentSceneNumber(currentSceneNumber => currentSceneNumber + 1);
+        setOnQuestion(false);
     }
 
     const nextScene = () => {
-        if (currentSceneNumber < props.variables.numberOfScenes - 1) {
-            showTransitionScreen(setCurrentSceneNumberToNextScene);
+        if (onQuestion) {
+            if (currentSceneNumber < props.variables.numberOfScenes - 1) {
 
+                showTransitionScreen(setCurrentSceneNumberToNextScene);
+            }
             // setCurrentSceneNumber(currentSceneNumber + 1);
+        } else {
+            setOnQuestion(true);
         }
+
+
+
 
     };
 
@@ -121,10 +131,12 @@ const Scene = (props) => {
                     variables={{
                         ...props.variables,
                         currentSceneNumber: currentSceneNumber,
+                        onQuestion: onQuestion,
                     }}
                     functions ={{
                         nextScene: nextScene,
                         previousScene: previousScene,
+                        setOnQuestion: setOnQuestion,
                     }}
                 />
 

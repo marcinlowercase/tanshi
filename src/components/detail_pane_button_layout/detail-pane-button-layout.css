@@ -31,7 +31,7 @@
     background: var(--color--medium-green);
     color: white;
     border: 3px solid #8B4513;
-    transform: rotate(-3deg);
+    /*transform: rotate(-3deg);*/
 }
 
 /* English Button */
@@ -39,7 +39,7 @@
     background-color: var(--color--deep-green);
     color: #FFFFFF;
     border: 3px solid #FFFFFF;
-    transform: rotate(3deg);
+    /*transform: rotate(3deg);*/
 }
 
 /* Hover Effects */
@@ -78,13 +78,6 @@
     }
 }
 
-#meaning-buttons > button {
-    animation: float 3s ease-in-out infinite;
-}
-
-
-
-
 
 /* Add sparkle effect */
 @keyframes sparkle {
@@ -103,10 +96,6 @@
 }
 
 
-
-
-
-
 #bottom-pane-buttons-container {
     display: flex;
     flex-direction: row;
@@ -119,41 +108,76 @@
     bottom: 1vh;
     position: absolute;
     z-index: 111111;
+    animation: float 3s ease-in-out infinite;
+
 }
 
 #content-container {
     /*background-size: 100% 100%;*/
     /*background-color: var(--color--beaver-brown);*/
-    background-color: var(--color--deep-green);
+    background-color: var(--color--sabe-brown);
     border: var(--border--thick-black);
     border-radius: var(--border-radius--button);
     /*background: white url("./assets/img/content-container.webp") no-repeat center;*/
     /*height: 100%;*/
     height: fit-content;
     width: 100%;
-    flex:8;
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    animation: float 3s ease-in-out infinite;
-
+    gap: var(--space--small);
 
 
 }
 
-#previous-scene-button, #next-scene-button {
-    animation: float 3s ease-in-out infinite;
 
-    flex:1;
+#content-container-control-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: var(--space--large);
+    width: 25%;
+}
+
+#previous-scene-button, #next-scene-button, #again-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    font-family: var(--font-family--heading), sans-serif;
+    font-size: var(--font-size--heading);
+    font-weight: var(--font-weight--bold);
+
+    flex: 1;
     width: auto; /* Adjust width automatically to maintain aspect ratio */
-    height: 70%; /* Set height to fit the height of the container */
-    border: none; /* Optional: Remove border */
-    padding: 0; /* Optional: Remove padding */
-
-
+    border: var(--border--thick-black);
+    border-radius: var(--border-radius--button);
+    margin: var(--space--horizontal); /* Optional: Remove padding */
+    text-align: center;
     cursor: pointer; /* Optional: Add pointer cursor */
+    color: white;
 }
 
-#cree-script, #english-script {
-    border-radius: 10px;
+#previous-scene-button {
+    background-color: var(--color--light-red);
+
+}
+#placeholder {
+    flex: 1;
+}
+
+#next-scene-button {
+    background-color: var(--color--medium-green);
+}
+#again-button {
+    background-color: var(--color--sandy-brown);
+}
+
+#cree-script, #english-script, #content-container-question {
+    border-radius: 12px;
     color: white;
     font-family: var(--font-family--body-text), sans-serif;
     text-align: center;
@@ -161,11 +185,31 @@
     padding: 1%;
     font-size: 1.5em;
 }
+
 #english-script {
     /*background-color: var(--dark-brown);*/
-    color: var(--color--medium-green);
-    background-color: var(--color--deep-green);
+    color: var(--color--tree-bark-brown);
+    background-color: var(--color--sabe-brown);
 }
+
 #cree-script {
-    background-color: var(--color--medium-green);
+    background-color: var(--color--tree-bark-brown);
+}
+#content-container-question {
+    background-color: var(--color--water-light-blue);
+}
+
+#content-container-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space--large);
+}
+#content-container-options > * {
+    background-color: var(--color--sabe-brown);
+    border: var(--border--thick-black);
+    border-radius: var(--border-radius--button);
+    font-family: var(--font-family--body-text), sans-serif;
+    font-size: var(--font-size--heading);
+    padding: var(--space--large);
 }

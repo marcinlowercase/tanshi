@@ -28,8 +28,9 @@
     --border-radius--button: 30px;
     --border--thick-black: solid 4px black;
 
-    --padding--large: 1rem;
-    --padding--small: 0.25rem;
+    --space--large: 1rem;
+    --space--small: 0.25rem;
+    --space--horizontal: 0 1rem;
 }
 
 

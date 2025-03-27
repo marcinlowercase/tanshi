@@ -7,7 +7,7 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 15px;
-    padding: var(--padding--large);
+    padding: var(--space--large);
     animation: float 3s ease-in-out infinite;
 
     box-sizing: border-box;
