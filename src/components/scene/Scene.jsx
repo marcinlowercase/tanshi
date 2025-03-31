@@ -1,7 +1,7 @@
 import DetailPaneButtonLayout from "../detail_pane_button_layout/DetailPaneButtonLayout.jsx";
 import LessonTopBar from "../lesson_top_bar/LessonTopBar.jsx";
-import {useEffect, useState} from "react";
-import {playAudio} from "../../functions/audioUtilities.js";
+import {useEffect, useRef, useState} from "react";
+import {loadAudio, playAudio} from "../../functions/audioUtilities.js";
 import showTransitionScreen from "../../functions/showTransitionScreen.js";
 
 
@@ -49,6 +49,7 @@ const Scene = (props) => {
 
     };
 
+
     const setCurrentSceneNumberToPreviousScene = () => {
         setCurrentSceneNumber(currentSceneNumber => currentSceneNumber - 1);
     }
@@ -67,13 +68,72 @@ const Scene = (props) => {
 
     const CurrentScene = props.scenes[currentSceneNumber];
 
-    //
-    // useEffect(() => {
-    //
-    //     if (props.variables.inLessonProgress) {
-    //         playAudio([props.variables.storyAudio[currentSceneNumber].cree]);
-    //     }
-    // }, [props.variables.inLessonProgress, currentSceneNumber]);
+    console.log("current", currentSceneNumber);
+    console.log("total", props.variables.numberOfScenes - 1);
+
+
+    const stillHaveNextScene = currentSceneNumber < props.variables.numberOfScenes;
+    let currentSceneCreeAudio, currentSceneEnglishAudio
+    // if (stillHaveNextScene) {
+    //     currentSceneCreeAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].cree));
+    //     currentSceneEnglishAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].english));
+    // }
+
+    currentSceneCreeAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].cree));
+    currentSceneEnglishAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].english));
+
+    useEffect(() => {
+
+        disableNextButton();
+
+
+        // play current scene audio
+        if (currentSceneNumber !== 0) {
+            loadAudio([
+                {
+                    audio: currentSceneCreeAudio,
+                    audioURL: props.variables.content.audioURLOfScene[currentSceneNumber].cree
+                },
+                {
+                    audio: currentSceneEnglishAudio,
+                    audioURL: props.variables.content.audioURLOfScene[currentSceneNumber].english
+                }
+            ])
+            playAudio({
+                audioArray: [currentSceneCreeAudio],
+                loop: false,
+                nextAudio: [currentSceneEnglishAudio],
+                callbackFunction: enableNextButton,
+            })
+        }
+
+
+
+        // // load next scene audio
+        // if (stillHaveNextScene) {
+        //     loadAudio([
+        //         {
+        //             audio: currentSceneCreeAudio,
+        //             audioURL: props.variables.content.audioURLOfScene[currentSceneNumber + 1].cree
+        //         },
+        //         {
+        //             audio: currentSceneEnglishAudio,
+        //             audioURL: props.variables.content.audioURLOfScene[currentSceneNumber + 1].english
+        //         }
+        //     ])
+        // } else {
+        //     loadAudio([
+        //         {
+        //             audio: currentSceneCreeAudio,
+        //             audioURL: props.variables.content.audioURLOfScene[currentSceneNumber].cree
+        //         },
+        //         {
+        //             audio: currentSceneEnglishAudio,
+        //             audioURL: props.variables.content.audioURLOfScene[currentSceneNumber].english
+        //         }
+        //     ])
+        // }
+    }, [currentSceneNumber]);
 
     return (
         <>
