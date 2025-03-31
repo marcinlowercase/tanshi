@@ -9,8 +9,16 @@ import showTransitionScreen from "../../functions/showTransitionScreen.js";
 
 const Scene = (props) => {
 
-    const [isScene0AnimationRunning, setIsScene0AnimationRunning] = useState(false);
 
+    const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
+
+    const enableNextButton = () => {
+        setNextButtonEnabled(true);
+        console.log("nextButtonEnabled", nextButtonEnabled);
+    }
+    const disableNextButton = () => {
+        setNextButtonEnabled(false);
+    }
     const [onQuestion, setOnQuestion] = useState(false);
 
     const [currentSceneNumber, setCurrentSceneNumber] = useState(0);
@@ -27,16 +35,16 @@ const Scene = (props) => {
 
     const nextScene = () => {
         if (onQuestion) {
-            if (currentSceneNumber < props.variables.numberOfScenes - 1) {
+            if (currentSceneNumber < props.variables.numberOfScenes - 1 && nextButtonEnabled) {
 
                 showTransitionScreen(setCurrentSceneNumberToNextScene);
             }
             // setCurrentSceneNumber(currentSceneNumber + 1);
         } else {
-            setOnQuestion(true);
+            if (nextButtonEnabled) {
+                setOnQuestion(true);
+            }
         }
-
-
 
 
     };
@@ -51,21 +59,21 @@ const Scene = (props) => {
             showTransitionScreen(setCurrentSceneNumberToPreviousScene);
         }
     };
-    for (const audio of props.variables.storyAudio) {
-        audio.cree.current.load()
-        audio.english.current.load()
-    }
+    // for (const audio of props.variables.storyAudio) {
+    //     audio.cree.current.load()
+    //     audio.english.current.load()
+    // }
 
 
     const CurrentScene = props.scenes[currentSceneNumber];
 
-
-    useEffect(() => {
-
-        if (props.variables.inLessonProgress) {
-            playAudio([props.variables.storyAudio[currentSceneNumber].cree]);
-        }
-    }, [props.variables.inLessonProgress, currentSceneNumber]);
+    //
+    // useEffect(() => {
+    //
+    //     if (props.variables.inLessonProgress) {
+    //         playAudio([props.variables.storyAudio[currentSceneNumber].cree]);
+    //     }
+    // }, [props.variables.inLessonProgress, currentSceneNumber]);
 
     return (
         <>
@@ -122,7 +130,10 @@ const Scene = (props) => {
                 />
 
                 <CurrentScene
-                    functions={props.functions}
+                    functions={{
+                        ...props.functions,
+                        enableNextButton: enableNextButton,
+                    }}
                     variables={{
                         ...props.variables,
                         currentSceneNumber: currentSceneNumber,
@@ -133,8 +144,9 @@ const Scene = (props) => {
                         ...props.variables,
                         currentSceneNumber: currentSceneNumber,
                         onQuestion: onQuestion,
+                        nextButtonEnabled: nextButtonEnabled,
                     }}
-                    functions ={{
+                    functions={{
                         nextScene: nextScene,
                         previousScene: previousScene,
                         setOnQuestion: setOnQuestion,

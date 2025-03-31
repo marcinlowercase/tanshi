@@ -1,6 +1,6 @@
 // Beavers.jsx
 import dynamicSize from "../../../functions/dynamicSize.js";
-import {playAudio, stopAudio} from "../../../functions/audioUtilities.js";
+import {loadAudio, playAudio, stopAudio} from "../../../functions/audioUtilities.js";
 import {startAnimationInterval, stopAnimationInterval} from "../../../functions/animationInternal.js";
 import {zoomOut, zoomIn} from "../../../functions/zoom.js";
 import getAudioStringForSentence from "../../../functions/getAudioStringForSentence.js";
@@ -14,23 +14,56 @@ import BeaversScene1 from "./scenes/BeaversScene1.jsx";
 const NUMBER_OF_SCENES = 4;
 const beaversScenes = [BeaversScene0, BeaversScene1, BeaversScene2, BeaversScene3];
 
+//
+// // set up the audio path for sentences
+// const audioURLOfScene = []
+// const audioPaths = []
+// for (let i = 0; i < NUMBER_OF_SCENES; i++) {
+//      audioPaths.push( {
+//          english: getAudioStringForSentence("001", "beavers", i, "english", "m4a"),
+//          cree: getAudioStringForSentence("001", "beavers", i, "cree","m4a"),
+//      });
+// }
+// for (let i = 0; i < NUMBER_OF_SCENES; i++) {
+//
+//     const audioURLs = {
+//         english: new URL(audioPaths[i].english, import.meta.url).href,
+//         cree: new URL(audioPaths[i].cree, import.meta.url).href,
+//     }
+//     audioURLOfScene.push(audioURLs)
+// }
 
-// set up the audio path for sentences
-const audioURLOfScene = []
-let beaversStoryAudio = []
-for (let i = 0; i < NUMBER_OF_SCENES; i++) {
-    const audioPaths = {
-        english: getAudioStringForSentence("001", "beavers", i, "english"),
-        cree: getAudioStringForSentence("001", "beavers", i, "cree"),
-    }
-    const audioURLs = {
-        english: new URL(audioPaths.english, import.meta.url).href,
-        cree: new URL(audioPaths.cree, import.meta.url).href,
-    }
-    audioURLOfScene.push(audioURLs)
-}
+
+// MANUALLY prep the audio file
+const creeAudioOfScene0URL = new URL("./assets/audio/transcript/cree/0.m4a", import.meta.url).href;
+const creeAudioOfScene1URL = new URL("./assets/audio/transcript/cree/1.m4a", import.meta.url).href;
+const creeAudioOfScene2URL = new URL("./assets/audio/transcript/cree/2.m4a", import.meta.url).href;
+const creeAudioOfScene3URL = new URL("./assets/audio/transcript/cree/3.m4a", import.meta.url).href;
+
+const englishAudioOfScene0URL = new URL("./assets/audio/transcript/english/0.m4a", import.meta.url).href;
+const englishAudioOfScene1URL = new URL("./assets/audio/transcript/english/1.m4a", import.meta.url).href;
+const englishAudioOfScene2URL = new URL("./assets/audio/transcript/english/2.m4a", import.meta.url).href;
+const englishAudioOfScene3URL = new URL("./assets/audio/transcript/english/3.m4a", import.meta.url).href;
 
 
+const audioURLOfScene = [
+    {
+        cree: creeAudioOfScene0URL,
+        english: englishAudioOfScene0URL,
+    },
+    {
+        cree: creeAudioOfScene1URL,
+        english: englishAudioOfScene1URL,
+    },
+    {
+        cree: creeAudioOfScene2URL,
+        english: englishAudioOfScene2URL,
+    },
+    {
+        cree: creeAudioOfScene3URL,
+        english: englishAudioOfScene3URL,
+    },
+]
 const scriptOfScene = [
     {
         english: "Two beavers were sitting together on the beach, chewing on some wood.",
@@ -113,7 +146,11 @@ const questionOfScene = [
     }
 
 ]
-
+const content = {
+    audioURLOfScene: audioURLOfScene,
+    scriptOfScene: scriptOfScene,
+    questionOfScene: questionOfScene,
+}
 import {useEffect, useRef, useState} from "react";
 
 
@@ -126,9 +163,6 @@ import Scene from "../../../components/scene/Scene.jsx";
 import BeaversScene2 from "./scenes/BeaversScene2.jsx";
 import BeaversScene3 from "./scenes/BeaversScene3.jsx";
 
-const eatingBeaverSoundURL = new URL("./assets/audio/eating-beaver.mp3", import.meta.url).href;
-const lakeBackgroundSoundURL = new URL("./assets/audio/lake-background.mp3", import.meta.url).href;
-const windBackgroundSoundURL = new URL("./assets/audio/wind-background.mp3", import.meta.url).href;
 
 const beaverAnimationArr = [beaver1, beaver2, beaver3, beaver4];
 
@@ -138,6 +172,13 @@ const popupDimension = {
     height: "70vh",
     width: "60vw",
 };
+
+
+// SCENE 0 SOUND
+
+const beaverEatingSoundURL = new URL("./assets/audio/eating-beaver.mp3", import.meta.url).href;
+const lakeBackgroundSoundURL = new URL("./assets/audio/lake-background.mp3", import.meta.url).href;
+const windBackgroundSoundURL = new URL("./assets/audio/wind-background.mp3", import.meta.url).href;
 
 
 function Beavers(props) {
@@ -172,6 +213,30 @@ function Beavers(props) {
         }
     }
 
+// SCENE 0  sound
+    const beaverEatingSound = useRef(new Audio((beaverEatingSoundURL)));
+    const lakeBackgroundSound = useRef(new Audio(lakeBackgroundSoundURL));
+    const windBackgroundSound = useRef(new Audio(windBackgroundSoundURL));
+    const creeAudioOfScene0 = useRef(new Audio(content.audioURLOfScene[0].cree));
+    const englishAudioOfScene0 = useRef(new Audio(content.audioURLOfScene[0].english));
+    useEffect(() => {
+        loadAudio([
+            {audio: beaverEatingSound, audioURL: beaverEatingSoundURL},
+            {audio: lakeBackgroundSound, audioURL: lakeBackgroundSoundURL},
+            {audio: windBackgroundSound, audioURL: windBackgroundSoundURL},
+            {audio: creeAudioOfScene0, audioURL: content.audioURLOfScene[0].cree},
+            {audio: englishAudioOfScene0, audioURL: content.audioURLOfScene[0].english},
+        ])
+        // beaverEatingSound.current = new Audio(beaverEatingSoundURL);
+        // beaverEatingSound.current.load();
+        // lakeBackgroundSound.current = new Audio(lakeBackgroundSoundURL);
+        // lakeBackgroundSound.current.load();
+        // windBackgroundSound.current = new Audio(windBackgroundSoundURL);
+        // windBackgroundSound.current.load();
+        console.log("Loaded")
+
+
+    }, []);
 
 
     useEffect(() => {
@@ -205,19 +270,6 @@ function Beavers(props) {
 
     handleBeaversProperties();
 
-    // setup sound effect
-    const eatingBeaverSound = useRef(new Audio((eatingBeaverSoundURL)));
-    const lakeBackgroundSound = useRef(new Audio(lakeBackgroundSoundURL));
-    const windBackgroundSound = useRef(new Audio(windBackgroundSoundURL));
-    useEffect(() => {
-        eatingBeaverSound.current = new Audio(eatingBeaverSoundURL);
-        eatingBeaverSound.current.load();
-        lakeBackgroundSound.current = new Audio(lakeBackgroundSoundURL);
-        lakeBackgroundSound.current.load();
-        windBackgroundSound.current = new Audio(windBackgroundSoundURL);
-        windBackgroundSound.current.load();
-    }, []);
-
 
     const [beaver1Src, setBeaver1Src] = useState(beaverAnimationArr[0]);
     const [beaver2Src, setBeaver2Src] = useState(beaverAnimationArr[0]);
@@ -228,29 +280,26 @@ function Beavers(props) {
     const handleMouseEnterOnBeaver1 = () => {
         if (!props.variables.inLessonProgress) {
             startAnimationInterval(beaver1IntervalId, setBeaver1IntervalId, beaver1Src, setBeaver1Src, beaverAnimationArr, 200);
-            if (props.variables.showPopup) playAudio([eatingBeaverSound]);
         }
     }
 
     const handleMouseLeaveOnBeaver1 = () => {
         if (!props.variables.inLessonProgress) {
-            stopAnimationInterval(beaver1IntervalId,setBeaver1IntervalId, setBeaver1Src, beaverAnimationArr);
-            stopAudio([eatingBeaverSound]);
+            stopAnimationInterval(beaver1IntervalId, setBeaver1IntervalId, setBeaver1Src, beaverAnimationArr);
         }
     }
 
     const handleMouseEnterOnBeaver2 = () => {
         if (!props.variables.inLessonProgress) {
             startAnimationInterval(beaver2IntervalId, setBeaver2IntervalId, beaver2Src, setBeaver2Src, beaverAnimationArr, 200);
-            if (props.variables.showPopup) playAudio([eatingBeaverSound]);
         }
 
     }
 
     const handleMouseLeaveOnBeaver2 = () => {
         if (!props.variables.inLessonProgress) {
-            stopAnimationInterval(beaver2IntervalId,setBeaver2IntervalId, setBeaver2Src, beaverAnimationArr);
-            stopAudio([eatingBeaverSound])
+            stopAnimationInterval(beaver2IntervalId, setBeaver2IntervalId, setBeaver2Src, beaverAnimationArr);
+            stopAudio([beaverEatingSound])
         }
     }
 
@@ -271,20 +320,24 @@ function Beavers(props) {
         if (!props.variables.showPopup) {
             props.functions.setShowPopup(true);
             // load audio to play
+            //
+            // for (const urls of audioURLOfScene) {
+            //     const creeAudio = new Audio(urls.cree);
+            //     creeAudio.current = new Audio(urls.cree)
+            //     const englishAudio = new Audio(urls.english);
+            //     englishAudio.current = new Audio(urls.english)
+            //
+            //     beaversStoryAudio.push({
+            //         cree: creeAudio,
+            //         english: englishAudio,
+            //     });
+            // }
 
-            for (const urls of audioURLOfScene) {
-                const creeAudio = new Audio(urls.cree);
-                creeAudio.current = new Audio(urls.cree)
-                const englishAudio = new Audio(urls.english);
-                englishAudio.current = new Audio(urls.english)
-
-                beaversStoryAudio.push({
-                    cree: creeAudio,
-                    english: englishAudio,
-                });
-            }
-
-            playAudio([lakeBackgroundSound, windBackgroundSound]);
+            playAudio({
+                audioArray: [lakeBackgroundSound, windBackgroundSound
+                ],
+                loop: true,
+            });
         } else {
             // props.functions.setInLessonProgress(true);
         }
@@ -293,7 +346,7 @@ function Beavers(props) {
 
     const handleBeaverClick = () => {
         if (!props.variables.inLessonProgress) {
-            playAudio([eatingBeaverSound])
+            playAudio({audioArray: [beaverEatingSound], loop: true});
         }
     }
 
@@ -360,31 +413,29 @@ function Beavers(props) {
                     variables={{
                         beaver1Src: beaver1Src,
                         beaver2Src: beaver2Src,
-                        beaverWidth: beaverWidth,
                         beaver1Style: beaver1Style,
                         beaver2Style: beaver2Style,
+                        beaverEatingSound: beaverEatingSound,
+                        beaverWidth: beaverWidth,
+                        content: content,
                         cree: "Amisk",
-                        eatingBeaverSound: eatingBeaverSound,
+                        creeAudioOfScene0: creeAudioOfScene0,
                         english: "Beaver",
+                        englishAudioOfScene0: englishAudioOfScene0,
                         inLessonProgress: props.variables.inLessonProgress,
-                        popupDimension: popupDimension,
+                        lakeBackgroundSound: lakeBackgroundSound,
                         numberOfScenes: NUMBER_OF_SCENES,
-                        questionOfScene: questionOfScene,
+                        popupDimension: popupDimension,
                         sandHeight: sandHeight,
                         sandRef: sandRef,
                         sandTop: sandTop,
-                        scriptOfScene: scriptOfScene,
                         showPopup: props.variables.showPopup,
-                        storyAudio: beaversStoryAudio,
+                        windBackgroundSound: windBackgroundSound,
                     }}
                     functions={{
                         ...props.functions,
                         backToNormal: backToNormal,
                         handleBeaverClick: handleBeaverClick,
-                        handleMouseEnterOnBeaver1: handleMouseEnterOnBeaver1,
-                        handleMouseEnterOnBeaver2: handleMouseEnterOnBeaver2,
-                        handleMouseLeaveOnBeaver1: handleMouseLeaveOnBeaver1,
-                        handleMouseLeaveOnBeaver2: handleMouseLeaveOnBeaver2,
                         // setInLessonProgress: props.functions.setInLessonProgress,
 
                     }}

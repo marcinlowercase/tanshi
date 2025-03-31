@@ -103,3 +103,12 @@ img[src$=".svg"] {
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Standard syntax */
 }
+
+.button {
+    transition: all 0.3s ease;
+
+}
+
+.button:hover {
+    transform: scale(1.1);
+}

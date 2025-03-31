@@ -7,8 +7,7 @@ import showTransitionScreen from "../../functions/showTransitionScreen.js";
 
 function DetailPaneButtonLayout(props) {
     const {
-        questionOfScene,
-        scriptOfScene,
+        content,
         currentSceneNumber,
         inLessonProgress,
         onQuestion,
@@ -16,7 +15,7 @@ function DetailPaneButtonLayout(props) {
         english,
     } = props.variables;
 
-    const currentScene = questionOfScene[currentSceneNumber];
+    const currentScene = content.questionOfScene[currentSceneNumber];
 
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedTransform, setSelectedTransform] = useState({deltaX: 0, deltaY: 0});
@@ -93,6 +92,7 @@ function DetailPaneButtonLayout(props) {
                 <div id="meaning-buttons">
                     <button
                         id="cree-meaning-button"
+                        className="button"
                         onClick={(e) => {
                             e.preventDefault();
                         }}
@@ -101,6 +101,7 @@ function DetailPaneButtonLayout(props) {
                     </button>
                     <button
                         id="english-meaning-button"
+                        className="button"
                         onClick={(e) => {
                             e.preventDefault();
                         }}
@@ -128,10 +129,10 @@ function DetailPaneButtonLayout(props) {
                         {!onQuestion && (
                             <div id="content-container-scripts">
                                 <div id="cree-script">
-                                    {scriptOfScene[currentSceneNumber].cree}
+                                    {content.scriptOfScene[currentSceneNumber].cree}
                                 </div>
                                 <div id="english-script">
-                                    {scriptOfScene[currentSceneNumber].english}
+                                    {content.scriptOfScene[currentSceneNumber].english}
                                 </div>
                             </div>
                         )}
@@ -189,14 +190,24 @@ function DetailPaneButtonLayout(props) {
 
                         <div id="content-container-control-buttons">
                             {!onQuestion && (
-                                <div id="again-button" className="unselectable special-character">
+                                <div
+                                    id="again-button"
+                                     className="unselectable special-character button"
+                                    style={ {
+                                        backgroundColor: variables.colorSandyBrown,
+                                    }}
+                                >
                                     ↺
                                 </div>
                             )}
                             <div
                                 id="next-scene-button"
-                                className="unselectable special-character"
+                                className="unselectable special-character button"
                                 onClick={onQuestion ? nextSceneWithTransition : props.functions.nextScene}
+                                style={{
+                                    cursor: props.variables.nextButtonEnabled ? "pointer" : "progress",
+                                    backgroundColor: props.variables.nextButtonEnabled ? variables.colorMediumGreen: variables.colorDeepGreen,
+                                }}
                             >
                                 {onQuestion ? "✔" : "⮕"}
                             </div>

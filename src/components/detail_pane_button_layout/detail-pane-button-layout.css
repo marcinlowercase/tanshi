@@ -170,10 +170,10 @@
 }
 
 #next-scene-button {
-    background-color: var(--color--medium-green);
+    /*background-color: var(--color--medium-green);*/
 }
 #again-button {
-    background-color: var(--color--sandy-brown);
+    /*background-color: var(--color--sandy-brown);*/
 }
 
 

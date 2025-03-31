@@ -17,9 +17,6 @@ import beaver4 from '../assets/img/beaver/beaver4.svg'
 
 import "./beaver-scene0.css"
 
-const beaverEatingSoundURL = new URL("../assets/audio/eating-beaver.mp3", import.meta.url).href;
-const lakeBackgroundSoundURL = new URL("../assets/audio/lake-background.mp3", import.meta.url).href;
-const windBackgroundSoundURL = new URL("../assets/audio/wind-background.mp3", import.meta.url).href;
 
 const beaverEatingAnimationArr = [beaver1, beaver2, beaver3, beaver4];
 
@@ -97,23 +94,23 @@ const BeaversScene0 = (props) => {
         // console.log("THIS IS CURRENT INTERVAL ID 222", beaver2EatingIntervalId );
     })
 
-    // setup sound effect
-    const beaverEatingSound = useRef(new Audio((beaverEatingSoundURL)));
-    const lakeBackgroundSound = useRef(new Audio(lakeBackgroundSoundURL));
-    const windBackgroundSound = useRef(new Audio(windBackgroundSoundURL));
-    useEffect(() => {
-        beaverEatingSound.current = new Audio(beaverEatingSoundURL);
-        beaverEatingSound.current.load();
-        lakeBackgroundSound.current = new Audio(lakeBackgroundSoundURL);
-        lakeBackgroundSound.current.load();
-        windBackgroundSound.current = new Audio(windBackgroundSoundURL);
-        windBackgroundSound.current.load();
-    }, []);
+    // // setup sound effect
+    // const props.variables.beaverEatingSound = useRef(new Audio((props.variables.beaverEatingSoundURL)));
+    // const lakeBackgroundSound = useRef(new Audio(lakeBackgroundSoundURL));
+    // const windBackgroundSound = useRef(new Audio(windBackgroundSoundURL));
+    // useEffect(() => {
+    //     props.variables.beaverEatingSound.current = new Audio(props.variables.beaverEatingSoundURL);
+    //     props.variables.beaverEatingSound.current.load();
+    //     lakeBackgroundSound.current = new Audio(lakeBackgroundSoundURL);
+    //     lakeBackgroundSound.current.load();
+    //     windBackgroundSound.current = new Audio(windBackgroundSoundURL);
+    //     windBackgroundSound.current.load();
+    // }, []);
 
     const handleMouseEnterOnBeaver1Eating = () => {
         if (!props.variables.inLessonProgress) {
             startAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, beaver1EatingSrc, setBeaver1EatingSrc, beaverEatingAnimationArr, 200);
-            if (props.variables.showPopup) playAudio([beaverEatingSound]);
+            if (props.variables.showPopup) playAudio({audioArray: [props.variables.beaverEatingSound], loop: true});
         }
     }
 
@@ -121,14 +118,14 @@ const BeaversScene0 = (props) => {
     const handleMouseLeaveOnBeaver1Eating = () => {
         if (!props.variables.inLessonProgress) {
             stopAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, setBeaver1EatingSrc, beaverEatingAnimationArr);
-            stopAudio([beaverEatingSound]);
+            stopAudio([props.variables.beaverEatingSound]);
         }
     }
 
     const handleMouseEnterOnBeaver2Eating = () => {
         if (!props.variables.inLessonProgress) {
             startAnimationInterval(beaver2EatingIntervalId, setBeaver2EatingIntervalId, beaver2EatingSrc, setBeaver2EatingSrc, beaverEatingAnimationArr, 200);
-            if (props.variables.showPopup) playAudio([beaverEatingSound]);
+            if (props.variables.showPopup) playAudio({audioArray: [props.variables.beaverEatingSound], loop: true});
         }
 
     }
@@ -136,7 +133,7 @@ const BeaversScene0 = (props) => {
     const handleMouseLeaveOnBeaver2Eating = () => {
         if (!props.variables.inLessonProgress) {
             stopAnimationInterval(beaver2EatingIntervalId, setBeaver2EatingIntervalId, setBeaver2EatingSrc, beaverEatingAnimationArr);
-            stopAudio([beaverEatingSound])
+            stopAudio([props.variables.beaverEatingSound])
         }
     }
 
@@ -150,7 +147,7 @@ const BeaversScene0 = (props) => {
 
         console.log(props.variables.inLessonProgress);
         if (props.variables.inLessonProgress) {
-            stopAudio([beaverEatingSound]);
+            stopAudio([props.variables.beaverEatingSound]);
             // stop animations first then start it again
             stopAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, setBeaver1EatingSrc, beaverEatingAnimationArr);
             stopAnimationInterval(beaver2EatingIntervalId, setBeaver2EatingIntervalId, setBeaver2EatingSrc, beaverEatingAnimationArr);
@@ -172,14 +169,20 @@ const BeaversScene0 = (props) => {
         const next = () => {
             zoomOut("popup")
             props.functions.setInLessonProgress(true);
-
+            // props.functions.enableNextButton();
+            playAudio({
+                audioArray: [props.variables.creeAudioOfScene0],
+                loop: false,
+                nextAudio: [props.variables.englishAudioOfScene0],
+                callbackFunction: props.functions.enableNextButton,
+            });
         }
         if (!props.variables.inLessonProgress) showTransitionScreen(next);
     }
 
     const handleBeaverClick = () => {
         if (!props.variables.inLessonProgress) {
-            playAudio([beaverEatingSound])
+            playAudio({audioArray: [props.variables.beaverEatingSound], loop: true})
         }
     }
 
@@ -204,7 +207,7 @@ const BeaversScene0 = (props) => {
                     id={'scene0-beaver1'}
                     src={beaver1EatingSrc}
                     style={{
-                        bottom: `${props.variables.inLessonProgress ? (sandHeight * 0.44 ) : (sandHeight * 0.65 )}px`,
+                        bottom: `${props.variables.inLessonProgress ? (sandHeight * 0.44) : (sandHeight * 0.65)}px`,
                         left: `40% `,
                         width: `${beaverWidth}px`,
                         ...beaver1Style
