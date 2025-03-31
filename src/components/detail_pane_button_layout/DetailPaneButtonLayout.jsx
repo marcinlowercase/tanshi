@@ -128,10 +128,21 @@ function DetailPaneButtonLayout(props) {
                     <div id="content-container">
                         {!onQuestion && (
                             <div id="content-container-scripts">
-                                <div id="cree-script">
+                                <div
+                                    id="cree-script"
+                                    style={{
+                                        backgroundColor: props.variables.playingEnglish ? variables.colorSabeBrown : variables.colorTreeBarkBrown,
+                                        color: props.variables.playingEnglish ? variables.colorTreeBarkBrown : "white",
+                                    }}
+                                >
                                     {content.scriptOfScene[currentSceneNumber].cree}
                                 </div>
-                                <div id="english-script">
+                                <div id="english-script"
+                                     style={{
+                                         backgroundColor: props.variables.playingEnglish ? variables.colorTreeBarkBrown: variables.colorSabeBrown,
+                                         color: props.variables.playingEnglish ? "white" :variables.colorTreeBarkBrown,
+                                     }}
+                                >
                                     {content.scriptOfScene[currentSceneNumber].english}
                                 </div>
                             </div>
@@ -192,8 +203,8 @@ function DetailPaneButtonLayout(props) {
                             {!onQuestion && (
                                 <div
                                     id="again-button"
-                                     className="unselectable special-character button"
-                                    style={ {
+                                    className="unselectable special-character button"
+                                    style={{
                                         backgroundColor: variables.colorSandyBrown,
                                     }}
                                     onClick={props.functions.replayCurrentAudio}
@@ -207,7 +218,7 @@ function DetailPaneButtonLayout(props) {
                                 onClick={onQuestion ? nextSceneWithTransition : props.functions.nextScene}
                                 style={{
                                     cursor: props.variables.nextButtonEnabled ? "pointer" : "progress",
-                                    backgroundColor: props.variables.nextButtonEnabled ? variables.colorMediumGreen: variables.colorDeepGreen,
+                                    backgroundColor: props.variables.nextButtonEnabled ? variables.colorMediumGreen : variables.colorDeepGreen,
                                 }}
                             >
                                 {onQuestion ? "✔" : "⮕"}

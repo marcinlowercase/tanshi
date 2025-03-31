@@ -18,7 +18,9 @@ const playAudio = (params) => {
                         });
                     } else {
                         if (params.nextAudio) {
-                            console.log('nextAudio');
+                            if (params.afterFirst) {
+                                params.afterFirst();
+                            }
                             playAudio({
                                 audioArray: params.nextAudio,
                                 loop: false,

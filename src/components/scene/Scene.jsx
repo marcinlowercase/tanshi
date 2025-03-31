@@ -10,6 +10,12 @@ import showTransitionScreen from "../../functions/showTransitionScreen.js";
 const Scene = (props) => {
 
     const [backed, setBacked] = useState(false);
+    const [playingEnglish, setPlayingEnglish] = useState(false);
+
+    const completeFirstLanguage = () => {
+        setPlayingEnglish(true);
+    }
+
 
     const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
 
@@ -32,7 +38,7 @@ const Scene = (props) => {
     const setCurrentSceneNumberToNextScene = () => {
         setCurrentSceneNumber(currentSceneNumber => currentSceneNumber + 1);
         setOnQuestion(false);
-        console.log("NEXTTT")
+        setPlayingEnglish(false);
     }
 
     const nextScene = () => {
@@ -55,7 +61,7 @@ const Scene = (props) => {
 
     const setCurrentSceneNumberToPreviousScene = () => {
         setCurrentSceneNumber(currentSceneNumber => currentSceneNumber - 1);
-
+        setPlayingEnglish(false);
     }
 
     const previousScene = () => {
@@ -97,11 +103,14 @@ const Scene = (props) => {
 
     const replayCurrentAudio = () => {
         stopCurrentAudio();
+        setPlayingEnglish(false);
         playAudio({
             audioArray: [currentSceneCreeAudio],
             loop: false,
             nextAudio: [currentSceneEnglishAudio],
             callbackFunction: enableNextButton,
+            afterFirst: completeFirstLanguage,
+
         })
     }
 
@@ -127,6 +136,8 @@ const Scene = (props) => {
                 loop: false,
                 nextAudio: [currentSceneEnglishAudio],
                 callbackFunction: enableNextButton,
+                afterFirst: completeFirstLanguage,
+
             })
         }
 
@@ -228,6 +239,7 @@ const Scene = (props) => {
                         currentSceneNumber: currentSceneNumber,
                         onQuestion: onQuestion,
                         nextButtonEnabled: nextButtonEnabled,
+                        playingEnglish: playingEnglish,
                     }}
                     functions={{
                         nextScene: nextScene,
