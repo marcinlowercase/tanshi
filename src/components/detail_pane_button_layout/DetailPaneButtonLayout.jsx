@@ -196,6 +196,7 @@ function DetailPaneButtonLayout(props) {
                                     style={ {
                                         backgroundColor: variables.colorSandyBrown,
                                     }}
+                                    onClick={props.functions.replayCurrentAudio}
                                 >
                                     ↺
                                 </div>

@@ -1,11 +1,10 @@
 const playAudio = (params) => {
     if (Array.isArray(params.audioArray)) {
         params.audioArray.forEach((audio) => {
-            console.log('playaudio');
-            console.log(typeof (params.callbackFunction))
-
             if (audio && audio.current) {
                 audio.current.currentTime = 0;
+                audio.current.volume = params.volume !== undefined ? params.volume : 1.0; // Default to full volume
+
                 audio.current.play().catch((err) => {
                     console.error("Playback failed: ", err);
                 });

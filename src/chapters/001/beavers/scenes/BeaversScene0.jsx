@@ -110,7 +110,12 @@ const BeaversScene0 = (props) => {
     const handleMouseEnterOnBeaver1Eating = () => {
         if (!props.variables.inLessonProgress) {
             startAnimationInterval(beaver1EatingIntervalId, setBeaver1EatingIntervalId, beaver1EatingSrc, setBeaver1EatingSrc, beaverEatingAnimationArr, 200);
-            if (props.variables.showPopup) playAudio({audioArray: [props.variables.beaverEatingSound], loop: true});
+            if (props.variables.showPopup) playAudio({
+                audioArray: [props.variables.beaverEatingSound],
+                loop: true,
+                volume: 0.5,
+
+            });
         }
     }
 
@@ -125,7 +130,11 @@ const BeaversScene0 = (props) => {
     const handleMouseEnterOnBeaver2Eating = () => {
         if (!props.variables.inLessonProgress) {
             startAnimationInterval(beaver2EatingIntervalId, setBeaver2EatingIntervalId, beaver2EatingSrc, setBeaver2EatingSrc, beaverEatingAnimationArr, 200);
-            if (props.variables.showPopup) playAudio({audioArray: [props.variables.beaverEatingSound], loop: true});
+            if (props.variables.showPopup) playAudio({
+                audioArray: [props.variables.beaverEatingSound],
+                loop: true,
+                volume: 0.5,
+            });
         }
 
     }
@@ -170,19 +179,23 @@ const BeaversScene0 = (props) => {
             zoomOut("popup")
             props.functions.setInLessonProgress(true);
             // props.functions.enableNextButton();
-            playAudio({
-                audioArray: [props.variables.creeAudioOfScene0],
-                loop: false,
-                nextAudio: [props.variables.englishAudioOfScene0],
-                callbackFunction: props.functions.enableNextButton,
-            });
+            // playAudio({
+            //     audioArray: [props.variables.creeAudioOfScene0],
+            //     loop: false,
+            //     nextAudio: [props.variables.englishAudioOfScene0],
+            //     callbackFunction: props.functions.enableNextButton,
+            // });
         }
         if (!props.variables.inLessonProgress) showTransitionScreen(next);
     }
 
     const handleBeaverClick = () => {
         if (!props.variables.inLessonProgress) {
-            playAudio({audioArray: [props.variables.beaverEatingSound], loop: true})
+            playAudio({
+                audioArray: [props.variables.beaverEatingSound],
+                loop: true,
+                volume: 0.5,
+            })
         }
     }
 

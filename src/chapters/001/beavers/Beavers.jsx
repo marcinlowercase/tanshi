@@ -334,9 +334,9 @@ function Beavers(props) {
             // }
 
             playAudio({
-                audioArray: [lakeBackgroundSound, windBackgroundSound
-                ],
+                audioArray: [lakeBackgroundSound, windBackgroundSound],
                 loop: true,
+                volume: 0.5,
             });
         } else {
             // props.functions.setInLessonProgress(true);
@@ -346,7 +346,11 @@ function Beavers(props) {
 
     const handleBeaverClick = () => {
         if (!props.variables.inLessonProgress) {
-            playAudio({audioArray: [beaverEatingSound], loop: true});
+            playAudio({
+                audioArray: [beaverEatingSound],
+                loop: true,
+                volume: 0.5,
+            });
         }
     }
 

@@ -1,7 +1,7 @@
 import DetailPaneButtonLayout from "../detail_pane_button_layout/DetailPaneButtonLayout.jsx";
 import LessonTopBar from "../lesson_top_bar/LessonTopBar.jsx";
 import {useEffect, useRef, useState} from "react";
-import {loadAudio, playAudio} from "../../functions/audioUtilities.js";
+import {loadAudio, playAudio, stopAudio} from "../../functions/audioUtilities.js";
 import showTransitionScreen from "../../functions/showTransitionScreen.js";
 
 
@@ -9,6 +9,7 @@ import showTransitionScreen from "../../functions/showTransitionScreen.js";
 
 const Scene = (props) => {
 
+    const [backed, setBacked] = useState(false);
 
     const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
 
@@ -24,6 +25,7 @@ const Scene = (props) => {
     const [currentSceneNumber, setCurrentSceneNumber] = useState(0);
 
     const sceneZero = () => {
+        stopCurrentAudio();
         setCurrentSceneNumber(0);
     }
 
@@ -36,6 +38,7 @@ const Scene = (props) => {
     const nextScene = () => {
         if (onQuestion) {
             if (currentSceneNumber < props.variables.numberOfScenes - 1 && nextButtonEnabled) {
+                stopCurrentAudio();
 
                 showTransitionScreen(setCurrentSceneNumberToNextScene);
             }
@@ -52,10 +55,15 @@ const Scene = (props) => {
 
     const setCurrentSceneNumberToPreviousScene = () => {
         setCurrentSceneNumber(currentSceneNumber => currentSceneNumber - 1);
+
     }
 
     const previousScene = () => {
         if (currentSceneNumber > 0) {
+            setBacked(true);
+            stopCurrentAudio();
+
+
             // setCurrentSceneNumber(currentSceneNumber - 1);
             showTransitionScreen(setCurrentSceneNumberToPreviousScene);
         }
@@ -82,13 +90,28 @@ const Scene = (props) => {
     currentSceneCreeAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].cree));
     currentSceneEnglishAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].english));
 
+    const stopCurrentAudio = () => {
+        stopAudio([currentSceneCreeAudio]);
+        stopAudio([currentSceneEnglishAudio]);
+    }
+
+    const replayCurrentAudio = () => {
+        stopCurrentAudio();
+        playAudio({
+            audioArray: [currentSceneCreeAudio],
+            loop: false,
+            nextAudio: [currentSceneEnglishAudio],
+            callbackFunction: enableNextButton,
+        })
+    }
+
     useEffect(() => {
 
         disableNextButton();
 
 
         // play current scene audio
-        if (currentSceneNumber !== 0) {
+        if (props.variables.inLessonProgress) {
             loadAudio([
                 {
                     audio: currentSceneCreeAudio,
@@ -133,7 +156,7 @@ const Scene = (props) => {
         //         }
         //     ])
         // }
-    }, [currentSceneNumber]);
+    }, [currentSceneNumber, props.variables.inLessonProgress]);
 
     return (
         <>
@@ -210,6 +233,7 @@ const Scene = (props) => {
                         nextScene: nextScene,
                         previousScene: previousScene,
                         setOnQuestion: setOnQuestion,
+                        replayCurrentAudio: replayCurrentAudio,
                     }}
                 />
 
