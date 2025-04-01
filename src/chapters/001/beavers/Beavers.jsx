@@ -67,11 +67,11 @@ const audioURLOfScene = [
 const scriptOfScene = [
     {
         english: "Two beavers were sitting together on the beach, chewing on some wood.",
-        cree: "Nîso amiskwak êsa ê-ocipahcîpicik ê-itêhko-kîwêsîskak, mitikok ê-mah-mîwâcik."
+        cree: "Nîso amiskwak êhapicik yêkawiskâhk, mâmâkwahcikêwin mistikwa."
     },
     {
-        english: "When they saw the logs floating, the two beavers grabbed them to add to their dam.",
-        cree: "Kâh-wâpamâcik êsa mistikwak ikota ê-pimâhôcik, nîso aniki amiskwak ocî-pîhtêwak, ê-wîkâpahcîhâtîcik ôta oskâtimikw."
+        english: "When a log floated by, the two beavers grabed it to add to their dam.",
+        cree: "Wâpamêw kotaka mistikwa akohtin, êkwa ôma nîso amiskwak otihtinêwak mistikwa kê-ta âpacihêw antah oskwatim kahwi osîhcitachik."
     },
     {
         english: "They also found big rocks, which they took for their dam as well.",
@@ -146,10 +146,17 @@ const questionOfScene = [
     }
 
 ]
+const titleOfScene = [
+    "Beavers on the beach",
+    "Beavers with the log",
+    "Beavers with the rock",
+    "Beavers build their dam",
+]
 const content = {
     audioURLOfScene: audioURLOfScene,
     scriptOfScene: scriptOfScene,
     questionOfScene: questionOfScene,
+    titleOfScene: titleOfScene,
 }
 import {useEffect, useRef, useState} from "react";
 
@@ -162,6 +169,7 @@ import beaver4 from './assets/img/beaver/beaver4.svg'
 import Scene from "../../../components/scene/Scene.jsx";
 import BeaversScene2 from "./scenes/BeaversScene2.jsx";
 import BeaversScene3 from "./scenes/BeaversScene3.jsx";
+import LessonLoadingScreen from "../../../components/lesson_loading_screen/LessonLoadingScreen.jsx";
 
 
 const beaverAnimationArr = [beaver1, beaver2, beaver3, beaver4];
@@ -369,6 +377,7 @@ function Beavers(props) {
 
     return (
         <div id={"beaversArea"} onClick={handleBeaverAreaClick}>
+            <LessonLoadingScreen text={"Amisk - Beaver"} />
             <img
                 draggable={false}
                 alt={"beaver 1"}

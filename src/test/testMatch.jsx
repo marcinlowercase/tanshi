@@ -12,10 +12,10 @@ function DetailPaneButtonLayout(props) {
 
 
     const nextSceneWithTransition = () => {
-        showTransitionScreen(props.functions.nextScene)
+        showTransitionScreen("transition-screen", props.functions.nextScene, 600)
     }
     const previousSceneWithTransition = () => {
-        showTransitionScreen(props.functions.previousScene)
+        showTransitionScreen("transition-screen", props.functions.previousScene, 600)
     }
 
 

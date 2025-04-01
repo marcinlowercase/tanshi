@@ -20,8 +20,11 @@ const LessonTopBar = (props) => {
 
     const backToPreviewWithTransition = (e) => {
         if (props.variables.inLessonProgress) {
+            props.functions.stopCurrentAudio();
             showTransitionScreen(
-                backToPreview
+                "transition-screen",
+                backToPreview,
+                600
             )
         } else {
             backToPreview()
@@ -38,7 +41,7 @@ const LessonTopBar = (props) => {
             {props.variables.inLessonProgress && (
                 <>
                     <div id={"lesson-title-bar"}>
-                        This is title for the current lesson
+                        {props.variables.content.titleOfScene[props.variables.currentSceneNumber]}
                     </div>
                     <div id={"process-indicator"}>
                         {props.variables.currentSceneNumber +1 } / {props.variables.numberOfScenes}

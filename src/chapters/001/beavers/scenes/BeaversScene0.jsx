@@ -178,15 +178,8 @@ const BeaversScene0 = (props) => {
         const next = () => {
             zoomOut("popup")
             props.functions.setInLessonProgress(true);
-            // props.functions.enableNextButton();
-            // playAudio({
-            //     audioArray: [props.variables.creeAudioOfScene0],
-            //     loop: false,
-            //     nextAudio: [props.variables.englishAudioOfScene0],
-            //     callbackFunction: props.functions.enableNextButton,
-            // });
         }
-        if (!props.variables.inLessonProgress) showTransitionScreen(next);
+        if (!props.variables.inLessonProgress) showTransitionScreen( "lesson-loading-screen", next, 10000);
     }
 
     const handleBeaverClick = () => {

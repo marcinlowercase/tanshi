@@ -1,5 +1,5 @@
-const showTransitionScreen = (next) => {
-    const transitionScreen = document.getElementById("transition-screen");
+const showTransitionScreen = (transitionId, next, timeout) => {
+    const transitionScreen = document.getElementById(transitionId);
     if (transitionScreen) {
         console.log("BLACK OUT")
         transitionScreen.style.opacity = "1";
@@ -11,7 +11,7 @@ const showTransitionScreen = (next) => {
 
             if (transitionScreen) transitionScreen.style.opacity = "0";
 
-        }, 600);
+        }, timeout);
     }
 }
 

@@ -1,0 +1,20 @@
+#lesson-loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color--beaver-brown);
+    color: white;
+    font-family: var(--font-family--heading);
+    font-size: var(--font-size--heading);
+    font-weight: var(--font-weight--bold);
+    text-align: center;
+    justify-content: center;
+
+    z-index: 99999999;
+    opacity: 1; /* Fully visible when rendered */
+    transition: opacity 0.6s ease;
+    pointer-events: none; /* Allow interactions to pass through */
+
+}

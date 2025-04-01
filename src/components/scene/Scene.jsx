@@ -46,7 +46,7 @@ const Scene = (props) => {
             if (currentSceneNumber < props.variables.numberOfScenes - 1 && nextButtonEnabled) {
                 stopCurrentAudio();
 
-                showTransitionScreen(setCurrentSceneNumberToNextScene);
+                showTransitionScreen("transition-screen", setCurrentSceneNumberToNextScene, 600);
             }
             // setCurrentSceneNumber(currentSceneNumber + 1);
         } else {
@@ -71,7 +71,7 @@ const Scene = (props) => {
 
 
             // setCurrentSceneNumber(currentSceneNumber - 1);
-            showTransitionScreen(setCurrentSceneNumberToPreviousScene);
+            showTransitionScreen("transition-screen", setCurrentSceneNumberToPreviousScene, 600);
         }
     };
     // for (const audio of props.variables.storyAudio) {
@@ -141,32 +141,6 @@ const Scene = (props) => {
             })
         }
 
-
-
-        // // load next scene audio
-        // if (stillHaveNextScene) {
-        //     loadAudio([
-        //         {
-        //             audio: currentSceneCreeAudio,
-        //             audioURL: props.variables.content.audioURLOfScene[currentSceneNumber + 1].cree
-        //         },
-        //         {
-        //             audio: currentSceneEnglishAudio,
-        //             audioURL: props.variables.content.audioURLOfScene[currentSceneNumber + 1].english
-        //         }
-        //     ])
-        // } else {
-        //     loadAudio([
-        //         {
-        //             audio: currentSceneCreeAudio,
-        //             audioURL: props.variables.content.audioURLOfScene[currentSceneNumber].cree
-        //         },
-        //         {
-        //             audio: currentSceneEnglishAudio,
-        //             audioURL: props.variables.content.audioURLOfScene[currentSceneNumber].english
-        //         }
-        //     ])
-        // }
     }, [currentSceneNumber, props.variables.inLessonProgress]);
 
     return (
@@ -218,6 +192,7 @@ const Scene = (props) => {
                         ...props.functions,
                         sceneZero: sceneZero,
                         setCurrentSceneNumber: setCurrentSceneNumber,
+                        stopCurrentAudio: stopCurrentAudio,
                     }}
                     // backToNormal={props.functions.backToNormal}
                     // inLessonProgress={props.variables.inLessonProgress}
