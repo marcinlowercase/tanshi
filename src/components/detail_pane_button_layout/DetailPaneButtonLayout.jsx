@@ -116,7 +116,7 @@ function DetailPaneButtonLayout(props) {
                     <div
                         draggable={false}
                         id="previous-scene-button"
-                        className="unselectable special-character"
+                        className="unselectable special-character button"
                         onClick={previousSceneWithTransition}
                         style={{
                             opacity: `${currentSceneNumber === 0 ? 0 : 1}`,
@@ -192,7 +192,10 @@ function DetailPaneButtonLayout(props) {
                                                 zIndex: selectedOption === index ? 1000 : "auto",
                                             }}
                                         >
-                                            {option.cree}
+                                            {option.cree} <span
+                                        style={{
+                                             color:"white",
+                                        }}>{option.english}</span>
                                         </div>
                                     ))}
                                 </div>

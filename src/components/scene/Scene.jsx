@@ -44,7 +44,7 @@ const Scene = (props) => {
     const setCurrentSceneNumberToNextScene = () => {
         setCurrentSceneNumber(currentSceneNumber => currentSceneNumber + 1);
         setOnQuestion(false);
-        setPlayingEnglish(false);
+        // setPlayingEnglish(false);
     }
 
     const nextScene = () => {
@@ -67,7 +67,7 @@ const Scene = (props) => {
 
     const setCurrentSceneNumberToPreviousScene = () => {
         setCurrentSceneNumber(currentSceneNumber => currentSceneNumber - 1);
-        setPlayingEnglish(false);
+        // setPlayingEnglish(false);
     }
 
     const previousScene = () => {
@@ -131,6 +131,14 @@ const Scene = (props) => {
 
         disableNextButton();
 
+
+        if (currentSceneNumber !== 0 && playingEnglish) {
+            setPlayingEnglish(false);
+            switchLanguage({
+                from: "english",
+                to: "cree",
+            })
+        }
 
         // play current scene audio
         if (props.variables.inLessonProgress) {

@@ -32,11 +32,11 @@ const switchLanguage = (props) => {
 
         if (nextLanguage) {
             nextLanguage.style.backgroundColor = variables.colorMediumGreen;
-            nextLanguage.style.transition = 'background-color 0.1s ease-in-out';
+            nextLanguage.style.transition = 'background-color 0.2s ease-in-out';
         }
         if (currentLanguage) {
             currentLanguage.style.backgroundColor = 'transparent';
-            currentLanguage.style.transition = 'background-color 0.1s ease-in-out';
+            currentLanguage.style.transition = 'background-color 0.2s ease-in-out';
         }
 
         // --- Animation Step 4: Schedule Fade-out (Wait another 2 seconds) ---
@@ -62,7 +62,7 @@ const switchLanguage = (props) => {
 
         }, 1000);
 
-    }, 1000); // 2000ms delay before changing backgrounds (waits for fade-in)
+    }, 600); // 2000ms delay before changing backgrounds (waits for fade-in)
 };
 
 export default switchLanguage;

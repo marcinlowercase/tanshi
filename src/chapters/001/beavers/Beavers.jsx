@@ -75,25 +75,25 @@ const scriptOfScene = [
     },
     {
         english: "They also found big rocks, which they took for their dam as well.",
-        cree: "Âhâyak mîna miskawêwak mistahi asiniyak, ê-îkôni mîna otinîwak, oskâtimikw ê-wî-ayôtahcik."
+        cree: "Ahyak-asici miskawêwak misti-asiniya êwakoni mîna otinêwak êwakoni mîna wî-âpacihêwchik mwêstas, oskwatimow kah-wî-osîhcitachik."
     },
     {
         english: "The beavers used the rocks and the logs to build a cozy dam where they could live.",
-        cree: "Ê-kî-aniki amiskwak wî-yâh-pahcîhâtîcik asiniyak ikwa mistikwak, kîta ê-sîhtâhcik oskâtimikw, ikota tê-wî-kîcik."
+        cree: "Êkonik aniki nîso amiskwak âpacihêwak anihi misti-asiniya êkwa-mîna anihi mistikwâ, osîhcitawak ani-mitho oskwatimow êkota mamiywêtho-wîkichik "
     },
 
 ]
 const questionOfScene = [
     {
-        question: "Two beavers were sitting together on the beach, chewing on some ___",
+        question: "Two beavers were sitting together on the beach, chewing on some ___.",
         options: [
             {
-                cree: "mitikok",
+                cree: "mistikwa",
                 english: "wood",
                 correct: true,
             },
             {
-                cree: "miskawêwak",
+                cree: "asiniy",
                 english: "rock",
                 correct: false,
             }
@@ -103,12 +103,12 @@ const questionOfScene = [
         question: "When they saw the ___ floating, the two beavers grabbed them to add to their dam.",
         options: [
             {
-                cree: "ê-pimâhôcik",
+                cree: "mistikwa",
                 english: "log",
                 correct: true,
             },
             {
-                cree: "oskâtimikw",
+                cree: "oskwatim",
                 english: "dam",
                 correct: false,
             }
@@ -118,12 +118,12 @@ const questionOfScene = [
         question: "They also found big ___ which they took for their dam as well.",
         options: [
             {
-                cree: "ê-pimâhôcik",
+                cree: "mistikwa",
                 english: "log",
                 correct: false,
             },
             {
-                cree: "miskawêwak",
+                cree: "asiniy",
                 english: "rock",
                 correct: true,
             }
@@ -133,12 +133,12 @@ const questionOfScene = [
         question: "The beavers used the rocks and the logs to build a cozy ___ where they could live.",
         options: [
             {
-                cree: "mitikok",
+                cree: "mistikwa",
                 english: "wood",
                 correct: false,
             },
             {
-                cree: "oskâtimikw",
+                cree: "oskwatim",
                 english: "dam",
                 correct: true,
             }
