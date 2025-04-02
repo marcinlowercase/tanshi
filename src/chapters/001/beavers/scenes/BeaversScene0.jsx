@@ -81,18 +81,17 @@ const BeaversScene0 = (props) => {
         })
     }
     handleBeaversProperties();
+    const amiskAudioUrl = new URL("../assets/audio/highlight/beaver.m4a", import.meta.url).href;
+    const amiskAudio = new Audio(amiskAudioUrl);
 
+    amiskAudio.loop = false;
+    amiskAudio.currentTime = 0;
 
     const [beaver1EatingSrc, setBeaver1EatingSrc] = useState(beaverEatingAnimationArr[0]);
     const [beaver2EatingSrc, setBeaver2EatingSrc] = useState(beaverEatingAnimationArr[0]);
     const [beaver1EatingIntervalId, setBeaver1EatingIntervalId] = useState(null);
     const [beaver2EatingIntervalId, setBeaver2EatingIntervalId] = useState(null);
 
-
-    useEffect(() => {
-        // console.log("THIS IS CURRENT INTERVAL ID 111", beaver1EatingIntervalId );
-        // console.log("THIS IS CURRENT INTERVAL ID 222", beaver2EatingIntervalId );
-    })
 
     // // setup sound effect
     // const props.variables.beaverEatingSound = useRef(new Audio((props.variables.beaverEatingSoundURL)));
@@ -154,7 +153,6 @@ const BeaversScene0 = (props) => {
 
     useEffect(() => {
 
-        console.log(props.variables.inLessonProgress);
         if (props.variables.inLessonProgress) {
             stopAudio([props.variables.beaverEatingSound]);
             // stop animations first then start it again
@@ -175,10 +173,15 @@ const BeaversScene0 = (props) => {
     }, [props.variables.inLessonProgress]);
 
     const handleBeaverPaneClick = () => {
+        amiskAudio.play();
+
         const next = () => {
             zoomOut("popup")
             props.functions.setInLessonProgress(true);
+
+
         }
+
         if (!props.variables.inLessonProgress) showTransitionScreen( "lesson-loading-screen", next, 1500);
     }
 

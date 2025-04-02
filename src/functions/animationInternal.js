@@ -3,7 +3,6 @@ const startAnimationInterval = (intervalId, setIntervalId, imageSource, setImage
     const newIntervalId = setInterval(() => {
         setImageSource(animationArr[currentIndex]);
         currentIndex = currentIndex < animationArr.length - 1 ? currentIndex + 1 : 0;
-        // console.log("current Index", currentIndex);
     }, timeout);
     setIntervalId(newIntervalId);
 

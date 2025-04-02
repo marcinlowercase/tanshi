@@ -27,7 +27,6 @@ const playAudio = (params) => {
                                 callbackFunction: params.callbackFunction
                             });
                         } else {
-                            console.log(typeof (params.callbackFunction))
                             params.callbackFunction();
                         }
                     }

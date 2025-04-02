@@ -4,6 +4,10 @@ import "./detail-pane-button-layout.css";
 import variables from "../../functions/variables.js";
 
 import showTransitionScreen from "../../functions/showTransitionScreen.js";
+import {startDVDBounce, createDVD} from "../../functions/startDVDBounce.js";
+import vanishAndRemove from "../../functions/vanishAndRemove.js";
+import typeIn from "../../functions/typeIn.js";
+import {loadAudio, playAudio} from "../../functions/audioUtilities.js";
 
 function DetailPaneButtonLayout(props) {
     const {
@@ -11,6 +15,7 @@ function DetailPaneButtonLayout(props) {
         currentSceneNumber,
         inLessonProgress,
         onQuestion,
+        questionComplete,
         cree,
         english,
     } = props.variables;
@@ -58,17 +63,55 @@ function DetailPaneButtonLayout(props) {
         }
     }, [onQuestion, currentScene]);
 
-    const handleClick = (index) => {
+
+    const handleClick = (index, option) => {
         if (selectedOption === index) {
             setSelectedOption(null);
         } else {
-            if (blankRef.current && optionsRef.current[index]) {
-                const blankRect = blankRef.current.getBoundingClientRect();
-                const optionRect = optionsRef.current[index].getBoundingClientRect();
-                const deltaX = blankRect.left - optionRect.left + (blankRect.width / 2 - optionRect.width / 2);
-                const deltaY = blankRect.top - optionRect.top;
-                setSelectedTransform({deltaX, deltaY});
+
+            if (option.correct === true) {
+                let zoom = 1;
+
+
+                const correctAudioURL = new URL('./assets/audio/correct.m4a', import.meta.url).href
+                const correctAudio = new Audio(correctAudioURL);
+
+                correctAudio.loop = false;
+                correctAudio.currentTime = 0;
+                correctAudio.play();
+
+                createDVD("current-correct-option", option.cree, zoom);
+
+
+                const showNextButton = () => {
+                    props.functions.setQuestionComplete(true);
+                }
+                const acceptAnswer = () => {
+
+                    vanishAndRemove("current-correct-option")
+                    typeIn(option.cree, "blank", 200,showNextButton);
+                }
+
+                startDVDBounce("current-correct-option", 100, 100, 1, zoom, props.variables.currentSceneHighlightAudio, acceptAnswer);
+                document.getElementById("content-container-options").style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById("content-container-options").style.display = 'none';
+                }, 300)
+
+
+            } else {
+                const incorrectAudioURL = new URL('./assets/audio/incorrect.m4a', import.meta.url).href
+                const incorrectAudio = new Audio(incorrectAudioURL);
+
+                incorrectAudio.loop = false;
+                incorrectAudio.currentTime = 0;
+                incorrectAudio.play();
+                //play wrong animation
+                // document.getElementById(`option-${index}`).style.display = 'none';
             }
+            vanishAndRemove(`option-${index}`)
+
+
             setSelectedOption(index);
         }
     };
@@ -92,12 +135,10 @@ function DetailPaneButtonLayout(props) {
     const creeRawScript = content.scriptOfScene[currentSceneNumber].cree
     const creeScriptArr = creeRawScript.split("****");
     const creeHighlight = creeScriptArr[1];
-    console.log(creeHighlight);
 
     const englishRawScript = content.scriptOfScene[currentSceneNumber].english
     const englishScriptArr = englishRawScript.split("****");
     const englishHighlight = englishScriptArr[1];
-    console.log(englishHighlight);
 
     return (
         <>
@@ -213,7 +254,6 @@ function DetailPaneButtonLayout(props) {
                                         style={{
                                             display: "inline-block",
                                             width: `${blankSize.width}px`,
-                                            height: `${blankSize.height}px`,
                                             verticalAlign: "middle",
                                             textAlign: "center",
                                         }}
@@ -226,10 +266,14 @@ function DetailPaneButtonLayout(props) {
                                 >
                                     {currentScene.options.map((option, index) => (
                                         <div
+                                            // id={`${option.correct ? "current-correct-option": "current-incorrect-option"}`}
+                                            id={`option-${index}`}
                                             key={index}
                                             ref={(el) => (optionsRef.current[index] = el)}
-                                            className="option"
-                                            onClick={() => handleClick(index)}
+                                            className={`option button`}
+                                            onClick={() =>
+                                                handleClick(index, option)
+                                            }
                                             style={{
                                                 display: "inline-block",
                                                 background: selectedOption === index ? variables.colorMediumGreen : variables.colorDeepGreen,
@@ -246,12 +290,6 @@ function DetailPaneButtonLayout(props) {
                                             }}
                                         >
                                             {option.cree}
-                                            {/*<span*/}
-                                            {/*style={{*/}
-                                            {/*    color: "white",*/}
-                                            {/*}}>*/}
-                                            {/*    {option.english}*/}
-                                            {/*</span>*/}
                                         </div>
                                     ))}
                                 </div>
@@ -259,29 +297,30 @@ function DetailPaneButtonLayout(props) {
                         )}
 
                         <div id="content-container-control-buttons">
-                            {!onQuestion && (
-                                <div
-                                    id="again-button"
-                                    className="unselectable special-character button"
-                                    style={{
-                                        backgroundColor: variables.colorSandyBrown,
-                                    }}
-                                    onClick={props.functions.replayCurrentAudio}
-                                >
-                                    ↺
-                                </div>
-                            )}
                             <div
-                                id="next-scene-button"
+                                id="again-button"
                                 className="unselectable special-character button"
-                                onClick={onQuestion ? nextSceneWithTransition : props.functions.nextScene}
                                 style={{
-                                    cursor: props.variables.nextButtonEnabled ? "pointer" : "progress",
-                                    backgroundColor: props.variables.nextButtonEnabled ? variables.colorMediumGreen : variables.colorDeepGreen,
+                                    backgroundColor: variables.colorSandyBrown,
                                 }}
+                                onClick={props.functions.replayCurrentAudio}
                             >
-                                {onQuestion ? "✔" : "⮕"}
+                                ↺
                             </div>
+                            {(!onQuestion || questionComplete)  && (
+                                <div
+                                    id="next-scene-button"
+                                    className="unselectable special-character button"
+                                    onClick={onQuestion ? nextSceneWithTransition : props.functions.nextScene}
+                                    style={{
+                                        cursor: props.variables.nextButtonEnabled ? "pointer" : "progress",
+                                        backgroundColor: props.variables.nextButtonEnabled ? variables.colorMediumGreen : variables.colorDeepGreen,
+                                    }}
+                                >
+                                    {/*{onQuestion ? "✔" : "⮕"}*/}
+                                    {"⮕"}
+                                </div>)
+                            }
                         </div>
                     </div>
                     <div draggable={false}>{/* Additional content or controls */}</div>

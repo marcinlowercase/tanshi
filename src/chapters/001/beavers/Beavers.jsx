@@ -45,23 +45,32 @@ const englishAudioOfScene1URL = new URL("./assets/audio/transcript/english/1.m4a
 const englishAudioOfScene2URL = new URL("./assets/audio/transcript/english/2.m4a", import.meta.url).href;
 const englishAudioOfScene3URL = new URL("./assets/audio/transcript/english/3.m4a", import.meta.url).href;
 
+const highlightAudioOfScene0URL = new URL("./assets/audio/highlight/0.m4a", import.meta.url).href;
+const highlightAudioOfScene1URL = new URL("./assets/audio/highlight/1.m4a", import.meta.url).href;
+const highlightAudioOfScene2URL = new URL("./assets/audio/highlight/2.m4a", import.meta.url).href;
+const highlightAudioOfScene3URL = new URL("./assets/audio/highlight/3.m4a", import.meta.url).href;
+
 
 const audioURLOfScene = [
     {
         cree: creeAudioOfScene0URL,
         english: englishAudioOfScene0URL,
+        highlight: highlightAudioOfScene0URL,
     },
     {
         cree: creeAudioOfScene1URL,
         english: englishAudioOfScene1URL,
+        highlight: highlightAudioOfScene1URL,
     },
     {
         cree: creeAudioOfScene2URL,
         english: englishAudioOfScene2URL,
+        highlight: highlightAudioOfScene2URL,
     },
     {
         cree: creeAudioOfScene3URL,
         english: englishAudioOfScene3URL,
+        highlight: highlightAudioOfScene3URL,
     },
 ]
 const scriptOfScene = [
@@ -74,8 +83,8 @@ const scriptOfScene = [
         cree: "Wâpamêw kotaka ****mistikwa**** akohtin, êkwa ôma nîso amiskwak otihtinêwak mistikwa kê-ta âpacihêw antah oskwatim kahwi osîhcitachik."
     },
     {
-        english: "They also found a big ****rock****, which they took for their dam as well.",
-        cree: "Ahyak-asici miskawêwak misti-****asiniya**** êwakoni mîna otinêwak êwakoni mîna wî-âpacihêwchik mwêstas, oskwatimow kah-wî-osîhcitachik."
+        english: "They also found a ****big rock****, which they took for their dam as well.",
+        cree: "Ahyak-asici miskawêwak ****misti-asiniya**** êwakoni mîna otinêwak êwakoni mîna wî-âpacihêwchik mwêstas, oskwatimow kah-wî-osîhcitachik."
     },
     {
         english: "The beavers used the rock and the log to build a cozy ****dam**** where they could live.",
@@ -93,8 +102,8 @@ const questionOfScene = [
                 correct: true,
             },
             {
-                cree: "asiniy",
-                english: "rock",
+                cree: "misti-asiniy",
+                english: "big rock",
                 correct: false,
             }
         ]
@@ -241,7 +250,6 @@ function Beavers(props) {
         // lakeBackgroundSound.current.load();
         // windBackgroundSound.current = new Audio(windBackgroundSoundURL);
         // windBackgroundSound.current.load();
-        console.log("Loaded")
 
 
     }, []);

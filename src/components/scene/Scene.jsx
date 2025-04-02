@@ -12,7 +12,9 @@ import switchLanguage from "../../functions/switchLanguage.js";
 const Scene = (props) => {
 
     const [backed, setBacked] = useState(false);
-    const [playingEnglish, setPlayingEnglish] = useState(false);
+    const [playingEnglish, setPlayingEnglish] = useState(true);
+
+    const [questionComplete, setQuestionComplete] = useState(false);
 
     const completeFirstLanguage = () => {
         setPlayingEnglish(true);
@@ -27,7 +29,6 @@ const Scene = (props) => {
 
     const enableNextButton = () => {
         setNextButtonEnabled(true);
-        console.log("nextButtonEnabled", nextButtonEnabled);
     }
     const disableNextButton = () => {
         setNextButtonEnabled(false);
@@ -56,7 +57,9 @@ const Scene = (props) => {
             // setCurrentSceneNumber(currentSceneNumber + 1);
         } else {
             if (nextButtonEnabled) {
+                stopCurrentAudio();
                 setOnQuestion(true);
+                setQuestionComplete(false);
                 playAudio({
                     audioArray: [currentSceneEnglishAudio],
                     loop: false,
@@ -93,12 +96,10 @@ const Scene = (props) => {
 
     const CurrentScene = props.scenes[currentSceneNumber];
 
-    console.log("current", currentSceneNumber);
-    console.log("total", props.variables.numberOfScenes - 1);
 
 
     const stillHaveNextScene = currentSceneNumber < props.variables.numberOfScenes;
-    let currentSceneCreeAudio, currentSceneEnglishAudio
+    let currentSceneCreeAudio, currentSceneEnglishAudio, currentSceneHighlightAudio
     // if (stillHaveNextScene) {
     //     currentSceneCreeAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].cree));
     //     currentSceneEnglishAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].english));
@@ -106,6 +107,7 @@ const Scene = (props) => {
 
     currentSceneCreeAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].cree));
     currentSceneEnglishAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].english));
+    currentSceneHighlightAudio = useRef(new Audio(props.variables.content.audioURLOfScene[currentSceneNumber].highlight));
 
     const stopCurrentAudio = () => {
         stopAudio([currentSceneCreeAudio]);
@@ -113,6 +115,7 @@ const Scene = (props) => {
     }
 
     const replayCurrentAudio = () => {
+        if (onQuestion) setOnQuestion(false);
         stopCurrentAudio();
         if (playingEnglish) {
             switchLanguage({
@@ -155,7 +158,11 @@ const Scene = (props) => {
                 {
                     audio: currentSceneEnglishAudio,
                     audioURL: props.variables.content.audioURLOfScene[currentSceneNumber].english
-                }
+                },
+                {
+                    audio: currentSceneHighlightAudio,
+                    audioURL: props.variables.content.audioURLOfScene[currentSceneNumber].highlight
+                },
             ])
             playAudio({
                 audioArray: [currentSceneCreeAudio],
@@ -239,15 +246,18 @@ const Scene = (props) => {
                 <DetailPaneButtonLayout
                     variables={{
                         ...props.variables,
+                        currentSceneHighlightAudio: currentSceneHighlightAudio,
                         currentSceneNumber: currentSceneNumber,
                         onQuestion: onQuestion,
                         nextButtonEnabled: nextButtonEnabled,
                         playingEnglish: playingEnglish,
+                        questionComplete: questionComplete,
                     }}
                     functions={{
                         nextScene: nextScene,
                         previousScene: previousScene,
                         setOnQuestion: setOnQuestion,
+                        setQuestionComplete: setQuestionComplete,
                         replayCurrentAudio: replayCurrentAudio,
                     }}
                 />
