@@ -15,6 +15,8 @@ function DetailPaneButtonLayout(props) {
         english,
     } = props.variables;
 
+
+    // Prep Question
     const currentScene = content.questionOfScene[currentSceneNumber];
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -86,6 +88,17 @@ function DetailPaneButtonLayout(props) {
     // Split the question by the "___" marker to insert the blank element.
     const questionParts = currentScene.question.split("___");
 
+    // Prep Script
+    const creeRawScript = content.scriptOfScene[currentSceneNumber].cree
+    const creeScriptArr = creeRawScript.split("****");
+    const creeHighlight = creeScriptArr[1];
+    console.log(creeHighlight);
+
+    const englishRawScript = content.scriptOfScene[currentSceneNumber].english
+    const englishScriptArr = englishRawScript.split("****");
+    const englishHighlight = englishScriptArr[1];
+    console.log(englishHighlight);
+
     return (
         <>
             {!inLessonProgress && (
@@ -127,6 +140,7 @@ function DetailPaneButtonLayout(props) {
 
                     <div id="content-container">
                         {!onQuestion && (
+
                             <div id="content-container-scripts">
                                 <div
                                     id="cree-script"
@@ -135,21 +149,60 @@ function DetailPaneButtonLayout(props) {
                                         color: props.variables.playingEnglish ? variables.colorTreeBarkBrown : "white",
                                     }}
                                 >
-                                    {content.scriptOfScene[currentSceneNumber].cree}
+                                    {creeScriptArr[0]}
+                                    <span
+                                        style={{
+                                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                                            borderRadius: variables.borderRadiusButton,
+                                            padding: variables.spaceSmall
+                                        }}>
+                                        {creeHighlight}
+                                    </span>
+                                    {creeScriptArr[2]}
                                 </div>
                                 <div id="english-script"
                                      style={{
-                                         backgroundColor: props.variables.playingEnglish ? variables.colorTreeBarkBrown: variables.colorSabeBrown,
-                                         color: props.variables.playingEnglish ? "white" :variables.colorTreeBarkBrown,
+                                         backgroundColor: props.variables.playingEnglish ? variables.colorTreeBarkBrown : variables.colorSabeBrown,
+                                         color: props.variables.playingEnglish ? "white" : variables.colorTreeBarkBrown,
                                      }}
                                 >
-                                    {content.scriptOfScene[currentSceneNumber].english}
+                                    {englishScriptArr[0]}
+                                    <span
+                                        style={{
+                                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                                            borderRadius: variables.borderRadiusButton,
+                                            padding: variables.spaceSmall
+                                        }}>
+                                        {englishHighlight}
+                                    </span>
+                                    {englishScriptArr[2]}
                                 </div>
                             </div>
                         )}
 
                         {onQuestion && (
                             <div id="content-container-question-container">
+
+                                <div
+                                    id="cree-script"
+                                    style={{
+                                        backgroundColor: "transparent",
+                                        color: "white",
+                                    }}
+                                >
+                                    {creeScriptArr[0]}
+                                    <span
+                                        style={{
+                                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                                            borderRadius: variables.borderRadiusButton,
+                                            padding: variables.spaceSmall
+                                        }}>
+                                        {creeHighlight}
+                                    </span>
+                                    {creeScriptArr[2]}
+                                </div>
+
+
                                 <div id="content-container-question">
                                     {questionParts[0]}
                                     {/* Blank span with dynamic width/height matching the correct answer */}
@@ -192,10 +245,13 @@ function DetailPaneButtonLayout(props) {
                                                 zIndex: selectedOption === index ? 1000 : "auto",
                                             }}
                                         >
-                                            {option.cree} <span
-                                        style={{
-                                             color:"white",
-                                        }}>{option.english}</span>
+                                            {option.cree}
+                                            {/*<span*/}
+                                            {/*style={{*/}
+                                            {/*    color: "white",*/}
+                                            {/*}}>*/}
+                                            {/*    {option.english}*/}
+                                            {/*</span>*/}
                                         </div>
                                     ))}
                                 </div>

@@ -66,20 +66,20 @@ const audioURLOfScene = [
 ]
 const scriptOfScene = [
     {
-        english: "Two beavers were sitting together on the beach, chewing on some wood.",
-        cree: "Nîso amiskwak êhapicik yêkawiskâhk, mâmâkwahcikêwin mistikwa."
+        english: "Two beavers were sitting together on the beach, chewing on some ****wood****.",
+        cree: "Nîso amiskwak êhapicik yêkawiskâhk, mâmâkwahcikêwin ****mistikwa****."
     },
     {
-        english: "When a log floated by, the two beavers grabed it to add to their dam.",
-        cree: "Wâpamêw kotaka mistikwa akohtin, êkwa ôma nîso amiskwak otihtinêwak mistikwa kê-ta âpacihêw antah oskwatim kahwi osîhcitachik."
+        english: "When a ****log**** floated by, the two beavers grabed it to add to their dam.",
+        cree: "Wâpamêw kotaka ****mistikwa**** akohtin, êkwa ôma nîso amiskwak otihtinêwak mistikwa kê-ta âpacihêw antah oskwatim kahwi osîhcitachik."
     },
     {
-        english: "They also found big rocks, which they took for their dam as well.",
-        cree: "Ahyak-asici miskawêwak misti-asiniya êwakoni mîna otinêwak êwakoni mîna wî-âpacihêwchik mwêstas, oskwatimow kah-wî-osîhcitachik."
+        english: "They also found a big ****rock****, which they took for their dam as well.",
+        cree: "Ahyak-asici miskawêwak misti-****asiniya**** êwakoni mîna otinêwak êwakoni mîna wî-âpacihêwchik mwêstas, oskwatimow kah-wî-osîhcitachik."
     },
     {
-        english: "The beavers used the rocks and the logs to build a cozy dam where they could live.",
-        cree: "Êkonik aniki nîso amiskwak âpacihêwak anihi misti-asiniya êkwa-mîna anihi mistikwâ, osîhcitawak ani-mitho oskwatimow êkota mamiywêtho-wîkichik "
+        english: "The beavers used the rock and the log to build a cozy ****dam**** where they could live.",
+        cree: "Êkonik aniki nîso amiskwak âpacihêwak anihi misti-asiniya êkwa-mîna anihi mistikwâ, osîhcitawak ani-mitho ****oskwatim****ow êkota mamiywêtho-wîkichik "
     },
 
 ]
@@ -100,7 +100,7 @@ const questionOfScene = [
         ]
     },
     {
-        question: "When they saw the ___ floating, the two beavers grabbed them to add to their dam.",
+        question: "When a ___ floated by, the two beavers grabed it to add to their dam.",
         options: [
             {
                 cree: "mistikwa",
@@ -115,7 +115,7 @@ const questionOfScene = [
         ]
     },
     {
-        question: "They also found big ___ which they took for their dam as well.",
+        question: "They also found a big ___, which they took for their dam as well.",
         options: [
             {
                 cree: "mistikwa",
@@ -130,7 +130,7 @@ const questionOfScene = [
         ]
     },
     {
-        question: "The beavers used the rocks and the logs to build a cozy ___ where they could live.",
+        question: "The beavers used the rock and the log to build a cozy ___ where they could live.",
         options: [
             {
                 cree: "mistikwa",

@@ -129,6 +129,7 @@
     align-items: center;
 
     gap: var(--space--small);
+    transition: all 0.3s ease;
 
 
 }
@@ -181,11 +182,12 @@
     border-radius: 12px;
     color: white;
     font-family: var(--font-family--body-text), sans-serif;
-    text-align: center;
+    /*text-align: center;*/
     margin: 1%;
     padding: 1%;
     font-size: 1.5em;
     transition: all 0.3s ease;
+    text-align: start;
 }
 
 #english-script {

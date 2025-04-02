@@ -51,13 +51,18 @@ const Scene = (props) => {
         if (onQuestion) {
             if (currentSceneNumber < props.variables.numberOfScenes - 1 && nextButtonEnabled) {
                 stopCurrentAudio();
-
                 showTransitionScreen("transition-screen", setCurrentSceneNumberToNextScene, 600);
             }
             // setCurrentSceneNumber(currentSceneNumber + 1);
         } else {
             if (nextButtonEnabled) {
                 setOnQuestion(true);
+                playAudio({
+                    audioArray: [currentSceneEnglishAudio],
+                    loop: false,
+                    volume: 1,
+
+                });
             }
         }
 
