@@ -179,7 +179,7 @@ const BeaversScene0 = (props) => {
             zoomOut("popup")
             props.functions.setInLessonProgress(true);
         }
-        if (!props.variables.inLessonProgress) showTransitionScreen( "lesson-loading-screen", next, 10000);
+        if (!props.variables.inLessonProgress) showTransitionScreen( "lesson-loading-screen", next, 1500);
     }
 
     const handleBeaverClick = () => {

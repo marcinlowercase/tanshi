@@ -6,7 +6,7 @@ const LessonLoadingScreen = (props) => {
         <div
             id={`lesson-loading-screen`}
         >
-               <div id="hello"> {props.text}</div>
+               <div id="lesson-loading-text"> {props.text}</div>
         </div>
     );
 };

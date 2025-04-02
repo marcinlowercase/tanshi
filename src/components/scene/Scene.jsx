@@ -1,8 +1,10 @@
 import DetailPaneButtonLayout from "../detail_pane_button_layout/DetailPaneButtonLayout.jsx";
+import LanguageSwitchingScreen from "../language_switching_screen/LanguageSwitchingScreen.jsx";
 import LessonTopBar from "../lesson_top_bar/LessonTopBar.jsx";
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {loadAudio, playAudio, stopAudio} from "../../functions/audioUtilities.js";
 import showTransitionScreen from "../../functions/showTransitionScreen.js";
+import switchLanguage from "../../functions/switchLanguage.js";
 
 
 // let currentSceneNumber = 0;
@@ -14,6 +16,7 @@ const Scene = (props) => {
 
     const completeFirstLanguage = () => {
         setPlayingEnglish(true);
+        switchLanguage();
     }
 
 
@@ -153,7 +156,7 @@ const Scene = (props) => {
                 width: '100%',
                 height: '100%',
                 backdropFilter: 'blur(5px)',
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                backgroundColor: 'rgba(0, 0, 0, 0.6)',
                 zIndex: 9999,
                 animation: 'fadeInOverlay 0.3s ease-out',
 
@@ -162,6 +165,8 @@ const Scene = (props) => {
                 props.functions.backToNormal();
             }}/>
 
+
+            <LanguageSwitchingScreen />
 
             <div id={"popup"} style={{
                 // TODO
