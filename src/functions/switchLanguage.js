@@ -1,20 +1,20 @@
 import variables from "./variables.js";
 
-const switchLanguage = () => {
+const switchLanguage = (props) => {
     // 1. Select the main screen element
-    const screenElement = document.getElementById('language-switching-screen');
-    const englishElement = document.getElementById('language-switching-screen-english');
-    const creeElement = document.getElementById('language-switching-screen-cree');
+    const screenElement = document.getElementById(`language-switching-screen`);
+    const nextLanguage = document.getElementById(`language-switching-screen-${props.to}`);
+    const currentLanguage = document.getElementById(`language-switching-screen-${props.from}`);
 
     // Check if elements exist
     if (!screenElement) {
         console.error('Element with ID "language-switching-screen" not found.');
         return;
     }
-    if (!englishElement) {
+    if (!nextLanguage) {
         console.warn('Element with ID "language-switching-screen-english" not found.');
     }
-    if (!creeElement) {
+    if (!currentLanguage) {
         console.warn('Element with ID "language-switching-screen-cree" not found.');
     }
 
@@ -30,13 +30,13 @@ const switchLanguage = () => {
 
     setTimeout(() => {
 
-        if (englishElement) {
-            englishElement.style.backgroundColor = variables.colorMediumGreen;
-            englishElement.style.transition = 'background-color 0.1s ease-in-out';
+        if (nextLanguage) {
+            nextLanguage.style.backgroundColor = variables.colorMediumGreen;
+            nextLanguage.style.transition = 'background-color 0.1s ease-in-out';
         }
-        if (creeElement) {
-            creeElement.style.backgroundColor = 'transparent';
-            creeElement.style.transition = 'background-color 0.1s ease-in-out';
+        if (currentLanguage) {
+            currentLanguage.style.backgroundColor = 'transparent';
+            currentLanguage.style.transition = 'background-color 0.1s ease-in-out';
         }
 
         // --- Animation Step 4: Schedule Fade-out (Wait another 2 seconds) ---
@@ -45,19 +45,19 @@ const switchLanguage = () => {
             screenElement.style.opacity = '0';
             screenElement.style.pointerEvents = 'none';
 
-            const fadeOutDuration = 1000; // 600ms = 0.6s
-            setTimeout(() => {
-
-                if (englishElement) {
-                    englishElement.style.backgroundColor = '';
-                    englishElement.style.transition = ''; // Also clear transition
-                }
-                if (creeElement) {
-                    creeElement.style.backgroundColor = '';
-                    creeElement.style.transition = ''; // Also clear transition
-                }
-
-            }, fadeOutDuration);
+            // const fadeOutDuration = 1000; // 600ms = 0.6s
+            // setTimeout(() => {
+            //
+            //     if (nextLanguage) {
+            //         nextLanguage.style.backgroundColor = '';
+            //         nextLanguage.style.transition = ''; // Also clear transition
+            //     }
+            //     if (currentLanguage) {
+            //         currentLanguage.style.backgroundColor = '';
+            //         currentLanguage.style.transition = ''; // Also clear transition
+            //     }
+            //
+            // }, fadeOutDuration);
 
 
         }, 1000);

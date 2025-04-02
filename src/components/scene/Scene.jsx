@@ -16,7 +16,10 @@ const Scene = (props) => {
 
     const completeFirstLanguage = () => {
         setPlayingEnglish(true);
-        switchLanguage();
+        switchLanguage({
+            from: "cree",
+            to: "english"
+        });
     }
 
 
@@ -106,7 +109,14 @@ const Scene = (props) => {
 
     const replayCurrentAudio = () => {
         stopCurrentAudio();
+        if (playingEnglish) {
+            switchLanguage({
+                from: "english",
+                to: "cree",
+            })
+        }
         setPlayingEnglish(false);
+
         playAudio({
             audioArray: [currentSceneCreeAudio],
             loop: false,
