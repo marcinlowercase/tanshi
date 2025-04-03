@@ -76,11 +76,11 @@ const audioURLOfScene = [
 const scriptOfScene = [
     {
         english: "Two beavers were sitting together on the beach, chewing on some ****wood****.",
-        cree: "Nîso amiskwak êhapicik yêkawiskâhk, mâmâkwahcikêwin ****mistikwa****."
+        cree: "Nîso amiskwak êhapicik yêkawiskâhk, mâmâkwahcikêwak ****mistikwa****. "
     },
     {
         english: "When a ****log**** floated by, the two beavers grabed it to add to their dam.",
-        cree: "Wâpamêw kotaka ****mistikwa**** akohtin, êkwa ôma nîso amiskwak otihtinêwak mistikwa kê-ta âpacihêw antah oskwatim kahwi osîhcitachik."
+        cree: "Wâpamêwak kotaka ****mistikwa**** epimakhochinthit, êkwa ôma nîso amiskwak otihtinêwak mistikwa kê-ta âpacihêw antah oskwatim apachihachik."
     },
     {
         english: "They also found a ****big rock****, which they took for their dam as well.",
@@ -88,7 +88,7 @@ const scriptOfScene = [
     },
     {
         english: "The beavers used the rock and the log to build a cozy ****dam**** where they could live.",
-        cree: "Êkonik aniki nîso amiskwak âpacihêwak anihi misti-asiniya êkwa-mîna anihi mistikwâ, osîhcitawak ani-mitho ****oskwatim****ow êkota mamiywêtho-wîkichik "
+        cree: "Êkonik aniki nîso amiskwak âpacihêwak anihi misti-asiniya êkwa-mîna anihi mistikwa, osîhcitawak ani-mitho ****oskwatim****ow êkota mamymêtho-wîkichik."
     },
 
 ]
@@ -124,7 +124,7 @@ const questionOfScene = [
         ]
     },
     {
-        question: "They also found a big ___, which they took for their dam as well.",
+        question: "They also found a ___, which they took for their dam as well.",
         options: [
             {
                 cree: "mistikwa",
@@ -132,8 +132,8 @@ const questionOfScene = [
                 correct: false,
             },
             {
-                cree: "asiniy",
-                english: "rock",
+                cree: "misti-asiniy",
+                english: "big rock",
                 correct: true,
             }
         ]

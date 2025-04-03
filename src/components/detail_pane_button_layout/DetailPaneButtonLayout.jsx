@@ -270,13 +270,13 @@ function DetailPaneButtonLayout(props) {
                                             id={`option-${index}`}
                                             key={index}
                                             ref={(el) => (optionsRef.current[index] = el)}
-                                            className={`option button`}
+                                            className={"option button"}
                                             onClick={() =>
                                                 handleClick(index, option)
                                             }
                                             style={{
                                                 display: "inline-block",
-                                                background: selectedOption === index ? variables.colorMediumGreen : variables.colorDeepGreen,
+                                                background: selectedOption === index ? variables.colorMediumGreen : variables.colorMediumGreen,
                                                 boxShadow: "border-box",
                                                 color: "white",
                                                 cursor: "pointer",

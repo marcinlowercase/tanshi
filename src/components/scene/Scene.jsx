@@ -5,6 +5,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {loadAudio, playAudio, stopAudio} from "../../functions/audioUtilities.js";
 import showTransitionScreen from "../../functions/showTransitionScreen.js";
 import switchLanguage from "../../functions/switchLanguage.js";
+import vanishAndRemove from "../../functions/vanishAndRemove.js";
 
 
 // let currentSceneNumber = 0;
@@ -115,7 +116,8 @@ const Scene = (props) => {
     }
 
     const replayCurrentAudio = () => {
-        if (onQuestion) setOnQuestion(false);
+        if (onQuestion) setOnQuestion(false)
+        vanishAndRemove("current-correct-option")
         stopCurrentAudio();
         if (playingEnglish) {
             switchLanguage({
