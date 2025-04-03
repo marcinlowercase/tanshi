@@ -1,5 +1,6 @@
 // Function to start the bouncing animation and handle interactions
 import {playAudio} from "./audioUtilities.js";
+import variables from "./variables.js";
 
 function startDVDBounce(divID, originalX, originalY, initialSpeed, initialZoom, audio, callback) { // Renamed speed -> initialSpeed for clarity
     const dvd = document.getElementById(divID);
@@ -150,9 +151,9 @@ const createDVD = (id, content, initialZoom) => {
     // --- Basic Styling ---
     dvdDiv.style.cursor = "pointer";
     dvdDiv.style.color = "white";
-    dvdDiv.style.background = "blue"; // Initial background color
+    dvdDiv.style.background = variables.colorLightRed;
     dvdDiv.style.padding = "10px 20px"; // Add some padding
-    dvdDiv.style.borderRadius = "5px"; // Make it look nicer
+    dvdDiv.style.borderRadius = variables.borderRadiusButton
     dvdDiv.style.display = "flex";
     dvdDiv.style.alignItems = "center";
     dvdDiv.style.justifyContent = "center";
