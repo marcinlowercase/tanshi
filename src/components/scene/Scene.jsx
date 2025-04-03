@@ -13,7 +13,7 @@ import vanishAndRemove from "../../functions/vanishAndRemove.js";
 const Scene = (props) => {
 
     const [backed, setBacked] = useState(false);
-    const [playingEnglish, setPlayingEnglish] = useState(true);
+    const [playingEnglish, setPlayingEnglish] = useState(false);
 
     const [questionComplete, setQuestionComplete] = useState(false);
 
