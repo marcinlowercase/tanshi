@@ -1,4 +1,4 @@
-//BeaversScene1.jsx
+//BeaversScene2jsx
 import {useEffect, useState} from "react";
 import {startAnimationInterval} from "../../../../functions/animationInternal.js";
 import dynamicSize from "../../../../functions/dynamicSize.js";
@@ -10,6 +10,7 @@ import beaverWithRockSrc from  "../assets/img/beaver_with_rock/beaver-with-rock.
 import beaverWithLogSrc from "../assets/img/beaver_with_rock/beaver-with-log.svg"
 const logAnimationArr = [log1, log2, log3];
 import "./beaver-scene2.css"
+
 const BeaversScene2 = () => {
 
     const [logSrc, setLogSrc] = useState(logAnimationArr[0]);
@@ -38,16 +39,14 @@ const BeaversScene2 = () => {
         >
 
             <img
-                id={"beaver-with-log"}
+                id={"scene2-beaver-with-log"}
                 draggable={false}
                 src={beaverWithLogSrc}
-                width={beaverWidth}
             />
             <img
-                id={"beaver-with-rock"}
+                id={"scene2-beaver-with-rock"}
                 draggable={false}
                 src={beaverWithRockSrc}
-                width={beaverWidth}
             />
 
 
