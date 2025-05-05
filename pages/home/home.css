@@ -1,0 +1,26 @@
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    height: 18vh;
+}
+#navbar-buttons {
+    display: flex;
+    align-items: space-between;
+    justify-content: center;
+}
+#logo-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+#navbar-logo {
+    height: 100%;
+}
+.navbar-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+}
+#navbar-start {
+}
