@@ -1,81 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DVD Bouncing Effect</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background: black;
-    }
-    #dvd {
-      position: absolute;
-      width: 100px;
-      height: 50px;
-      background: red;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      border-radius: 10px;
-    }
-  </style>
-</head>
-<body>
+<!doctype html>
+<html>
+    <head>
+        <style>
+            .navbar-button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 15vw;
+                height: 50px;
+                background: #f0f0f0;
+                color: black;
+                text-decoration: none;
+                border: 1px solid #ccc;
+            }
 
-<div id="dvd">DVD</div>
-
-<script>
-  function startDVDBounce(divID, originalX, originalY, speed) {
-    const dvd = document.getElementById(divID);
-    if (!dvd) {
-      console.error(`Element with ID '${divID}' not found.`);
-      return;
-    }
-
-    let x = originalX, y = originalY;
-    let dx = 1, dy = 1;
-
-    function moveDVD() {
-      const maxX = window.innerWidth - dvd.clientWidth;
-      const maxY = window.innerHeight - dvd.clientHeight;
-
-      x += dx * speed;
-      y += dy * speed;
-
-      // Bounce off walls
-      if (x <= 0 || x >= maxX) {
-        dx *= -1;
-        changeColor();
-      }
-      if (y <= 0 || y >= maxY) {
-        dy *= -1;
-        changeColor();
-      }
-
-      dvd.style.left = `${x}px`;
-      dvd.style.top = `${y}px`;
-
-      requestAnimationFrame(moveDVD);
-    }
-
-    function changeColor() {
-      dvd.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    }
-
-    dvd.style.position = "absolute";
-    moveDVD();
-  }
-
-  // Example usage
-  window.onload = function() {
-    startDVDBounce("dvd", 100, 100, 3);
-  };
-
-</script>
-
-</body>
+            body {
+                margin: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="/" class="navbar-button">Home</a>
+    </body>
 </html>

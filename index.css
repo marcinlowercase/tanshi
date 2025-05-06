@@ -1,0 +1,34 @@
+:root {
+    --color--font-family--body-text-brown: #3d3325;
+    --color--sabe-brown: #5c4c37;
+    --color--tree-bark-brown: #9b6834;
+    --color--light-sabe-brown: #927758;
+    --color--beaver-brown: #945833;
+    --color--sandy-brown: #d0ba97;
+    --color--deep-green: #174d37;
+    --color--medium-green: #2b9068;
+    --color--water-deep-blue: #66a9f1;
+    --color--water-light-blue: #99e9f2;
+    --color--light-red: #ce4040;
+
+    --font-family--body-text: "Poppins", sans-serif;
+    --font-family--heading: "Baloo 2", sans-serif;
+
+    --font-weight--bold: 700;
+    --font-weight--semibold: 600;
+
+    --font-size--xl: 3rem;
+    --font-size--l: 2rem;
+    --font-size--m: 1.5rem;
+    --font-size--s: 1rem;
+
+    --light-brown: rgb(124, 80, 51);
+    --dark-brown: rgb(87, 52, 29);
+
+    --border-radius--button: 30px;
+    --border--thick-black: solid 4px black;
+
+    --space--large: 1rem;
+    --space--small: 0.25rem;
+    --space--horizontal: 0 1rem;
+}

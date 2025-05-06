@@ -1,4 +1,3 @@
-
 #meaning-buttons {
     position: absolute;
     top: 15%;
@@ -30,15 +29,15 @@
 #cree-meaning-button {
     background: var(--color--medium-green);
     color: white;
-    border: 3px solid #8B4513;
+    border: 3px solid #8b4513;
     /*transform: rotate(-3deg);*/
 }
 
 /* English Button */
 #english-meaning-button {
     background-color: var(--color--deep-green);
-    color: #FFFFFF;
-    border: 3px solid #FFFFFF;
+    color: #ffffff;
+    border: 3px solid #ffffff;
     /*transform: rotate(3deg);*/
 }
 
@@ -78,7 +77,6 @@
     }
 }
 
-
 /* Add sparkle effect */
 @keyframes sparkle {
     0% {
@@ -95,7 +93,6 @@
     }
 }
 
-
 #bottom-pane-buttons-container {
     display: flex;
     flex-direction: row;
@@ -109,7 +106,6 @@
     position: absolute;
     z-index: 111111;
     animation: float 3s ease-in-out infinite;
-
 }
 
 #content-container {
@@ -130,10 +126,7 @@
 
     gap: var(--space--small);
     transition: all 0.3s ease;
-
-
 }
-
 
 #content-container-control-buttons {
     display: flex;
@@ -143,13 +136,15 @@
     width: 25%;
 }
 
-#previous-scene-button, #next-scene-button, #again-button {
+#previous-scene-button,
+#next-scene-button,
+#again-button {
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     font-family: var(--font-family--heading), sans-serif;
-    font-size: var(--font-size--heading);
+    font-size: var(--font-size--l);
     font-weight: var(--font-weight--bold);
 
     flex: 1;
@@ -164,7 +159,6 @@
 
 #previous-scene-button {
     background-color: var(--color--light-red);
-
 }
 #placeholder {
     flex: 1;
@@ -177,8 +171,9 @@
     /*background-color: var(--color--sandy-brown);*/
 }
 
-
-#cree-script, #english-script, #content-container-question {
+#cree-script,
+#english-script,
+#content-container-question {
     border-radius: 12px;
     color: white;
     font-family: var(--font-family--body-text), sans-serif;
@@ -210,12 +205,14 @@
 /*    justify-content: center;*/
 /*    gap: var(--space--large);*/
 /*}*/
-#content-container-options > * , #blank, #current-correct-option{
+#content-container-options > *,
+#blank,
+#current-correct-option {
     background-color: var(--color--sabe-brown);
     border: var(--border--thick-black);
     border-radius: var(--border-radius--button);
     font-family: var(--font-family--body-text), sans-serif;
-    font-size: var(--font-size--heading);
+    font-size: var(--font-size--l);
     padding: var(--space--large);
 }
 #blank {
@@ -228,7 +225,6 @@
     text-align: center;
     justify-content: center;
     display: flex;
-
 }
 #content-container-options {
     display: flex;
@@ -242,5 +238,4 @@
     margin: var(--space--large);
     text-align: center;
     transition: all 400ms ease;
-
 }

@@ -1,26 +1,23 @@
-
 :root {
-
-    --color--font-family--body-text-brown: #3D3325;
-    --color--sabe-brown: #5C4C37;
-    --color--tree-bark-brown: #9B6834;
+    --color--font-family--body-text-brown: #3d3325;
+    --color--sabe-brown: #5c4c37;
+    --color--tree-bark-brown: #9b6834;
     --color--light-sabe-brown: #927758;
     --color--beaver-brown: #945833;
-    --color--sandy-brown: #D0BA97;
-    --color--deep-green: #174D37;
-    --color--medium-green: #2B9068;
+    --color--sandy-brown: #d0ba97;
+    --color--deep-green: #174d37;
+    --color--medium-green: #2b9068;
     --color--water-deep-blue: #66a9f1;
     --color--water-light-blue: #99e9f2;
-    --color--light-red: #CE4040;
+    --color--light-red: #ce4040;
 
-
-    --font-family--body-text: 'Poppins', sans-serif;
-    --font-family--heading: 'Baloo 2', sans-serif;
+    --font-family--body-text: "Poppins", sans-serif;
+    --font-family--heading: "Baloo 2", sans-serif;
 
     --font-weight--bold: 700;
     --font-weight--semibold: 600;
 
-    --font-size--heading: 2rem;
+    --font-size--l: 2rem;
 
     --light-brown: rgb(124, 80, 51);
     --dark-brown: rgb(87, 52, 29);
@@ -32,7 +29,6 @@
     --space--small: 0.25rem;
     --space--horizontal: 0 1rem;
 }
-
 
 a {
     font-weight: 500;
@@ -106,7 +102,6 @@ img[src$=".svg"] {
 
 .button {
     transition: all 0.3s ease;
-
 }
 
 .button:hover {
@@ -114,8 +109,23 @@ img[src$=".svg"] {
 }
 
 @keyframes boomEffect {
-    0% { transform: scale(1); opacity: 1; }
-    30% { transform: scale(1.5); opacity: 0.8; filter: brightness(2); }
-    60% { transform: scale(2); opacity: 0.6; filter: brightness(3); }
-    100% { transform: scale(2.5); opacity: 0; filter: brightness(4); }
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    30% {
+        transform: scale(1.5);
+        opacity: 0.8;
+        filter: brightness(2);
+    }
+    60% {
+        transform: scale(2);
+        opacity: 0.6;
+        filter: brightness(3);
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+        filter: brightness(4);
+    }
 }

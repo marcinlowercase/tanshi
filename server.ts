@@ -39,6 +39,17 @@ Deno.serve(async (req) => {
     });
   }
 
+  // Serve /index.css from root
+  if (pathname === "/index.css") {
+    try {
+      const file = await Deno.readFile("index.css");
+      return new Response(file, {
+        headers: { "Content-Type": "text/css" },
+      });
+    } catch {
+      return new Response("index.css not found", { status: 404 });
+    }
+  }
   // 4. Fallback 404
   return new Response("Not Found", { status: 404 });
 });

@@ -12,8 +12,6 @@
 
     box-sizing: border-box;
     z-index: 111111;
-
-
 }
 
 #lesson-top-bar > * {
@@ -21,12 +19,11 @@
     border-radius: var(--border-radius--button);
     color: white;
     font-family: var(--font-family--heading), sans-serif;
-    font-size: var(--font-size--heading);
+    font-size: var(--font-size--l);
     padding: 10px;
 
     font-weight: var(--font-weight--bold);
     text-align: center;
-
 }
 
 #lesson-title-bar {
@@ -36,22 +33,18 @@
     /*background-*/
     /*background-size: cover;*/
 
-
     background-color: var(--color--tree-bark-brown);
-
 
     /*text-align: center;*/
     /*justify-content: center;*/
     /*display: flex;*/
     /*flex-direction: row;*/
     /*align-items: center;*/
-
 }
 #process-indicator {
     flex: 1;
     background: var(--color--sabe-brown);
 }
-
 
 #lesson-back-button {
     background: var(--color--sabe-brown);
@@ -66,7 +59,6 @@
     transition: all 0.3s ease;
 
     flex: 0;
-
 }
 
 #lesson-back-button:hover {
@@ -79,12 +71,12 @@
 }
 
 #lesson-back-button:active {
-    transform: scale(0.95) ;
+    transform: scale(0.95);
 }
 
 #lesson-back-button::before {
-    content: '←';
-    font-size: var(--font-size--heading);
+    content: "←";
+    font-size: var(--font-size--l);
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 

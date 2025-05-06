@@ -9,7 +9,7 @@
 
 #chapter-map-top-bar > * {
     color: white;
-    font-size: var(--font-size--heading);
+    font-size: var(--font-size--l);
     padding: 10px;
     border-radius: var(--border-radius--button);
     border: var(--border--thick-black);
