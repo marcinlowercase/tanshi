@@ -5,56 +5,56 @@ Deno.serve(async (req) => {
   const url = new URL(req.url);
   const pathname = url.pathname;
 
-  // Serve homepage at "/"
+  // 1. Serve home page at "/"
   if (pathname === "/") {
-    const res = await fetch(new URL("./pages/home/home.html", import.meta.url));
-    return new Response(await res.arrayBuffer(), {
+    const file = await Deno.readFile("pages/home/home.html");
+    return new Response(file, {
       headers: { "Content-Type": "text/html" },
     });
   }
 
-  // Serve assets (images, scripts, styles) from homepage folder
+  // 2. Serve assets and CSS under "/assets" and "/home.css"
   if (
     pathname.startsWith("/assets") ||
     pathname.startsWith("/script") ||
     pathname.startsWith("/style")
   ) {
-    const filePath = `./pages/home${pathname}`;
+    const filePath = `pages/home${pathname}`;
     try {
-      const res = await fetch(new URL(filePath, import.meta.url));
-      return new Response(await res.arrayBuffer(), {
-        headers: { "Content-Type": getContentType(filePath) },
+      const file = await Deno.readFile(filePath);
+      const contentType = getContentType(filePath);
+      return new Response(file, {
+        headers: { "Content-Type": contentType },
       });
     } catch (_) {
       return new Response("Asset not found", { status: 404 });
     }
   }
 
-  // Serve /index.css if needed
+  // 3. Serve React app from "/game"
+  if (pathname.startsWith("/start")) {
+    console.log("START");
+    const newReq = new Request(req.url.replace("/start", ""), req);
+    return serveDir(newReq, {
+      fsRoot: "./dist",
+      urlRoot: "",
+      showDirListing: false,
+      enableCors: true,
+    });
+  }
+
+  // Serve /index.css from root
   if (pathname === "/index.css") {
     try {
-      const res = await fetch(new URL("./index.css", import.meta.url));
-      return new Response(await res.arrayBuffer(), {
+      const file = await Deno.readFile("index.css");
+      return new Response(file, {
         headers: { "Content-Type": "text/css" },
       });
     } catch {
       return new Response("index.css not found", { status: 404 });
     }
   }
-
-  // Serve React app from /start (dist folder)
-  if (pathname.startsWith("/start")) {
-    // Strip "/start" and serve from dist folder
-    const cleanPath = pathname.replace("/start", "") || "/";
-    const newReq = new Request("http://localhost" + cleanPath, req);
-    return serveDir(newReq, {
-      fsRoot: "./dist",
-      showDirListing: false,
-      enableCors: true,
-    });
-  }
-
-  // Fallback: 404
+  // 4. Fallback 404
   return new Response("Not Found", { status: 404 });
 });
 
