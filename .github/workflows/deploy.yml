@@ -38,7 +38,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "acimowin"
-          entrypoint: "server.ts"
+          entrypoint: "./server.ts"
           root: "/"
           
           
