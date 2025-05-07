@@ -39,6 +39,6 @@ jobs:
         with:
           project: "acimowintwo"
           entrypoint: "server.ts"
-          root: "dist"
+          root: "/"
           
           
