@@ -5,6 +5,7 @@
     --color--light-sabe-brown: #927758;
     --color--beaver-brown: #945833;
     --color--sandy-brown: #d0ba97;
+    --color--sandy-yellow: #ffe4ba;
     --color--deep-green: #174d37;
     --color--medium-green: #2b9068;
     --color--water-deep-blue: #66a9f1;
@@ -17,6 +18,7 @@
     --font-weight--bold: 700;
     --font-weight--semibold: 600;
 
+    --font-size--xxl: 4rem;
     --font-size--xl: 3rem;
     --font-size--l: 2rem;
     --font-size--m: 1.5rem;

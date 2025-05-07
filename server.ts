@@ -14,7 +14,11 @@ Deno.serve(async (req) => {
   }
 
   // 2. Serve assets and CSS under "/assets" and "/home.css"
-  if (pathname.startsWith("/assets") || pathname === "/home.css") {
+  if (
+    pathname.startsWith("/assets") ||
+    pathname.startsWith("/script") ||
+    pathname.startsWith("/style")
+  ) {
     const filePath = `pages/home${pathname}`;
     try {
       const file = await Deno.readFile(filePath);
