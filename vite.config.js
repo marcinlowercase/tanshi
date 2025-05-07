@@ -5,4 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/start/",
   plugins: [react()],
+  build: {
+    outDir: "dist", // this must match what `server.ts` is serving
+  },
 });
