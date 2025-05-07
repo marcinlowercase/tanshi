@@ -37,8 +37,8 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "acimowin"
-          entrypoint: "https://deno.land/std@0.217.0/http/file_server.ts"
+          project: "acimowintwo"
+          entrypoint: "server.ts"
           root: "dist"
           
           
