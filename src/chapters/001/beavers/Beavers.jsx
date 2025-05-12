@@ -73,7 +73,141 @@ const audioURLOfScene = [
         highlight: highlightAudioOfScene3URL,
     },
 ]
+const scriptOfSceneBackBack = [
+    {
+        english: [
+            {word: "Two", timestamp: 0, keyword: false},
+            {word: "beavers", timestamp: 820, keyword: false},
+            {word: "were sitting together", timestamp: 1372, keyword: false},
+            {word: "on the beach", timestamp: 2471.2, keyword: false},
+            {word: "chewing on", timestamp: 3496, keyword: false},
+            {word: "some wood", timestamp: 4454.4, keyword: false},
+        ],
+        cree: [
+            {word: "Nîso", timestamp: 0, keyword: false},
+            {word: "amiskwak", timestamp: 1651.2, keyword: false},
+            {word: "êhapicik", timestamp: 2227.2, keyword: false},
+            {word: "yêkawiskâhk", timestamp: 3220, keyword: false},
+            {word: "mâmâkwahcikêwak", timestamp: 4496, keyword: false},
+            {word: "mistikwa", timestamp: 6372, keyword: true},
+        ]
+
+    },
+
+]
 const scriptOfScene = [
+    {
+        english: [
+            {word: "Two", timestamp: 0, keyword: false},
+            {word: "beavers", timestamp: 820, keyword: false},
+            {word: "were sitting", timestamp: 1372, keyword: false},
+            {word: "together", timestamp: 1934, keyword: false},
+            {word: "on the beach", timestamp: 2471.2, keyword: false},
+            {word: "chewing", timestamp: 3496, keyword: false},
+            {word: "on", timestamp: 4248, keyword: false},
+            {word: "some", timestamp: 4454.4, keyword: false},
+            {word: "wood", timestamp: 4578.4, keyword: true},
+        ],
+        cree: [
+            {word: "Nîso", timestamp: 0, keyword: false},
+            {word: "amiskwak", timestamp: 1651.2, keyword: false},
+            {word: "êhapicik", timestamp: 2227.2, keyword: false},
+            {word: "yêkawiskâhk", timestamp: 3220, keyword: false},
+            {word: "mâmâkwahcikêwak", timestamp: 4496, keyword: false},
+            {word: "mistikwa", timestamp: 6372, keyword: true},
+        ]
+
+    },
+    {
+        english: [
+            {word: "When a", timestamp: 0, keyword: false},
+            {word: "log", timestamp: 668, keyword: true},
+            {word: "floated by", timestamp: 1248, keyword: false},
+            {word: "the", timestamp: 2372, keyword: false},
+            {word: "two", timestamp: 2600, keyword: false},
+            {word: "beavers", timestamp: 2694, keyword: false},
+            {word: "grabbed it", timestamp: 3334.8, keyword: false},
+            {word: "to add", timestamp: 3900.8, keyword: false},
+            {word: "to their dam.", timestamp: 4562, keyword: false},
+        ],
+        cree: [
+            {word: "Wâpamêwak", timestamp: 0, keyword: false},
+            {word: "kotaka", timestamp: 808.4, keyword: false},
+            {word: "mistikwa", timestamp: 1991.6, keyword: true},
+            {word: "epimakhochinthit,", timestamp: 2529.2, keyword: false},
+            {word: "êkwa ôma", timestamp: 3620, keyword: false},
+            {word: "nîso", timestamp: 5000, keyword: false},
+            {word: "amiskwak", timestamp: 5382, keyword: false},
+            {word: "otihtinêwak", timestamp: 5951.2, keyword: false},
+            {word: "mistikwa", timestamp: 7124, keyword: false},
+            {word: "kê-ta", timestamp: 8000, keyword: false},
+            {word: "âpacihêw", timestamp: 8826.4, keyword: false},
+            {word: "antah", timestamp: 9565.2, keyword: false},
+            {word: "oskwatim", timestamp: 11000, keyword: false},
+            {word: "apachihachik.", timestamp: 11934, keyword: false}
+        ]
+    },
+    {
+        english: [
+            {word: "They", timestamp: 0, keyword: false},
+            {word: "also", timestamp: 430, keyword: false},
+            {word: "found", timestamp: 868, keyword: false},
+            {word: "a", timestamp: 1372, keyword: false},
+            {word: "big rock", timestamp: 1620, keyword: true},
+            {word: "which", timestamp: 3000, keyword: false},
+            {word: "they", timestamp: 3289.2, keyword: false},
+            {word: "took", timestamp: 3537.2, keyword: false},
+            {word: "for", timestamp: 3868, keyword: false},
+            {word: "their", timestamp: 4082.4, keyword: false},
+            {word: "dam", timestamp: 4223.2, keyword: false},
+            {word: "as well.", timestamp: 4744, keyword: false},
+        ],
+        cree: [
+            {word: "Ahyak-asici", timestamp: 0, keyword: false},
+            {word: "miskawêwak", timestamp: 2620, keyword: false},
+            {word: "misti-asiniya", timestamp: 3214.8, keyword: true},
+            {word: "êwakoni", timestamp: 4103.2, keyword: false},
+            {word: "mîna otinêwak", timestamp: 4868, keyword: false},
+            {word: "êwakoni mîna", timestamp: 5868, keyword: false},
+            {word: "wî-âpacihêwchik", timestamp: 6661.2, keyword: false},
+            {word: "mwêstas,", timestamp: 7686, keyword: false},
+            {word: "oskwatimow", timestamp: 9248, keyword: false},
+            {word: "kah-wî-osîhcitachik.", timestamp: 10206.4, keyword: false}
+        ]
+    },
+    {
+        english: [
+            {word: "The", timestamp: 0, keyword: false},
+            {word: "beavers", timestamp: 372, keyword: false},
+            {word: "used", timestamp: 1000, keyword: false},
+            {word: "the rock", timestamp: 1496, keyword: false},
+            {word: "and", timestamp: 2000, keyword: false},
+            {word: "the log", timestamp: 2446.4, keyword: false},
+            {word: "to build", timestamp: 3124, keyword: false},
+            {word: "a cozy", timestamp: 3620, keyword: false},
+            {word: "dam", timestamp: 4206.4, keyword: true},
+            {word: "where", timestamp: 4620, keyword: false},
+            {word: "they", timestamp: 5000, keyword: false},
+            {word: "could live.", timestamp: 5248, keyword: false},
+        ],
+        cree: [
+            {word: "Êkonik aniki", timestamp: 0, keyword: false},
+            {word: "nîso", timestamp: 1868, keyword: false},
+            {word: "amiskwak", timestamp: 2182, keyword: false},
+            {word: "âpacihêwak anihi", timestamp: 2706.4, keyword: false},
+            {word: "misti-asiniya", timestamp: 3908.4, keyword: false},
+            {word: "êkwa-mîna anihi", timestamp: 4602.4, keyword: false},
+            {word: "mistikwa,", timestamp: 6124, keyword: false},
+            {word: "osîhcitawak", timestamp: 7496, keyword: false},
+            {word: "ani-mitho", timestamp: 8428.8, keyword: false},
+            {word: "oskwatimow", timestamp: 9496, keyword: true},
+            {word: "êkota", timestamp: 11000, keyword: false},
+            {word: "mamymêtho-wîkichik.", timestamp: 11602, keyword: false}
+        ]
+    }
+
+]
+const scriptOfSceneBackup = [
     {
         english: "Two beavers were sitting together on the beach, chewing on some ****wood****.",
         cree: "Nîso amiskwak êhapicik yêkawiskâhk, mâmâkwahcikêwak ****mistikwa****. "
@@ -373,6 +507,7 @@ function Beavers(props) {
 
     // Update backToNormal function
     const backToNormal = () => {
+        console.log("backToNormal");
         if (!props.variables.inLessonProgress) {
             props.functions.setShowPopup(false);
             stopAudio([lakeBackgroundSound, windBackgroundSound]);
@@ -385,7 +520,7 @@ function Beavers(props) {
 
     return (
         <div id={"beaversArea"} onClick={handleBeaverAreaClick}>
-            <LessonLoadingScreen text={"Amisk - Beaver"} />
+            <LessonLoadingScreen text={"Amisk - Beaver"}/>
             <img
                 draggable={false}
                 alt={"beaver 1"}

@@ -89,7 +89,7 @@ function DetailPaneButtonLayout(props) {
                 const acceptAnswer = () => {
 
                     vanishAndRemove("current-correct-option")
-                    typeIn(option.cree, "blank", 200,showNextButton);
+                    typeIn(option.cree, "blank", 200, showNextButton);
                 }
 
                 startDVDBounce("current-correct-option", 100, 100, 1, zoom, props.variables.currentSceneHighlightAudio, acceptAnswer);
@@ -132,13 +132,13 @@ function DetailPaneButtonLayout(props) {
     const questionParts = currentScene.question.split("___");
 
     // Prep Script
-    const creeRawScript = content.scriptOfScene[currentSceneNumber].cree
-    const creeScriptArr = creeRawScript.split("****");
-    const creeHighlight = creeScriptArr[1];
+    // const creeRawScript = content.scriptOfScene[currentSceneNumber].cree
+    // const creeScriptArr = creeRawScript.split("****");
+    // const creeHighlight = creeScriptArr[1];
 
-    const englishRawScript = content.scriptOfScene[currentSceneNumber].english
-    const englishScriptArr = englishRawScript.split("****");
-    const englishHighlight = englishScriptArr[1];
+    // const englishRawScript = content.scriptOfScene[currentSceneNumber].english
+    // const englishScriptArr = englishRawScript.split("****");
+    // const englishHighlight = englishScriptArr[1];
 
     return (
         <>
@@ -184,39 +184,46 @@ function DetailPaneButtonLayout(props) {
 
                             <div id="content-container-scripts">
                                 <div
-                                    id="cree-script"
+                                    id={"cree-script"}
                                     style={{
                                         backgroundColor: props.variables.playingEnglish ? variables.colorSabeBrown : variables.colorTreeBarkBrown,
                                         color: props.variables.playingEnglish ? variables.colorTreeBarkBrown : "white",
                                     }}
                                 >
-                                    {creeScriptArr[0]}
-                                    <span
-                                        style={{
-                                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                                            borderRadius: variables.borderRadiusButton,
-                                            padding: variables.spaceSmall
-                                        }}>
-                                        {creeHighlight}
-                                    </span>
-                                    {creeScriptArr[2]}
+                                    {content.scriptOfScene[currentSceneNumber].cree.map((item, index, arr) => (
+                                        <span>
+                                            <span
+                                                key={index}
+                                                data-timestamp={item.timestamp}
+                                                className={item.keyword ? "content-keyword" : ""}
+                                            >
+                                                {item.word}
+
+                                            </span>
+                                            {index !== arr.length - 1 && " "}
+                                        </span>
+                                    ))}
                                 </div>
-                                <div id="english-script"
-                                     style={{
-                                         backgroundColor: props.variables.playingEnglish ? variables.colorTreeBarkBrown : variables.colorSabeBrown,
-                                         color: props.variables.playingEnglish ? "white" : variables.colorTreeBarkBrown,
-                                     }}
+                                <div
+                                    id={"english-script"}
+                                    style={{
+                                        backgroundColor: props.variables.playingEnglish ? variables.colorTreeBarkBrown : variables.colorSabeBrown,
+                                        color: props.variables.playingEnglish ? "white" : variables.colorTreeBarkBrown,
+                                    }}
                                 >
-                                    {englishScriptArr[0]}
-                                    <span
-                                        style={{
-                                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                                            borderRadius: variables.borderRadiusButton,
-                                            padding: variables.spaceSmall
-                                        }}>
-                                        {englishHighlight}
-                                    </span>
-                                    {englishScriptArr[2]}
+                                    {content.scriptOfScene[currentSceneNumber].english.map((item, index, arr) => (
+                                        <span>
+                                            <span
+                                                key={index}
+                                                data-timestamp={item.timestamp}
+                                                className={item.keyword ? "content-keyword" : ""}
+                                            >
+                                                {item.word}
+
+                                            </span>
+                                            {index !== arr.length - 1 && " "}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
                         )}
@@ -224,42 +231,79 @@ function DetailPaneButtonLayout(props) {
                         {onQuestion && (
                             <div id="content-container-question-container">
 
+                                {/*<div*/}
+                                {/*    id="cree-script"*/}
+                                {/*    style={{*/}
+                                {/*        backgroundColor: "transparent",*/}
+                                {/*        color: "white",*/}
+                                {/*    }}*/}
+                                {/*>*/}
+                                {/*    {creeScriptArr[0]}*/}
+                                {/*    <span*/}
+                                {/*        style={{*/}
+                                {/*            backgroundColor: 'rgba(255, 255, 255, 0.3)',*/}
+                                {/*            borderRadius: variables.borderRadiusButton,*/}
+                                {/*            padding: variables.spaceSmall*/}
+                                {/*        }}>*/}
+                                {/*        {creeHighlight}*/}
+                                {/*    </span>*/}
+                                {/*    {creeScriptArr[2]}*/}
+                                {/*</div>*/}
+
+
                                 <div
-                                    id="cree-script"
-                                    style={{
-                                        backgroundColor: "transparent",
-                                        color: "white",
-                                    }}
+                                    id="content-container-question"
+
                                 >
-                                    {creeScriptArr[0]}
-                                    <span
-                                        style={{
-                                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                                            borderRadius: variables.borderRadiusButton,
-                                            padding: variables.spaceSmall
-                                        }}>
-                                        {creeHighlight}
-                                    </span>
-                                    {creeScriptArr[2]}
+                                    {content.scriptOfScene[currentSceneNumber].english.map((item, index, arr) => {
+                                        if (item.keyword) {
+                                            return (
+                                                <span
+                                                    className="blank content-keyword"
+                                                    id="blank"
+                                                    key={index}
+                                                    data-timestamp={item.timestamp}
+                                                    ref={blankRef}
+                                                    style={{
+                                                        display: "inline-block",
+                                                        width: `${blankSize.width}px`,
+                                                        verticalAlign: "middle",
+                                                        textAlign: "center",
+                                                    }}
+                                                ></span>
+                                            )
+                                        } else {
+                                            return (
+
+                                                <span
+                                                    key={index}
+                                                    data-timestamp={item.timestamp}
+                                                >
+                                                    {item.word}
+                                                    {index !== arr.length - 1 && " "}
+                                                </span>
+                                            )
+                                        }
+                                    })}
                                 </div>
 
+                                {/*<div id="content-container-question">*/}
+                                {/*    {questionParts[0]}*/}
+                                {/*    /!* Blank span with dynamic width/height matching the correct answer *!/*/}
+                                {/*    <span*/}
+                                {/*        className="blank"*/}
+                                {/*        id="blank"*/}
+                                {/*        ref={blankRef}*/}
+                                {/*        style={{*/}
+                                {/*            display: "inline-block",*/}
+                                {/*            width: `${blankSize.width}px`,*/}
+                                {/*            verticalAlign: "middle",*/}
+                                {/*            textAlign: "center",*/}
+                                {/*        }}*/}
+                                {/*    ></span>*/}
+                                {/*    {questionParts[1] || ""}*/}
+                                {/*</div>*/}
 
-                                <div id="content-container-question">
-                                    {questionParts[0]}
-                                    {/* Blank span with dynamic width/height matching the correct answer */}
-                                    <span
-                                        className="blank"
-                                        id="blank"
-                                        ref={blankRef}
-                                        style={{
-                                            display: "inline-block",
-                                            width: `${blankSize.width}px`,
-                                            verticalAlign: "middle",
-                                            textAlign: "center",
-                                        }}
-                                    ></span>
-                                    {questionParts[1] || ""}
-                                </div>
                                 <div
                                     id="content-container-options"
                                     style={{marginTop: "20px", position: "relative"}}
@@ -290,6 +334,13 @@ function DetailPaneButtonLayout(props) {
                                             }}
                                         >
                                             {option.cree}
+                                            <div
+                                                style={{
+                                                    color: "darkgray",
+                                                    fontSize: "1rem",
+                                                }}>
+                                                {option.english}
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -307,7 +358,7 @@ function DetailPaneButtonLayout(props) {
                             >
                                 ↺
                             </div>
-                            {(!onQuestion || questionComplete)  && (
+                            {(!onQuestion || questionComplete) && (
                                 <div
                                     id="next-scene-button"
                                     className="unselectable special-character button"

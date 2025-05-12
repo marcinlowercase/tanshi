@@ -6,11 +6,32 @@ import {loadAudio, playAudio, stopAudio} from "../../functions/audioUtilities.js
 import showTransitionScreen from "../../functions/showTransitionScreen.js";
 import switchLanguage from "../../functions/switchLanguage.js";
 import vanishAndRemove from "../../functions/vanishAndRemove.js";
+import {startWordHighlighter} from "../../functions/wordHighlighter.js";
 
 
 // let currentSceneNumber = 0;
 
 const Scene = (props) => {
+
+    let creeHighlighter, englishHighlighter, questionHighlighter;
+    const startCreeScript = () => {
+        console.log("startCreeScript");
+        const container = document.getElementById("cree-script");
+        creeHighlighter = startWordHighlighter(container, props.variables.content.scriptOfScene[currentSceneNumber].cree);
+    }
+    const startEnglishScript = () => {
+        const container = document.getElementById("english-script");
+        englishHighlighter = startWordHighlighter(container, props.variables.content.scriptOfScene[currentSceneNumber].english);
+
+    }
+    const startQuestionScript = () => {
+        const container = document.getElementById("content-container-question");
+        // const nonKeywordEnglish = props.variables.content.scriptOfScene[currentSceneNumber].english.filter(
+        //     (item) => !item.keyword
+        // );
+        questionHighlighter = startWordHighlighter(container, props.variables.content.scriptOfScene[currentSceneNumber].english);
+
+    }
 
     const [backed, setBacked] = useState(false);
     const [playingEnglish, setPlayingEnglish] = useState(false);
@@ -18,6 +39,8 @@ const Scene = (props) => {
     const [questionComplete, setQuestionComplete] = useState(false);
 
     const completeFirstLanguage = () => {
+        creeHighlighter.stop();
+        startEnglishScript();
         setPlayingEnglish(true);
         switchLanguage({
             from: "cree",
@@ -29,6 +52,8 @@ const Scene = (props) => {
     const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
 
     const enableNextButton = () => {
+        englishHighlighter.stop();
+        creeHighlighter.stop();
         setNextButtonEnabled(true);
     }
     const disableNextButton = () => {
@@ -67,6 +92,7 @@ const Scene = (props) => {
                     volume: 1,
 
                 });
+                startQuestionScript();
             }
         }
 
@@ -81,10 +107,7 @@ const Scene = (props) => {
 
     const previousScene = () => {
         if (currentSceneNumber > 0) {
-            setBacked(true);
             stopCurrentAudio();
-
-
             // setCurrentSceneNumber(currentSceneNumber - 1);
             showTransitionScreen("transition-screen", setCurrentSceneNumberToPreviousScene, 600);
         }
@@ -135,7 +158,11 @@ const Scene = (props) => {
             afterFirst: completeFirstLanguage,
 
         })
+        startCreeScript();
     }
+
+
+
 
     useEffect(() => {
 
@@ -144,14 +171,18 @@ const Scene = (props) => {
 
         if (currentSceneNumber !== 0 && playingEnglish) {
             setPlayingEnglish(false);
-            switchLanguage({
-                from: "english",
-                to: "cree",
-            })
+            if (!backed) {
+                switchLanguage({
+                    from: "english",
+                    to: "cree",
+                })
+            }
+
         }
 
-        // play current scene audio
         if (props.variables.inLessonProgress) {
+            // play current scene audio
+
             loadAudio([
                 {
                     audio: currentSceneCreeAudio,
@@ -172,8 +203,9 @@ const Scene = (props) => {
                 nextAudio: [currentSceneEnglishAudio],
                 callbackFunction: enableNextButton,
                 afterFirst: completeFirstLanguage,
-
             })
+            startCreeScript();
+
         }
 
     }, [currentSceneNumber, props.variables.inLessonProgress]);
@@ -228,6 +260,7 @@ const Scene = (props) => {
                     functions={{
                         ...props.functions,
                         sceneZero: sceneZero,
+                        setBacked: setBacked,
                         setCurrentSceneNumber: setCurrentSceneNumber,
                         stopCurrentAudio: stopCurrentAudio,
                     }}
@@ -239,6 +272,7 @@ const Scene = (props) => {
                     functions={{
                         ...props.functions,
                         enableNextButton: enableNextButton,
+                        setBacked: setBacked,
                     }}
                     variables={{
                         ...props.variables,

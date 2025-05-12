@@ -34,3 +34,13 @@
     --space--small: 0.25rem;
     --space--horizontal: 0 1rem;
 }
+
+* {
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
+}
+
+
+

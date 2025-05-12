@@ -6,6 +6,7 @@ const LessonTopBar = (props) => {
     const backToPreview = () => {
         // e.stopPropagation();  // Add this line
         if (props.variables.currentSceneNumber === 0) {
+            props.functions.setBacked(true);
             props.functions.setCurrentSceneNumber(1);
             setTimeout(() => {
                 props.functions.sceneZero();
