@@ -365,6 +365,15 @@ function Beavers(props) {
     }
 
 // SCENE 0  sound
+    const beaverAudioUrl = new URL("./assets/audio/highlight/beaver.m4a", import.meta.url).href;
+    const beaverAudio = new Audio(beaverAudioUrl)
+    beaverAudio.loop = false;
+    beaverAudio.currentTime = 0;
+    const amiskAudioUrl = new URL("./assets/audio/highlight/amisk.m4a", import.meta.url).href;
+    const amiskAudio = new Audio(amiskAudioUrl);
+    amiskAudio.loop = false;
+    amiskAudio.currentTime = 0;
+
     const beaverEatingSound = useRef(new Audio((beaverEatingSoundURL)));
     const lakeBackgroundSound = useRef(new Audio(lakeBackgroundSoundURL));
     const windBackgroundSound = useRef(new Audio(windBackgroundSoundURL));
@@ -567,6 +576,8 @@ function Beavers(props) {
                 <Scene
                     scenes={beaversScenes}
                     variables={{
+                        creeAudioUrl: amiskAudioUrl,
+                        englishAudioUrl: beaverAudioUrl,
                         beaver1Src: beaver1Src,
                         beaver2Src: beaver2Src,
                         beaver1Style: beaver1Style,

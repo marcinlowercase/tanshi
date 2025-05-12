@@ -11,6 +11,8 @@ import {loadAudio, playAudio} from "../../functions/audioUtilities.js";
 
 function DetailPaneButtonLayout(props) {
     const {
+        creeAudioUrl,
+        englishAudioUrl,
         content,
         currentSceneNumber,
         inLessonProgress,
@@ -149,6 +151,14 @@ function DetailPaneButtonLayout(props) {
                         className="button"
                         onClick={(e) => {
                             e.preventDefault();
+
+                            console.log(creeAudioUrl)
+                            const creeAudio = new Audio(creeAudioUrl);
+
+                            creeAudio.loop = false;
+                            creeAudio.currentTime = 0;
+                            creeAudio.play();
+
                         }}
                     >
                         {cree}
@@ -158,6 +168,11 @@ function DetailPaneButtonLayout(props) {
                         className="button"
                         onClick={(e) => {
                             e.preventDefault();
+                            const englishAudio = new Audio(englishAudioUrl);
+
+                            englishAudio.loop = false;
+                            englishAudio.currentTime = 0;
+                            englishAudio.play();
                         }}
                     >
                         {english}

@@ -81,11 +81,17 @@ const BeaversScene0 = (props) => {
         })
     }
     handleBeaversProperties();
-    const amiskAudioUrl = new URL("../assets/audio/highlight/beaver.m4a", import.meta.url).href;
+
+    // const beaverAudioUrl = new URL("../assets/audio/highlight/beaver.m4a", import.meta.url).href;
+    // const beaverAudio = newAudio(beaverAudioUrl)
+    // beaverAudio.loop = false;
+    // beaverAudio.currentTime = 0;
+    const amiskAudioUrl = new URL("../assets/audio/highlight/amisk.m4a", import.meta.url).href;
     const amiskAudio = new Audio(amiskAudioUrl);
 
     amiskAudio.loop = false;
     amiskAudio.currentTime = 0;
+
 
     const [beaver1EatingSrc, setBeaver1EatingSrc] = useState(beaverEatingAnimationArr[0]);
     const [beaver2EatingSrc, setBeaver2EatingSrc] = useState(beaverEatingAnimationArr[0]);
@@ -173,8 +179,9 @@ const BeaversScene0 = (props) => {
     }, [props.variables.inLessonProgress]);
 
     const handleBeaverPaneClick = () => {
-        amiskAudio.play();
-
+        if (!props.variables.inLessonProgress) {
+            amiskAudio.play();
+        }
         const next = () => {
             zoomOut("popup")
             props.functions.setBacked(false);
