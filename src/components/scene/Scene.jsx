@@ -92,7 +92,7 @@ const Scene = (props) => {
                     volume: 1,
 
                 });
-                startQuestionScript();
+                // startQuestionScript();
             }
         }
 
