@@ -63,6 +63,18 @@ Deno.serve(async (req) => {
     return res;
   }
 
+  if (pathname.startsWith("/public") || pathname === "/logo.svg") {
+    const filePath = `./public${pathname.replace("/public", "")}`;
+    try {
+      const res = await fetch(import.meta.resolve(filePath));
+      return new Response(await res.arrayBuffer(), {
+        headers: { "Content-Type": getContentType(filePath) },
+      });
+    } catch (_) {
+      return new Response("Public asset not found", { status: 404 });
+    }
+  }
+
   // 5. Fallback
   return new Response("Not Found", { status: 404 });
 });

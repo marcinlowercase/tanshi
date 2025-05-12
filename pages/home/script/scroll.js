@@ -1,5 +1,3 @@
-console.log("SCROOLL"); // to confirm script is loaded
-
 window.addEventListener("scroll", () => {
   const navbar = document.getElementById("navbar");
 
